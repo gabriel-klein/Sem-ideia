@@ -19,7 +19,7 @@ Nome:
 <p>E-mail:
 <br><input type="e_mail" name="mail" id="mail" placeholder="Ex: gabriel.silva@gmail.com" required="required" maxlength=40 size=40 /></br>
 <p>Telefone para contato:
-<br><input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=12 size=12 <input onkeypress="return event.charCode >= 48 && event.charCode <= 57"> /> <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=12 size=12 <input onkeypress="return event.charCode >= 48 && event.charCode <= 57"> /></br>
+<br><input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);"/> <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);" /></br>
 <p>Nível de Ensino:
 <br>               <input type="radio" name="ensino" id="ensino" />Fundamental
                    <input type="radio" name="ensino" id="ensino" />Médio
