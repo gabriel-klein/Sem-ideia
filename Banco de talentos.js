@@ -14,8 +14,8 @@ function apaga()
 
 function mascaratel(campoTel){
               var tel = campoTel.value;
-              if (tel.length == 0){
-                  tel = tel + '(';
+              if (tel.length == 1){
+                  tel = '(' + tel;
                   document.forms[0].tel.value = tel;
       return true;              
               }
