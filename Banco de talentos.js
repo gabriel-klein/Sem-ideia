@@ -10,4 +10,23 @@ function apaga()
              
     div.innerHTML = "";
 }
-document.getElementById("teste").style.backgroundColor = "red";
+//document.getElementById("teste").style.backgroundColor = "red";
+
+function mascaratel(campoTel){
+              var tel = campoTel.value;
+              if (tel.length == 0){
+                  tel = tel + '(';
+                  document.forms[0].tel.value = tel;
+      return true;              
+              }
+              if (tel.length == 4){
+                  tel = tel + ')';
+                  document.forms[0].tel.value = tel;
+                  return true;
+              }
+	      if (tel.length == 10){
+                  tel = tel + '-';
+                  document.forms[0].tel.value = tel;
+                  return true;
+              }
+         }
