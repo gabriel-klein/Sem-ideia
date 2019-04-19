@@ -14,38 +14,39 @@
  e os comerciantes facilitando o processo de seleção de novos colaboradores.
  Para se inscrever basta preencher os dados abaixo e entregar na Ação comunitária.</pre>
 <fieldset>
-Nome:
-<br><input type="text" name="nome" id="nome" placeholder="Nome Completo" required="required" size=40 /></br>
-<p>E-mail:
+Nome
+<br><input type="text" name="nome" id="nome" placeholder="Nome Completo" required="required" onkeypress="return somente_letra()" size=40 /></br>
+<p>E-mail
 <br><input type="e_mail" name="mail" id="mail" placeholder="Ex: gabriel.silva@gmail.com" required="required" maxlength=40 size=40 /></br>
-<p>Telefone para contato:
-<br><input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=16 size=16 nkeypress="return somente_num(this)"  />
-    <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=16 size=16 nkeypress="return somente_num(this)" /></br>
-<p>Nível de Ensino:
+<p>Telefone para contato
+<br><input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=16 size=16 onkeypress="return somente_num(this)"  />
+    <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=16 size=16 onkeypress="return somente_num(this)" /></br>
+<p>Nível de Ensino
 <br>               <input type="radio" name="ensino" id="ensino" />Fundamental
                    <input type="radio" name="ensino" id="ensino" />Médio
 				   <input type="radio" name="ensino" id="ensino" />Superior</br>
-<p>Nível de Excel:
+<p>Nível de Excel
 <br>               <input type="radio" name="Excel"  id="Excel"/>Básico
                    <input type="radio" name="Excel" id="Excel"/>Intermediário
 				   <input type="radio" name="Excel" id="Excel" />Avançado</br>
-<p>Nível de Word:
+<p>Nível de Word
 <br>             <input type="radio" name="word" id="word"/>Básico
                  <input type="radio" name="word" id="word" />Intermediário
 				 <input type="radio" name="word" id="word" />Avançado</br>
-<p>Horário disponível:
+<p>Horário disponível
 <br>                  <input type="radio" name="horario" id="horario"/>Diurno
                       <input type="radio" name="horario" id="horario"/>Noturno
 				      <input type="radio" name="horario" id="horario"/>Indiferente</br>
-<p>já trabalhou antes ?:
+<p>já trabalhou antes ?
 <br>                    <input type="radio" name="trabalho" id="trabalho" onclick="trabalhei()"/>Sim
-                        <input type="radio" name="trabalho" id="trabalho"/>Não</br>
+                        <input type="radio" name="trabalho" id="trabalho" onclick="apaga()"/>Não</br>
 
  <div id="divResultado">
  </div>				
 
-<p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? <br>
+<p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? </p>
 Sim <input type="radio" name="jovem" id="jovem" />   Não  <input type="radio" name="jovem" id="jovem" />
+<p> <input type="submit" value="Enviar"/></p>
 
 </body>
 </html>
