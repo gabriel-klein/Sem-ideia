@@ -12,21 +12,29 @@ function apaga()
 }
 //document.getElementById("teste").style.backgroundColor = "red";
 
-function mascaratel(campoTel){
-              var tel = campoTel.value;
-              if (tel.length == 1){
+function somente_num(campo)
+{
+    if(event.charCode >=48 && event.charCode <=57)
+	{ 
+	     var tel = campo.value;
+              if (tel.length == 0){
                   tel = '(' + tel;
-                  document.forms[0].tel.value = tel;
-      return true;              
+                  campo.value=tel;
+                  return true;              
               }
               if (tel.length == 4){
-                  tel = tel + ')';
-                  document.forms[0].tel.value = tel;
+                  tel = tel + ') ';
+                  campo.value=tel;
                   return true;
               }
-	      if (tel.length == 11){
+	          if (tel.length == 11){
                   tel = tel + '-';
-                  document.forms[0].tel.value = tel;
+                  campo.value=tel;
                   return true;
               }
-         }
+	
+	}
+	else
+	return false;
+
+}
