@@ -4,49 +4,119 @@
 <title>Banco de talentos</title>
 <meta charset="UTF-8">
 <script src="Banco de talentos.js" ></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="script.js"></script>
 </head>
-<body>
-<form method="POST" action="banco_talentos.php">
-<h2>O que é o Banco de Talentos? </h2>
-<pre>É uma iniciativa do setor de Ação
- Comunitária e Pastoral do Unilasalle-RJ que visa criar uma ponte entre
- os moradores da região, ajudando-os a se reinserir no mercado de trabalho,
- e os comerciantes facilitando o processo de seleção de novos colaboradores.
- Para se inscrever basta preencher os dados abaixo e entregar na Ação comunitária.</pre>
-<fieldset>
-Nome
-<br><input type="text" name="nome" id="nome" placeholder="Nome Completo" required="required" onkeypress="return somente_letra()" size=40 /></br>
-<p>E-mail
-<br><input type="e_mail" name="mail" id="mail" placeholder="Ex: gabriel.silva@gmail.com" required="required" maxlength=40 size=40 /></br>
-<p>Telefone para contato
-<br><input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=16 size=16 onkeypress="return somente_num(this)"  />
-    <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=16 size=16 onkeypress="return somente_num(this)" /></br>
-<p>Nível de Ensino
-<br>               <input type="radio" name="ensino" id="ensino" />Fundamental
-                   <input type="radio" name="ensino" id="ensino" />Médio
-				   <input type="radio" name="ensino" id="ensino" />Superior</br>
-<p>Nível de Excel
-<br>               <input type="radio" name="Excel"  id="Excel"/>Básico
-                   <input type="radio" name="Excel" id="Excel"/>Intermediário
-				   <input type="radio" name="Excel" id="Excel" />Avançado</br>
-<p>Nível de Word
-<br>             <input type="radio" name="word" id="word"/>Básico
-                 <input type="radio" name="word" id="word" />Intermediário
-				 <input type="radio" name="word" id="word" />Avançado</br>
-<p>Horário disponível
-<br>                  <input type="radio" name="horario" id="horario"/>Diurno
-                      <input type="radio" name="horario" id="horario"/>Noturno
-				      <input type="radio" name="horario" id="horario"/>Indiferente</br>
-<p>já trabalhou antes ?
-<br>                    <input type="radio" name="trabalho" id="trabalho" onclick="trabalhei()"/>Sim
-                        <input type="radio" name="trabalho" id="trabalho" onclick="apaga()"/>Não</br>
+<body class="container-fluid">
+  <h2 class="h2">O que é o Banco de Talentos? </h2>
+  <pre>É uma iniciativa do setor de Ação
+   Comunitária e Pastoral do Unilasalle-RJ que visa criar uma ponte entre
+   os moradores da região, ajudando-os a se reinserir no mercado de trabalho,
+   e os comerciantes facilitando o processo de seleção de novos colaboradores.
+   Para se inscrever basta preencher os dados abaixo e entregar na Ação comunitária.</pre>
+  <form method="POST" action="banco_talentos.php" class="row">
+    <div class="col-md-6">
+      <h3 class="h3">Informações Pessoais</h3><hr>
+      <div class="form-group">
+        <label for="nome">Nome:*</label>
+        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required="required" name="nome" size=40>
+      </div>
 
- <div id="divResultado">
- </div>				
+      <div class="form-group">
+        <label for="email">Email:*</label>
+        <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required="required" name="email" maxlength=40>
+      </div>
+      <div class="form-group">
+        <label for="tel1">Telefone 1*:</label>
+        <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);"/>
+      </div>
 
-<p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? </p>
-Sim <input type="radio" name="jovem" id="jovem" />   Não  <input type="radio" name="jovem" id="jovem" />
-<p> <input type="submit" value="Enviar"/></p>
+      <div class="form-group">
+        <label for="tel2">Telefone 2:</label>
+        <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);"/>
+      </div>
+    </div>
+
+    <!-- <p>Telefones para contato: <br>
+      <input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);"/>
+      <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);" />
+    </p> -->
+    <div class="col-md-6">
+      <h3 class="h3">Escolaridade</h3><hr>
+      <p>Nível de Ensino:
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="Fundamental" name="ensino" value="Fundamental">
+          <label class="custom-control-label" for="Fundamental">Fundamental</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="Médio" name="ensino" value="Médio">
+          <label class="custom-control-label" for="Médio">Médio</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="Superior" name="ensino" value="Superior">
+          <label class="custom-control-label" for="Superior">Superior</label>
+        </div>
+      </p>
+
+      <p>Nível de Excel:
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="excel_Básico" name="excel" value="Básico">
+          <label class="custom-control-label" for="excel_Básico">Básico</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="excel_Intermediário" name="excel" value="Intermediário">
+          <label class="custom-control-label" for="excel_Intermediário">Intermediário</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="excel_Avançado" name="excel" value="Avançado">
+          <label class="custom-control-label" for="excel_Avançado">Avançado</label>
+        </div>
+      </p>
+
+      <p>Nível de Word:
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="word_Básico" name="word" value="Básico">
+          <label class="custom-control-label" for="word_Básico">Básico</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="word_Intermediário" name="word" value="Intermediário">
+          <label class="custom-control-label" for="word_Intermediário">Intermediário</label>
+        </div>
+
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" class="custom-control-input" id="word_Avançado" name="word" value="Avançado">
+          <label class="custom-control-label" for="word_Avançado">Avançado</label>
+        </div>
+      </p>
+    </div>
+
+      <p>Horário disponível: <br>
+        <input type="radio" name="horario" id="horario"/>Diurno
+        <input type="radio" name="horario" id="horario"/>Noturno
+        <input type="radio" name="horario" id="horario" />Indiferente</p>
+    
+      <p>Já trabalhou antes ?: <br>
+        <input type="radio" name="trabalho" id="trabalho" onclick="trabalhei()" />Sim
+        <input type="radio" name="trabalho" id="trabalho" />Não
+      </p>
+
+     <div id="divResultado">
+     </div>       
+
+    <p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? </br>
+      <input type="radio" name="jovem" id="jovem" /> Sim   
+      <input type="radio" name="jovem" id="jovem" /> Não 
+    </p>
+  </form>
 
 </body>
 </html>
