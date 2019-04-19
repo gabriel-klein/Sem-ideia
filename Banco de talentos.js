@@ -24,7 +24,7 @@ function mascaratel(campoTel){
                   document.forms[0].tel.value = tel;
                   return true;
               }
-	      if (tel.length == 10){
+	      if (tel.length == 11){
                   tel = tel + '-';
                   document.forms[0].tel.value = tel;
                   return true;
