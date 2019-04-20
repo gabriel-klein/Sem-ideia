@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Banco de talentos</title>
-<meta charset="UTF-8">
-<script src="Banco de talentos.js" ></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="script.js"></script>
+  <title>Banco de talentos</title>
+  <meta charset="UTF-8">
+  <script src="Banco de talentos.js" ></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="script.js"></script>
 </head>
 <body class="container-fluid">
   <h2 class="h2">O que é o Banco de Talentos? </h2>
@@ -18,105 +18,157 @@
    os moradores da região, ajudando-os a se reinserir no mercado de trabalho,
    e os comerciantes facilitando o processo de seleção de novos colaboradores.
    Para se inscrever basta preencher os dados abaixo e entregar na Ação comunitária.</pre>
-  <form method="POST" action="banco_talentos.php" class="row">
-    <div class="col-md-6">
-      <h3 class="h3">Informações Pessoais</h3><hr>
-      <div class="form-group">
-        <label for="nome">Nome:*</label>
-        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required onkeypress="return somente_letra()" name="nome" size=40>
-      </div>
+  <form method="POST" action="banco_talentos.php" ng-app="">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="h3">Informações Pessoais</h3><hr>
+        <div class="form-group">
+          <label for="nome">Nome:*</label>
+          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" size=40 />
+          <!-- onkeypress="return somente_letra()" -->
+        </div>
 
-      <div class="form-group">
-        <label for="email">Email:*</label>
-        <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required name="email" maxlength=40>
-      </div>
-      <div class="form-group">
-        <label for="tel1">Telefone 1*:</label>
-        <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (11)9 9999-8888" pattern=".{16}" title="(011)9 9999-8888" required maxlength=16 size=16 onkeypress="return somente_num(this)"/>
-      </div>
+        <div class="form-group">
+          <label for="email">Email:*</label>
+          <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required name="email" maxlength=40 />
+        </div>
+        <div class="form-group">
+          <label for="tel1">Telefone 1*:</label>
+          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (11) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=15 onkeypress="return somente_num(this)"/>
+        </div>
 
-      <div class="form-group">
-        <label for="tel2">Telefone 2:</label>
-        <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (11)9 9999-8888" pattern=".{16}" title="(011)9 9999-8888"  maxlength=16 size=16 onkeypress="return somente_num(this)"/>
+        <div class="form-group">
+          <label for="tel2">Telefone 2:</label>
+          <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (11) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888"  maxlength=15 onkeypress="return somente_num(this)"/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="h3">Conhecimentos</h3><hr>
+        <p><label class="control-label" for="ensino">Nível de Ensino:</label>
+          <select name="ensino" class="custom-select" id="ensino">
+            <option selected>Selecione sua Escolaridade</option>
+            <option value="Superior_com">Superior Completo</option>
+            <option value="Superior_inc">Superior Incompleto</option>
+            <option value="Médio_com">Médio Completo</option>
+            <option value="Médio_inc">Médio Incompleto</option>
+            <option value="Fundamental_com">Fundamental Completo</option>
+            <option value="Fundamental_inc">Fundamental Incompleto</option>
+          </select>
+        </p>
+
+        <p>Nível de Excel:
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="excel_Básico" name="excel" value="Básico" />
+            <label class="custom-control-label" for="excel_Básico">Básico</label>
+          </div>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="excel_Intermediário" name="excel" value="Intermediário" />
+            <label class="custom-control-label" for="excel_Intermediário">Intermediário</label>
+          </div>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="excel_Avançado" name="excel" value="Avançado" />
+            <label class="custom-control-label" for="excel_Avançado">Avançado</label>
+          </div>
+        </p>
+
+        <p>Nível de Word:
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="word_Básico" name="word" value="Básico" />
+            <label class="custom-control-label" for="word_Básico">Básico</label>
+          </div>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="word_Intermediário" name="word" value="Intermediário" />
+            <label class="custom-control-label" for="word_Intermediário">Intermediário</label>
+          </div>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="word_Avançado" name="word" value="Avançado" />
+            <label class="custom-control-label" for="word_Avançado">Avançado</label>
+          </div>
+        </p>
+
+        <p>Inglês:
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="ingles_Básico" name="ingles" value="Básico" />
+            <label class="custom-control-label" for="ingles_Básico">Básico</label>
+          </div>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="ingles_Intermediário" name="ingles" value="Intermediário" />
+            <label class="custom-control-label" for="ingles_Intermediário">Intermediário</label>
+          </div>
+
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="ingles_Avançado" name="ingles" value="Avançado" />
+            <label class="custom-control-label" for="ingles_Avançado">Avançado</label>
+          </div>
+        </p>
+     </div>
+   </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="h3">Informações adicionais</h3> <hr>
+        <p>Horário disponível:
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="Diurno" name="horario" value="Diurno" />
+            <label class="custom-control-label" for="Diurno">Diurno</label>
+          </div>  
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="Noturno" name="horario" value="Noturno" />
+            <label class="custom-control-label" for="Noturno">Noturno</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="Indiferente" name="horario" value="Indiferente" />
+            <label class="custom-control-label" for="Indiferente">Indiferente</label>
+          </div>
+        </p>
+      
+        <p>Já trabalhou antes ?:  
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="trab_Sim" name="trabalho" value="Sim" ng-model="trab" />
+            <label class="custom-control-label" for="trab_Sim">Sim</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="trab_Não" name="trabalho" value="Não" ng-model="trab" />
+            <label class="custom-control-label" for="trab_Não">Não</label>
+          </div>          
+        </p>
+
+        <div ng-switch="trab">
+          <div ng-switch-when="Sim">
+            <input type="checkbox" name="operador" id='operador'/>Operador(a) de Caixa<p>
+            <input type="checkbox" name="auxiliar" id='aulixiar'/>Auxiliar de Serviços Gerais<p>
+            <input type="checkbox" name="vendedor" id='vendedor'/>Vendedor(a) <p>
+            <input type="checkbox" name="coordenador" id='coordenador'/>Coordenador(a)/Gerente de Loja<p>
+            <input type="checkbox" name="vigia" id='vigia'/>Vigia/Prevenção de perdas<p>
+            <input type="checkbox" name="estoquista" id='estoquista'/>Estoquista<p>
+            <input type="checkbox" name="baba" id='baba'/>Babá/Cuidador<p>
+            <input type="checkbox" name="estimulador" id='estimulador'/>Estimulador<p>
+            <input type="checkbox" name="cozinheiro" id='cozinheiro'/>Cozinheiro<p>
+            <input type="checkbox" name="garçom" id='garçom'/>Garçom/Garçonete<p>
+            <input type="checkbox" name="atendente" id='atendente'/>Atendente de Telemarketing<p>
+            <input type="checkbox" name="frentista" id='frentista'/>Frentista<p>Outra função? Qual? 
+            <input type="text" name='outra' id='outra' onkeypress='return somente_letra()' />
+          </div>
+          <div ng-switch-when="Não"></div>
+        </div>      
+
+        <p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? 
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="jovem_sim" name="jovem" value="Sim" />
+            <label class="custom-control-label" for="jovem_sim">Sim</label>
+          </div>   
+           <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="jovem_não" name="jovem" value="Não" />
+            <label class="custom-control-label" for="jovem_não">Não</label>
+          </div>   
+        </p>
+        <p> <input type="submit" value="Enviar" class="btn btn-primary" /></p>
       </div>
     </div>
-
-    <!-- <p>Telefones para contato: <br>
-      <input type="text" name="tel" id="tel1" placeholder="Ex: (11)9 9999-8888" required="required" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);"/>
-      <input type="text" name="tel" id="tel2" placeholder="Ex: (11)9 9999-8888" maxlength=12 size=12 onkeypress="return event.charCode >= 48 && event.charCode <= 57" OnKeyUp="mascaratel(this);" />
-    </p> -->
-    <div class="col-md-6">
-      <h3 class="h3">Escolaridade</h3><hr>
-      <p>Nível de Ensino:
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="Fundamental" name="ensino" value="Fundamental">
-          <label class="custom-control-label" for="Fundamental">Fundamental</label>
-        </div>
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="Médio" name="ensino" value="Médio">
-          <label class="custom-control-label" for="Médio">Médio</label>
-        </div>
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="Superior" name="ensino" value="Superior">
-          <label class="custom-control-label" for="Superior">Superior</label>
-        </div>
-      </p>
-
-      <p>Nível de Excel:
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="excel_Básico" name="excel" value="Básico">
-          <label class="custom-control-label" for="excel_Básico">Básico</label>
-        </div>
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="excel_Intermediário" name="excel" value="Intermediário">
-          <label class="custom-control-label" for="excel_Intermediário">Intermediário</label>
-        </div>
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="excel_Avançado" name="excel" value="Avançado">
-          <label class="custom-control-label" for="excel_Avançado">Avançado</label>
-        </div>
-      </p>
-
-      <p>Nível de Word:
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="word_Básico" name="word" value="Básico">
-          <label class="custom-control-label" for="word_Básico">Básico</label>
-        </div>
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="word_Intermediário" name="word" value="Intermediário">
-          <label class="custom-control-label" for="word_Intermediário">Intermediário</label>
-        </div>
-
-        <div class="custom-control custom-radio custom-control-inline">
-          <input type="radio" class="custom-control-input" id="word_Avançado" name="word" value="Avançado">
-          <label class="custom-control-label" for="word_Avançado">Avançado</label>
-        </div>
-      </p>
-    </div>
-
-      <p>Horário disponível: <br>
-        <input type="radio" name="horario" id="horario"/>Diurno
-        <input type="radio" name="horario" id="horario"/>Noturno
-        <input type="radio" name="horario" id="horario" />Indiferente</p>
-    
-      <p>Já trabalhou antes ?: <br>
-        <input type="radio" name="trabalho" id="trabalho" onclick="trabalhei()" />Sim
-        <input type="radio" name="trabalho" id="trabalho" onclick="apaga()" />Não
-      </p>
-
-     <div id="divResultado">
-     </div>       
-
-    <p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? </br>
-      <input type="radio" name="jovem" id="jovem" /> Sim   
-      <input type="radio" name="jovem" id="jovem" /> Não 
-    </p>
-	<p> <input type="submit" value="Enviar"/></p>
   </form>
 
 </body>
