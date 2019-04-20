@@ -44,7 +44,8 @@
       </div>
       <div class="col-md-6">
         <h3 class="h3">Conhecimentos</h3><hr>
-        <p><label class="control-label" for="ensino">Nível de Ensino:</label>
+
+        <p><label class="control-label" for="ensino">Escolaridade:</label>
           <select name="ensino" class="custom-select" id="ensino">
             <option selected>Selecione sua Escolaridade</option>
             <option value="Superior_com">Superior Completo</option>
@@ -56,7 +57,7 @@
           </select>
         </p>
 
-        <p>Nível de Excel:
+        <p>Excel:
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" id="excel_Básico" name="excel" value="Básico" />
             <label class="custom-control-label" for="excel_Básico">Básico</label>
@@ -73,7 +74,7 @@
           </div>
         </p>
 
-        <p>Nível de Word:
+        <p>Word:
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" id="word_Básico" name="word" value="Básico" />
             <label class="custom-control-label" for="word_Básico">Básico</label>
@@ -139,19 +140,60 @@
 
         <div ng-switch="trab">
           <div ng-switch-when="Sim">
-            <input type="checkbox" name="operador" id='operador'/>Operador(a) de Caixa<p>
-            <input type="checkbox" name="auxiliar" id='aulixiar'/>Auxiliar de Serviços Gerais<p>
-            <input type="checkbox" name="vendedor" id='vendedor'/>Vendedor(a) <p>
-            <input type="checkbox" name="coordenador" id='coordenador'/>Coordenador(a)/Gerente de Loja<p>
-            <input type="checkbox" name="vigia" id='vigia'/>Vigia/Prevenção de perdas<p>
-            <input type="checkbox" name="estoquista" id='estoquista'/>Estoquista<p>
-            <input type="checkbox" name="baba" id='baba'/>Babá/Cuidador<p>
-            <input type="checkbox" name="estimulador" id='estimulador'/>Estimulador<p>
-            <input type="checkbox" name="cozinheiro" id='cozinheiro'/>Cozinheiro<p>
-            <input type="checkbox" name="garçom" id='garçom'/>Garçom/Garçonete<p>
-            <input type="checkbox" name="atendente" id='atendente'/>Atendente de Telemarketing<p>
-            <input type="checkbox" name="frentista" id='frentista'/>Frentista<p>Outra função? Qual? 
-            <input type="text" name='outra' id='outra' onkeypress='return somente_letra()' />
+            <p>Selecione suas experiências anteriores:</p>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="operador" name="operador" />
+              <label class="custom-control-label" for="operador">Operador(a) de Caixa</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="aulixiar" name="aulixiar" />
+              <label class="custom-control-label" for="aulixiar">Auxiliar de Serviços Gerais</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="vendedor" name="vendedor" />
+              <label class="custom-control-label" for="vendedor">Vendedor(a)</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="coordenador" name="coordenador" />
+              <label class="custom-control-label" for="coordenador">Coordenador(a)/Gerente de Loja</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="vigia" name="vigia" />
+              <label class="custom-control-label" for="vigia">Vigia/Prevenção de perdas</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="estoquista" name="estoquista" />
+              <label class="custom-control-label" for="estoquista">Estoquista</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="baba" name="baba" />
+              <label class="custom-control-label" for="baba">Babá/Cuidador</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="estimulador" name="estimulador" />
+              <label class="custom-control-label" for="estimulador">Estimulador</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="cozinheiro" name="cozinheiro" />
+              <label class="custom-control-label" for="cozinheiro">Cozinheiro</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="garçom" name="garçom" />
+              <label class="custom-control-label" for="garçom">Garçom/Garçonete</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="atendente" name="atendente" />
+              <label class="custom-control-label" for="atendente">Atendente de Telemarketing</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="frentista" name="frentista" />
+              <label class="custom-control-label" for="frentista">Frentista</label>
+            </div>  
+            <div class="form-group form-inline">
+              <label for="outra" style="margin-right: 1rem">Outra função? Qual? </label>
+              <input type="text" class="form-control" id="outra" />
+            </div>
+<!--             <input type="text" name='outra' id='outra' onkeypress='return somente_letra()' /> -->
           </div>
           <div ng-switch-when="Não"></div>
         </div>      
@@ -166,9 +208,9 @@
             <label class="custom-control-label" for="jovem_não">Não</label>
           </div>   
         </p>
-        <p> <input type="submit" value="Enviar" class="btn btn-primary" /></p>
       </div>
     </div>
+    <p><input type="submit" value="Enviar" class="btn btn-primary" /></p>
   </form>
 
 </body>
