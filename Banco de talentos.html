@@ -11,30 +11,33 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <script src="script.js"></script>
 </head>
-<body class="container-fluid">
+<body class="container-fluid" ng-app="">
   <h2 class="h2">O que é o Banco de Talentos? </h2>
   <pre>É uma iniciativa do setor de Ação
    Comunitária e Pastoral do Unilasalle-RJ que visa criar uma ponte entre
    os moradores da região, ajudando-os a se reinserir no mercado de trabalho,
    e os comerciantes facilitando o processo de seleção de novos colaboradores.
    Para se inscrever basta preencher os dados abaixo e entregar na Ação comunitária.</pre>
-  <form method="POST" action="banco_talentos.php" ng-app="">
+  <form method="POST" action="banco_talentos.php" name="form">
     <div class="row">
       <div class="col-md-6 shadow-sm">
         <h3 class="h3">Informações Pessoais</h3><hr>
         <div class="form-group">
           <label for="nome">Nome:*</label>
-          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" size=40 />
+          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" size=40 ng-model="i_nome"/>
+          <p class="alert alert-danger" ng-show="form.nome.$touched && form.nome.$invalid">O Nome é necessário!</p>
           <!-- onkeypress="return somente_letra()" -->
         </div>
 
         <div class="form-group">
           <label for="email">Email:*</label>
-          <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required name="email" maxlength=40 />
+          <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required name="email" maxlength=40 ng-model="i_email" />
+          <p class="alert alert-danger" ng-show="form.email.$touched && form.email.$invalid">Insira um email válido!</p>
         </div>
         <div class="form-group">
           <label for="tel1">Telefone 1*:</label>
-          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)"/>
+          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" ng-model="i_tel" />
+          <p class="alert alert-danger" ng-show="form.tel.$touched && form.tel.$invalid">Insira um telefone válido!</p>
         </div>
 
         <div class="form-group">
@@ -200,7 +203,7 @@
 
         <p>Tem entre 14 e 24 anos e tenha interesse em participar do Programa jovem Aprendiz? 
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" class="custom-control-input" id="jovem_sim" name="jovem" value="Sim" />
+            <input type="radio" class="custom-control-input" id="jovem_sim" name="jovem" value="Sim"/>
             <label class="custom-control-label" for="jovem_sim">Sim</label>
           </div>   
            <div class="custom-control custom-radio custom-control-inline">
@@ -210,7 +213,10 @@
         </p>
       </div>
     </div>
-    <p><input type="submit" value="Enviar" class="btn btn-primary" /></p>
+    <div ng-switch="(form.nome.$touched && form.nome.$invalid) || (form.email.$touched && form.email.$invalid) || (form.tel.$touched && form.tel.$invalid)">
+      <p ng-switch-when="false"><input type="submit" value="Enviar" class="btn btn-primary" /></p>
+      <p ng-switch-when="true"><input type="submit" value="Enviar" class="btn btn-primary" disabled /></p>
+    </div>
   </form>
 
 </body>
