@@ -36,21 +36,22 @@
         </div>
         <div class="form-group">
           <label for="tel1">Telefone 1*:</label>
-          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" ng-model="i_tel" />
+          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" ng-model="i_tel1" />
           <p class="alert alert-danger" ng-show="form.tel.$touched && form.tel.$invalid">Insira um telefone válido!</p>
         </div>
 
         <div class="form-group">
           <label for="tel2">Telefone 2:</label>
-          <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888"  maxlength=16 onkeypress="return somente_num(this)"/>
+          <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888"  maxlength=16 onkeypress="return somente_num(this)" ng-model="i_tel2"/>
+          <p class="alert alert-danger" ng-show="form.tel2.$invalid">Insira um telefone válido</p>
         </div>
       </div>
       <div class="col-md-6 shadow-sm">
         <h3 class="h3">Conhecimentos</h3><hr>
 
-        <p><label class="control-label" for="ensino">Escolaridade:</label>
-          <select name="ensino" class="custom-select" id="ensino">
-            <option selected>Selecione sua Escolaridade</option>
+        <p><label class="control-label" for="ensino">Escolaridade:*</label>
+          <select name="ensino" class="custom-select" id="ensino" ng-model="i_esc">
+            <option value="null" disabled >Selecione sua Escolaridade</option>
             <option value="Superior_com">Superior Completo</option>
             <option value="Superior_inc">Superior Incompleto</option>
             <option value="Médio_com">Médio Completo</option>
@@ -113,7 +114,7 @@
      </div>
    </div><br>
     <div class="row">
-      <div class="col-md-12 shadow-sm">
+      <div class="col-md-6 shadow-sm">
         <h3 class="h3">Informações adicionais</h3> <hr>
         <p>Horário disponível:
           <div class="custom-control custom-radio custom-control-inline">
@@ -212,10 +213,10 @@
           </div>   
         </p>
       </div>
-    </div>
-    <div ng-switch="(form.nome.$touched && form.nome.$invalid) || (form.email.$touched && form.email.$invalid) || (form.tel.$touched && form.tel.$invalid)">
-      <p ng-switch-when="false"><input type="submit" value="Enviar" class="btn btn-primary" /></p>
-      <p ng-switch-when="true"><input type="submit" value="Enviar" class="btn btn-primary" disabled /></p>
+      <div class="col-md-6" ng-switch="(form.nome.$touched && form.nome.$invalid) || (form.email.$touched && form.email.$invalid) || (form.tel.$touched && form.tel.$invalid) || (form.tel2.$invalid) || (form.ensino.$touched && form.ensino.$invalid) || (form.nome.$untouched || form.email.$untouched || form.tel.$untouched || form.ensino.$untouched)">
+        <p ng-switch-when="false"><input type="submit" value="Enviar" class="btn btn-primary" /></p>
+        <p ng-switch-when="true"><input type="submit" value="Enviar" class="btn btn-primary" disabled /></p>
+      </div>
     </div>
   </form>
 
