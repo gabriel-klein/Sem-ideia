@@ -213,7 +213,7 @@
           </div>   
         </p>
       </div>
-      <div class="col-md-6" ng-switch="(form.nome.$touched && form.nome.$invalid) || (form.email.$touched && form.email.$invalid) || (form.tel.$touched && form.tel.$invalid) || (form.tel2.$invalid) || (form.ensino.$touched && form.ensino.$invalid) || (form.nome.$untouched || form.email.$untouched || form.tel.$untouched || form.ensino.$untouched)">
+      <div class="col-md-6" ng-switch="(form.nome.$touched && form.nome.$invalid) || (form.email.$touched && form.email.$invalid) || (form.tel.$touched && form.tel.$invalid) || (form.tel2.$invalid) || (form.ensino.$touched && form.ensino.$invalid) || (form.nome.$pristine || form.email.$pristine || form.tel.$pristine || form.ensino.$pristine)">
         <p ng-switch-when="false"><input type="submit" value="Enviar" class="btn btn-primary" /></p>
         <p ng-switch-when="true"><input type="submit" value="Enviar" class="btn btn-primary" disabled /></p>
       </div>
