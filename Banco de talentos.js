@@ -23,12 +23,12 @@ function somente_num(campo)
                   campo.value=tel;
                   return true;              
               }
-              if (tel.length == 3){
+              if (tel.length == 4){
                   tel = tel + ') ';
                   campo.value=tel;
                   return true;
               }
-            if (tel.length == 10){
+            if (tel.length == 11){
                   tel = tel + '-';
                   campo.value=tel;
                   return true;
