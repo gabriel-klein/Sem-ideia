@@ -9,9 +9,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="Banco de talentos.js" ></script>
 </head>
-<body class="container-fluid" ng-app="app">
+<body class="container-fluid" ng-app="app" onload="show();">
   <h2 class="h2">O que é o Banco de Talentos? </h2>
   <pre>É uma iniciativa do setor de Ação
    Comunitária e Pastoral do Unilasalle-RJ que visa criar uma ponte entre
@@ -25,20 +26,20 @@
         <div class="form-group">
           <label for="nome">Nome:*</label><!-- ng-model="i_nome" -->
           <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" size=40 
-          value="<?php echo $nome ?>" />
-          <p class="alert alert-danger mt-2" ng-show="<?php echo $nome_r; ?>"> <?php echo $nome_erro; ?></p>
+          value="<?php echo (isset($nome))? $nome: ""; ?>" />
+          <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($nome_r))? $nome_r: "false"; ?>"> <?php echo (isset($nome_erro))? $nome_erro: ""; ?></p>
           <!-- onkeypress="return somente_letra()" -->
         </div>
 
         <div class="form-group">
           <label for="email">Email:*</label>
-          <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required name="email" maxlength=40 value="<?php echo $email ?>" />
-          <p class="alert alert-danger mt-2" ng-show="<?php echo $email_r ?>"><?php echo $email_erro ?></p>
+          <input type="email" class="form-control" id="email" placeholder="Ex: gabriel.silva@gmail.com" required name="email" maxlength=40 value="<?php echo (isset($email))? $email: ""; ?>" />
+          <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($email_r))? $email_r: "false"; ?>"><?php echo (isset($email_erro))? $email_erro: ""; ?></p>
         </div>
         <div class="form-group">
           <label for="tel1">Telefone 1*:</label>
-          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" value="<?php echo $tel1 ?>" />
-          <p class="alert alert-danger mt-2" ng-show="<?php echo $tel1_r ?>"><?php echo $tel1_erro ?></p>
+          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" value="<?php echo (isset($tel1))? $tel1: ""; ?>" />
+          <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($tel1_r))? $tel1_r: "false"; ?>"><?php echo (isset($tel1_erro))? $tel1_erro: ""; ?></p>
         </div>
 
         <div class="form-group">
@@ -52,14 +53,15 @@
 
         <p><label class="control-label" for="ensino">Escolaridade:*</label>
           <select name="ensino" class="custom-select" id="ensino">
-            <option value="null" selected disabled >Selecione sua Escolaridade</option>
-            <option value="Superior_com">Superior Completo</option>
-            <option value="Superior_inc">Superior Incompleto</option>
-            <option value="Médio_com">Médio Completo</option>
-            <option value="Médio_inc">Médio Incompleto</option>
-            <option value="Fundamental_com">Fundamental Completo</option>
-            <option value="Fundamental_inc">Fundamental Incompleto</option>
+            <option <?php echo (!isset($esc))? "selected":""; ?> disabled >Selecione sua Escolaridade</option>
+            <option value="Superior_com" <?php echo (isset($esc) && $esc == "Superior_com")? "selected":""; ?> >Superior Completo</option>
+            <option value="Superior_inc" <?php echo (isset($esc) && $esc == "Superior_inc")? "selected":""; ?> >Superior Incompleto</option>
+            <option value="Médio_com" <?php echo (isset($esc) && $esc == "Médio_com")? "selected":""; ?> >Médio Completo</option>
+            <option value="Médio_inc" <?php echo (isset($esc) && $esc == "Médio_inc")? "selected":""; ?> >Médio Incompleto</option>
+            <option value="Fundamental_com" <?php echo (isset($esc) && $esc == "Fundamental_com")? "selected":""; ?> >Fundamental Completo</option>
+            <option value="Fundamental_inc" <?php echo (isset($esc) && $esc == "Fundamental_inc")? "selected":""; ?> >Fundamental Incompleto</option>
           </select>
+           <p class="alert alert-danger" ng-show="<?php echo (isset($esc_r))? $esc_r: "false"; ?>"><?php echo (isset($esc_erro))? $esc_erro: ""; ?></p>
         </p>
 
         <p>Excel:
@@ -207,8 +209,29 @@
           </div>   
         </p>
       </div><!--  ng-disabled="(form.nome.$pristine || form.email.$pristine || form.tel.$pristine || form.ensino.$pristine )"  -->
-      <p><input type="submit" value="Enviar" class="btn btn-primary"/></p>
+      <p><input type="submit" value="Enviar" class="btn btn-primary" /></p>
     </div>
   </form>
+
+  <div class="modal" id="info">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <center>
+          <div class="modal-header">
+            <h4 class="modal-title"><?php echo $info_tit ?></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+        <!-- Modal body -->
+        
+          <div class="modal-body">
+            <i class="<?php echo $info_ico ?> fa-10x mb-1" style="<?php echo $info_css ?>" ></i>
+            <h4 class="h4 mt-2"><?php echo $info_text ?></h4>
+          </div>
+        </center>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
