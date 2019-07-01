@@ -23,12 +23,12 @@ function somente_num(campo)
                   campo.value=tel;
                   return true;              
               }
-              if (tel.length == 4){
+              if (tel.length == 3){
                   tel = tel + ') ';
                   campo.value=tel;
                   return true;
               }
-            if (tel.length == 11){
+            if (tel.length == 10){
                   tel = tel + '-';
                   campo.value=tel;
                   return true;
@@ -40,15 +40,17 @@ function somente_num(campo)
 
 }
 
-// function somente_letra()
-// {
-//   if((event.charCode>=65 && event.charCode <=90)||(event.charCode>=97 && event.charCode<=122))
-//   {
-//     return true;
-//   }
-//   else
-//     return false;
-// }
+
+function somente_letra()
+{
+   if((event.charCode>=65 && event.charCode <=90)||(event.charCode>=97 && event.charCode<=122))
+  {
+     return true;
+  }
+   else
+     return false;
+}
+
 
 // angular.module('app', []).controller('trabalho', function($scope) {
 //   $scope.op = "Não";
