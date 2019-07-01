@@ -90,18 +90,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!empty($_POST["excel"])){
 		$excel = normalizar($_POST["excel"]);
 	}
+        else
+        {
+            $excel="NULL";
+        }
 	// Word 
 	if (!empty($_POST["word"])) {
 		$word = normalizar($_POST["word"]);
 	}
+        else
+        {
+            $word="NULL";
+        }
 	// Ingles
 	if (!empty($_POST["ingles"])){
 		$ingles = normalizar($_POST["ingles"]);
 	}
+        else
+        {
+            $ingles="NULL";
+        }
 	// Turno
 	if (!empty($_POST["horario"])){
 		$turno = normalizar($_POST["horario"]);
 	}
+        else
+        {
+            $turno="NULL";
+        }
 	//Trabalhos anteriores
 	if (!empty($_POST["trab"])){
 		if (empty($_POST["operador"])){
@@ -111,10 +127,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$operador = normalizar($_POST["operador"]);
 		}
 		if (empty($_POST["aulixiar"])){
-			$aulixiar = "NULL";
+			$auxiliar = "NULL";
 		}
 		else{
-			$aulixiar = normalizar($_POST["aulixiar"]);
+			$auxiliar = normalizar($_POST["aulixiar"]);
 		}
 		if (empty($_POST["vendedor"])){
 			$vendedor = "NULL";
@@ -152,6 +168,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		else{
 			$cozinheiro = normalizar($_POST["cozinheiro"]);
 		}
+                if (empty($_POST["garçom"])){
+			$garçom = "NULL";
+		}
+		else{
+			$garçom = normalizar($_POST["garçom"]);
+		}
 		if (empty($_POST["atendente"])){
 			$atendente = "NULL";
 		}
@@ -172,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 	else{
-		$estoquista = $vendedor = $operador = $outra = $frentista = $atendente = $cozinheiro = $baba = $estoquista = $vigia = $coordenador = $aulixiar =  "NULL";
+		$estoquista = $vendedor = $operador = $outra = $frentista = $atendente = $cozinheiro = $baba = $estoquista = $vigia = $coordenador = $auxiliar = $garçom = "NULL";
 	}
 	if (empty($_POST["jovem"])){
 		$jovem = "NULL";
