@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<?php include 'database.php'; ?>
+<?php include 'Datab.php'; ?>
 <head>
   <title>Banco de talentos</title>
   <meta charset="UTF-8">
@@ -10,25 +10,35 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="Banco de talentos.js" ></script>
+  <script src="Banco de talento.js" ></script>
+  <style>
+      #topo {
+   background: #f5f5f5;
+}
+#texto{
+    color: #ffaf1a;
+    font-family: Georgia;
+}
+hr {
+      background-color: #ffaf1a;
+      height: 2px;
+    }
+  </style>
 </head>
-<body class="container-fluid" ng-app="app" onload="show();">
-  <h2 class="h2">O que é o Banco de Talentos? </h2>
-  <pre>É uma iniciativa do setor de Ação
-   Comunitária e Pastoral do Unilasalle-RJ que visa criar uma ponte entre
-   os moradores da região, ajudando-os a se reinserir no mercado de trabalho,
-   e os comerciantes facilitando o processo de seleção de novos colaboradores.
-   Para se inscrever basta preencher os dados abaixo e entregar na Ação comunitária.</pre>
-  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio">
+<body class="container-fluid"  ng-app="app" onload="show(); ">
+    <div class="row" id="topo" >
+    <img src="Logo_Comunitario.png" width="150" height="80">
+    </div><br><br>
+<center><h1 id="texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
     <div class="row">
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3">Informações Pessoais</h3><hr>
+        <h3 class="h3" id="texto">Informações Pessoais</h3><hr>
         <div class="form-group">
           <label for="nome">Nome:*</label><!-- ng-model="i_nome" -->
-          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" size=40 
+          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" onkeypress="return somente_letra()" size=40 
           value="<?php echo (isset($nome))? $nome: ""; ?>" />
           <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($nome_r))? $nome_r: "false"; ?>"> <?php echo (isset($nome_erro))? $nome_erro: ""; ?></p>
-          <!-- onkeypress="return somente_letra()" -->
         </div>
 
         <div class="form-group">
@@ -37,19 +47,19 @@
           <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($email_r))? $email_r: "false"; ?>"><?php echo (isset($email_erro))? $email_erro: ""; ?></p>
         </div>
         <div class="form-group">
-          <label for="tel1">Telefone 1*:</label>
+          <label for="tel1">Celular 1*:</label>
           <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" value="<?php echo (isset($tel1))? $tel1: ""; ?>" />
           <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($tel1_r))? $tel1_r: "false"; ?>"><?php echo (isset($tel1_erro))? $tel1_erro: ""; ?></p>
         </div>
 
         <div class="form-group">
-          <label for="tel2">Telefone 2:</label>
+          <label for="tel2">Celular 2:</label>
           <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888"  maxlength=16 onkeypress="return somente_num(this)" ng-model="i_tel2"/>
           <p class="alert alert-danger" ng-show="form.tel2.$invalid">Insira um telefone válido</p>
         </div>
       </div>
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3">Conhecimentos</h3><hr>
+        <h3 class="h3" id="texto">Conhecimentos</h3><hr>
 
         <p><label class="control-label" for="ensino">Escolaridade:*</label>
           <select name="ensino" class="custom-select" id="ensino">
@@ -118,7 +128,7 @@
    </div><br>
     <div class="row">
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3">Informações adicionais</h3> <hr>
+        <h3 class="h3" id="texto">Informações adicionais</h3> <hr>
         <p>Horário disponível:
           <div class="custom-control custom-radio custom-control-inline col-sm-auto">
             <input type="radio" class="custom-control-input" id="Diurno" name="horario" value="Diurno" />
