@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<?php include 'Datab.php'; ?>
+<?php include 'database.php'; ?>
 <head>
   <title>Banco de talentos</title>
   <meta charset="UTF-8">
