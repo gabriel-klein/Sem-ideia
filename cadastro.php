@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="Banco de talento.js" ></script>
+  <script src="Banco de talentos.js"></script>
   <style>
       #topo {
    background: #f5f5f5;
@@ -48,13 +48,13 @@ hr {
         </div>
         <div class="form-group">
           <label for="tel1">Celular 1*:</label>
-          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888" required maxlength=16 onkeypress="return somente_num(this)" value="<?php echo (isset($tel1))? $tel1: ""; ?>" />
+          <input type="text" name="tel" class="form-control" id="tel1" placeholder="Ex: (11) 9 9999-8888" pattern=".{15}" title="(011) 9 9999-8888" required maxlength=15 onkeypress="return somente_num(this)" value="<?php echo (isset($tel1))? $tel1: ""; ?>" />
           <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($tel1_r))? $tel1_r: "false"; ?>"><?php echo (isset($tel1_erro))? $tel1_erro: ""; ?></p>
         </div>
 
         <div class="form-group">
           <label for="tel2">Celular 2:</label>
-          <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (011) 9 9999-8888" pattern=".{16}" title="(011) 9 9999-8888"  maxlength=16 onkeypress="return somente_num(this)" ng-model="i_tel2"/>
+          <input type="text" name="tel2" class="form-control" id="tel2" placeholder="Ex: (011) 9 9999-8888" pattern=".{15}" title="(011) 9 9999-8888"  maxlength=15 onkeypress="return somente_num(this)" ng-model="i_tel2"/>
           <p class="alert alert-danger" ng-show="form.tel2.$invalid">Insira um telefone válido</p>
         </div>
       </div>
@@ -127,8 +127,8 @@ hr {
      </div>
    </div><br>
     <div class="row">
-      <div class="col-md-6 shadow-sm">
-        <h3 class="h3" id="texto">Informações adicionais</h3> <hr>
+      <div class="col-md-12 mx-auto shadow-sm">
+        <h3 class="h3 text-center" id="texto">Informações adicionais</h3> <hr>
         <p>Horário disponível:
           <div class="custom-control custom-radio custom-control-inline col-sm-auto">
             <input type="radio" class="custom-control-input" id="Diurno" name="horario" value="Diurno" />
@@ -218,8 +218,8 @@ hr {
             <label class="custom-control-label" for="jovem_não">Não</label>
           </div>   
         </p>
+        <p><input type="submit" value="Enviar" class="btn btn-primary" /></p>
       </div><!--  ng-disabled="(form.nome.$pristine || form.email.$pristine || form.tel.$pristine || form.ensino.$pristine )"  -->
-      <p><input type="submit" value="Enviar" class="btn btn-primary" /></p>
     </div>
   </form>
 
