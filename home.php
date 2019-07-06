@@ -48,15 +48,13 @@
     <div class="row">
     <div class="col-4 shadow mx-auto bg-white rounded" >
         <center><h3 style="padding:60px;">Realizar cadastro</h3>
-            <!-- <a href="Cadastro.php" target="_Blank"><div id="opçao" style="color:red;" >Cliente</div></a><br> -->
-            <a href="cadastro.php" class="my-2"><button class="btn btn-outline-danger btn-lg btn-block">Cliente</button></a>
-            <a class="my-1"><button class="btn btn-outline-success btn-lg btn-block mb-2" >Empresa</button></a>
-            <!-- <a href="#" target="_Blank"><div id="opçao" style="color:#00b359;">Empresa</div></a><br> -->
+            <a href="cadastro.php" class="mb-2 btn btn-outline-danger btn-lg btn-block" role="button">Cliente</a>
+            <a class="mb-2 btn btn-outline-success btn-lg btn-block" role="button" href="#">Empresa</a>
         </center>
     </div>
     <div class="col-4 shadow mx-auto">
       <center><h3 style="padding:60px;">Login</h3>
-      <a class="mb-2"><button class="btn btn-success btn-lg btn-block mb-2" >Empresa</button></a>
+      <a class="mb-2 btn btn-success btn-lg btn-block" role="button" href="#">Empresa</a>
       </center>
     </div>
   </div>
