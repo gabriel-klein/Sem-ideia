@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-<html>
-<?php include 'database.php'; ?>
-<head>
-  <title>Banco de talentos</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="Banco de talentos.js"></script>
-  <style>
-      #topo {
-   background: #f5f5f5;
-}
-#texto{
-    color: #ffaf1a;
-    font-family: Georgia;
-}
-hr {
-      background-color: #ffaf1a;
-      height: 2px;
-    }
-  </style>
-</head>
-<body class="container-fluid"  ng-app="app" onload="show(); ">
-    <div class="row" id="topo" >
-    <img src="Logo_Comunitario.png" width="150" height="80">
-    </div><br><br>
+<?php include './Modules/header.php'; ?>
 <center><h1 id="texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
     <div class="row">
@@ -243,5 +213,4 @@ hr {
       </div>
     </div>
   </div>
-</body>
-</html>
+ <?php include './Modules/footer.php; ?>
