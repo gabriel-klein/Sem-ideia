@@ -213,4 +213,4 @@
       </div>
     </div>
   </div>
- <?php include './Modules/footer.php; ?>
+ <?php include './Modules/footer.php'; ?>
