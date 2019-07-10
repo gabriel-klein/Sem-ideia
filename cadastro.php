@@ -1,9 +1,9 @@
 <?php include './Modules/header.php'; ?>
-<center><h1 id="texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
-  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
+<center><h1 class="h1 texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
+  <form class="container-fluid" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
     <div class="row">
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3" id="texto">Informações Pessoais</h3><hr>
+        <h3 class="h3 texto">Informações Pessoais</h3><hr>
         <div class="form-group">
           <label for="nome">Nome:*</label><!-- ng-model="i_nome" -->
           <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" onkeypress="return somente_letra()" size=40 
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3" id="texto">Conhecimentos</h3><hr>
+        <h3 class="h3 texto">Conhecimentos</h3><hr>
 
         <p><label class="control-label" for="ensino">Escolaridade:*</label>
           <select name="ensino" class="custom-select" id="ensino">
@@ -98,7 +98,7 @@
    </div><br>
     <div class="row">
       <div class="col-md-12 mx-auto shadow-sm">
-        <h3 class="h3 text-center" id="texto">Informações adicionais</h3> <hr>
+        <h3 class="h3 text-center texto">Informações adicionais</h3> <hr>
         <p>Horário disponível:
           <div class="custom-control custom-radio custom-control-inline col-sm-auto">
             <input type="radio" class="custom-control-input" id="Diurno" name="horario" value="Diurno" />

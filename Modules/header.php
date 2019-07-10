@@ -13,25 +13,25 @@
   <script src="Banco de talentos.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="container-fluid"  ng-app="app" onload="show(); ">
+<body ng-app="app"<?php echo (strpos($_SERVER['PHP_SELF'], "cadastro.php")>0 )?"onload='show();' ": "" ?>>
 <!--     <div class="row" id="topo" >
     <img src="Logo_Comunitario.png" width="150" height="80">
     </div><br><br> -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navcol" aria-controls="navcol" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="home.php"><img src="" alt="Ação Comunitária"></a>
 
     <div class="collapse navbar-collapse" id="navcol">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="home.php">Página Inicial</a>
+        <li class="nav-item" >
+          <a class="nav-link" href="home.php">Página Inicial <i class="fas fa-home"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="cadastro.php">Cadastro <i class="fas fa-user-plus"></i></a>
         </li>
       </ul>
-      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="button"><i class="fas fa-sign-in-alt"></i> Entrar</button>
     </div>
   </nav>
