@@ -51,19 +51,6 @@ function somente_letra()
      return false;
 }
 
-
-// angular.module('app', []).controller('trabalho', function($scope) {
-//   $scope.op = "Não";
-//   $scope.troca = function (){
-//     if ($scope.trab) {
-//       $scope.op = "Sim";
-//     }
-//     else{
-//       $scope.op = "Não";
-//     }
-//    }
-// });
-
 angular.module('app', []).controller('envio', function($scope) {
   
   $scope.op = "Não";

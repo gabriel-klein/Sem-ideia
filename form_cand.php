@@ -1,13 +1,13 @@
 <?php include './Modules/header.php'; ?>
 <center><h1 class="h1 texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
-  <form class="container-fluid" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
+  <form class="container-fluid" method="POST" action="cadastrar_candi.php" name="form" ng-controller="envio" autocomplete="off">
     <div class="row">
       <div class="col-md-6 shadow-sm">
         <h3 class="h3 texto">Informações Pessoais</h3><hr>
         <div class="form-group">
           <label for="nome">Nome:*</label><!-- ng-model="i_nome" -->
-          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome" onkeypress="return somente_letra()" size=40 
-          value="<?php echo (isset($nome))? $nome: ""; ?>" />
+          <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome"  size=40 value="<?php echo (isset($nome))? $nome: ""; ?>" /> 
+          <!-- onkeypress="return somente_letra()" -->
           <p class="alert alert-danger mt-2" ng-show="<?php echo (isset($nome_r))? $nome_r: "false"; ?>"> <?php echo (isset($nome_erro))? $nome_erro: ""; ?></p>
         </div>
 

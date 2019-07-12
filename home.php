@@ -2,7 +2,7 @@
     <div class="row">
     <div class="col-sm-4 shadow mx-auto bg-white rounded" >
         <center><h3 class="h3 mx-auto py-5">Realizar cadastro</h3></center>
-        <a href="cadastro.php" class="mb-2 btn btn-outline-danger btn-lg btn-block" role="button">Cliente</a>
+        <a href="form_cand.php" class="mb-2 btn btn-outline-danger btn-lg btn-block" role="button">Cliente</a>
         <a class="mb-2 btn btn-outline-success btn-lg btn-block" role="button" href="#">Empresa</a>
     </div>
     <div class="col-sm-4 shadow mx-auto">
