@@ -13,32 +13,32 @@
 //document.getElementById("teste").style.backgroundColor = "red";
 
 
-function somente_num(campo)
-{
-    if(event.charCode >=48 && event.charCode <=57)
-  { 
-       var tel = campo.value;
-              if (tel.length == 0){
-                  tel = '(' + tel;
-                  campo.value=tel;
-                  return true;              
-              }
-              if (tel.length == 3){
-                  tel = tel + ') ';
-                  campo.value=tel;
-                  return true;
-              }
-            if (tel.length == 10){
-                  tel = tel + '-';
-                  campo.value=tel;
-                  return true;
-              }
+// function somente_num(campo)
+// {
+//     if(event.charCode >=48 && event.charCode <=57)
+//   { 
+//        var tel = campo.value;
+//               if (tel.length == 0){
+//                   tel = '(' + tel;
+//                   campo.value=tel;
+//                   return true;              
+//               }
+//               if (tel.length == 3){
+//                   tel = tel + ') ';
+//                   campo.value=tel;
+//                   return true;
+//               }
+//             if (tel.length == 10){
+//                   tel = tel + '-';
+//                   campo.value=tel;
+//                   return true;
+//               }
   
-  }
-  else
-  return false;
+//   }
+//   else
+//   return false;
 
-}
+// }
 
 
 function somente_letra()

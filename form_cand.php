@@ -1,6 +1,7 @@
 <?php include './Modules/header.php'; ?>
+<?php include 'cadastrar_candi.php'; ?>
 <center><h1 class="h1 texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
-  <form class="container-fluid" method="POST" action="cadastrar_candi.php" name="form" ng-controller="envio" autocomplete="off">
+  <form class="container-fluid" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
     <div class="row">
       <div class="col-md-6 shadow-sm">
         <h3 class="h3 texto">Informações Pessoais</h3><hr>

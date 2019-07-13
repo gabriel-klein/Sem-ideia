@@ -1,5 +1,5 @@
 <?php
-include 'Modules/database.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Nome
 	if (empty($_POST["nome"])){
@@ -189,7 +189,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$info_text = "Preencha os campos corretamente!";
 		$info_css = "color: #DB2525;";
 	}
-	header("Location: form_cand.php");
 }
 function normalizar($var){
 	$var = trim($var);
@@ -205,5 +204,3 @@ function normalizar($var){
 		}
 	}
 </script>
-
-?> 

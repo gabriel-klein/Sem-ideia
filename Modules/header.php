@@ -13,7 +13,7 @@
   <script src="Banco de talentos.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body ng-app="app"<?php echo (strpos($_SERVER['PHP_SELF'], "cadastro.php")>0 )?"onload='show();' ": "" ?>>
+<body ng-app="app"<?php echo (strpos($_SERVER['PHP_SELF'], "form_cand.php")>0 )?"onload='show();' ": "" ?>>
 <!--     <div class="row" id="topo" >
     <img src="Logo_Comunitario.png" width="150" height="80">
     </div><br><br> -->
@@ -29,7 +29,7 @@
           <a class="nav-link" href="home.php">Página Inicial <i class="fas fa-home"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="cadastro.php">Cadastro <i class="fas fa-user-plus"></i></a>
+          <a class="nav-link" href="form_cand.php">Cadastro <i class="fas fa-user-plus"></i></a>
         </li>
       </ul>
       <button class="btn btn-outline-dark my-2 my-sm-0" type="button"><i class="fas fa-sign-in-alt"></i> Entrar</button>
