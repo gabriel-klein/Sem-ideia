@@ -1,10 +1,10 @@
 <?php include './Modules/header.php'; ?>
 <?php include 'cadastrar_candi.php'; ?>
-<center><h1 class="h1 texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
+<center><h1 class="h1 texto" id="texto">Cadastro Do Cliente</h1><hr id="topo"></center><br><br>
   <form class="container-fluid" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" name="form" ng-controller="envio" autocomplete="off">
     <div class="row">
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3 texto">Informações Pessoais</h3><hr>
+        <h3 class="h3 texto" id="texto">Informações Pessoais</h3><hr>
         <div class="form-group">
           <label for="nome">Nome:*</label><!-- ng-model="i_nome" -->
           <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required name="nome"  size=40 value="<?php echo (isset($nome))? $nome: ""; ?>" /> 
@@ -30,17 +30,17 @@
         </div>
       </div>
       <div class="col-md-6 shadow-sm">
-        <h3 class="h3 texto">Conhecimentos</h3><hr>
+        <h3 class="h3 texto" id="texto">Conhecimentos</h3><hr>
 
         <p><label class="control-label" for="ensino">Escolaridade:*</label>
           <select name="ensino" class="custom-select" id="ensino">
             <option <?php echo (!isset($esc))? "selected":""; ?> disabled >Selecione sua Escolaridade</option>
-            <option value="Superior_com" <?php echo (isset($esc) && $esc == "Superior_com")? "selected":""; ?> >Superior Completo</option>
-            <option value="Superior_inc" <?php echo (isset($esc) && $esc == "Superior_inc")? "selected":""; ?> >Superior Incompleto</option>
-            <option value="Médio_com" <?php echo (isset($esc) && $esc == "Médio_com")? "selected":""; ?> >Médio Completo</option>
-            <option value="Médio_inc" <?php echo (isset($esc) && $esc == "Médio_inc")? "selected":""; ?> >Médio Incompleto</option>
-            <option value="Fundamental_com" <?php echo (isset($esc) && $esc == "Fundamental_com")? "selected":""; ?> >Fundamental Completo</option>
-            <option value="Fundamental_inc" <?php echo (isset($esc) && $esc == "Fundamental_inc")? "selected":""; ?> >Fundamental Incompleto</option>
+            <option value="Superior_completo" <?php echo (isset($esc) && $esc == "Superior_completo")? "selected":""; ?> >Superior Completo</option>
+            <option value="Superior_incompleto" <?php echo (isset($esc) && $esc == "Superior_incompleto")? "selected":""; ?> >Superior Incompleto</option>
+            <option value="Médio_completo" <?php echo (isset($esc) && $esc == "Médio_completo")? "selected":""; ?> >Médio Completo</option>
+            <option value="Médio_incompleto" <?php echo (isset($esc) && $esc == "Médio_incompleto")? "selected":""; ?> >Médio Incompleto</option>
+            <option value="Fundamental_completo" <?php echo (isset($esc) && $esc == "Fundamental_completo")? "selected":""; ?> >Fundamental Completo</option>
+            <option value="Fundamental_incompleto" <?php echo (isset($esc) && $esc == "Fundamental_incompleto")? "selected":""; ?> >Fundamental Incompleto</option>
           </select>
            <p class="alert alert-danger" ng-show="<?php echo (isset($esc_r))? $esc_r: "false"; ?>"><?php echo (isset($esc_erro))? $esc_erro: ""; ?></p>
         </p>
@@ -99,7 +99,7 @@
    </div><br>
     <div class="row">
       <div class="col-md-12 mx-auto shadow-sm">
-        <h3 class="h3 text-center texto">Informações adicionais</h3> <hr>
+        <h3 class="h3 text-center texto" id="texto">Informações adicionais</h3> <hr>
         <p>Horário disponível:
           <div class="custom-control custom-radio custom-control-inline col-sm-auto">
             <input type="radio" class="custom-control-input" id="Diurno" name="horario" value="Diurno" />
