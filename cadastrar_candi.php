@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$tel2 = normalizar($_POST["tel2"]);
 	}
 	else{
-		$tel2 = MYSQLI_TYPE_NULL;
+		$tel2 = NULL;
 	}
 	// Escolaridade 
 	if (empty($_POST["ensino"])){
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 	else{
-		$estoquista = $vendedor = $operador = $outra = $frentista = $atendente = $cozinheiro = $baba = $estoquista = $vigia = $coordenador = $auxiliar = $garçom = MYSQLI_TYPE_NULL;
+		$estoquista = $vendedor = $operador = $outra = $frentista = $atendente = $cozinheiro = $baba = $estoquista = $vigia = $coordenador = $auxiliar = $garçom = NULL;
 	}
 	if (empty($_POST["jovem"])){
 		$jovem = "NULL";
