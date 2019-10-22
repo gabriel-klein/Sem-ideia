@@ -13,10 +13,19 @@ class Vaga extends Model
     /**
      * Método da Relação 1-N
      *
-     * @return Empresa
+     * @return empresa
      */
     public function empresa(){
         return $this->belongsTo('App\Empresa');
+    }
+
+    /**
+     * Método da Relação N-N
+     *
+     * @return array
+     */
+    public function conhecimentos(){
+        return $this->belongsToMany('App\Conhecimento');
     }
 
 }
