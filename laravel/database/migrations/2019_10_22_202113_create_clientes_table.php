@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVagasTable extends Migration
+class CreateClientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateVagasTable extends Migration
      */
     public function up()
     {
-        Schema::create('vagas', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('descricao');
-            $table->integer('qtd');
-            $table->unsignedBigInteger('empresa_id');
+            $table->integer('idade');
+            $table->string('cel1')->unique();
+            $table->string('cel2')->nullable();
+            $table->enum('h_disponivel', ['Manhã', 'Tarde', 'Integral']);
+            $table->enum('aprendiz', ['Sim', 'Não'])->default('Não');
             $table->timestamps();
-            $table->foreign('empresa_id')
-                  ->references('id')->on('empresas');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateVagasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vagas');
+        Schema::dropIfExists('clientes');
     }
 }

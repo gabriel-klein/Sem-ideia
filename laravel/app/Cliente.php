@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Empresa extends Model
+class Cliente extends Model
 {
     
     /**
@@ -13,7 +13,7 @@ class Empresa extends Model
      * @var array
      */
     protected $fillable = [
-        'cnpj', 'razao_social'
+        'idade', 'cel1', 'cel2', 'h_disponivel', 'aprendiz'
     ];
     
     /**
@@ -24,6 +24,15 @@ class Empresa extends Model
     public function user(){
         return $this->morphOne('App\User', 'userable');
     }
+
+    /**
+     * Método da Relação N-N
+     *
+     * @return void
+     */
+    public function conhecimentos(){
+        return $this->belongsToMany('App\Conhecimento');
+    }
     
-    
+
 }

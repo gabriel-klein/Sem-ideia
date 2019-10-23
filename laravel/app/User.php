@@ -20,6 +20,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * Método da agregação
+     *
+     * @return void
+     */
+    public function userable(){
+        return $this->morphTo();
+    }
+    
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array

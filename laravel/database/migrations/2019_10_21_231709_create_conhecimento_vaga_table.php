@@ -17,13 +17,12 @@ class CreateConhecimentoVagaTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('conhecimento_id');
             $table->unsignedBigInteger('vaga_id');
-            $table->timestamps();
+            $table->timestamps();    
             
             $table->foreign('conhecimento_id')
-                  ->references('conhecimentos')->on('id')
-                  ->onDelete('cascade');
-            $table->foreign('vaga_id')->references('vagas')
-                  ->on('id')->onDelete('cascade');
+            ->references('id')->on('conhecimentos');
+            $table->foreign('vaga_id')
+                  ->references('id')->on('vagas');
         });
     }
 
