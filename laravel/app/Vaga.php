@@ -12,13 +12,13 @@ class Vaga extends Model
      * @var array
      */
     protected $fillable = [
-        'descricao', 'qtd', 'empresa_id'
+        'descricao', 'qtd', 'empresa_id', 'status'
     ];
 
     /**
      * Método da Relação 1-N
      *
-     * @return empresa
+     * @return App\Empresa
      */
     public function empresa(){
         return $this->belongsTo('App\Empresa');
@@ -27,7 +27,7 @@ class Vaga extends Model
     /**
      * Método da Relação N-N
      *
-     * @return array
+     * @return array App\Conhecimento
      */
     public function conhecimentos(){
         return $this->belongsToMany('App\Conhecimento');

@@ -19,7 +19,7 @@ class Empresa extends Model
     /**
      * Método da Agregação
      *
-     * @return void
+     * @return App\User
      */
     public function user(){
         return $this->morphOne('App\User', 'userable');

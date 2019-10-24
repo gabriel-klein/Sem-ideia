@@ -17,6 +17,7 @@ class CreateVagasTable extends Migration
             $table->bigIncrements('id');
             $table->string('descricao');
             $table->integer('qtd');
+            $table->enum('status', ['Ativa', 'Desativada']);
             $table->unsignedBigInteger('empresa_id');
             $table->timestamps();
             $table->foreign('empresa_id')

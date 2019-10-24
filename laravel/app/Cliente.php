@@ -19,7 +19,7 @@ class Cliente extends Model
     /**
      * Método da Agregação
      *
-     * @return void
+     * @return App\User
      */
     public function user(){
         return $this->morphOne('App\User', 'userable');
@@ -28,7 +28,7 @@ class Cliente extends Model
     /**
      * Método da Relação N-N
      *
-     * @return void
+     * @return array App\Conhecimento
      */
     public function conhecimentos(){
         return $this->belongsToMany('App\Conhecimento');

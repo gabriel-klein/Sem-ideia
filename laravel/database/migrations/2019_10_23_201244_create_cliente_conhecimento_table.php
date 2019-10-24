@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConhecimentoVagaTable extends Migration
+class CreateClienteConhecimentoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateConhecimentoVagaTable extends Migration
      */
     public function up()
     {
-        Schema::create('conhecimento_vaga', function (Blueprint $table) {
+        Schema::create('cliente_conhecimento', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nivel');
             $table->unsignedBigInteger('conhecimento_id');
-            $table->unsignedBigInteger('vaga_id');
+            $table->unsignedBigInteger('cliente_id');
             $table->timestamps();    
             
+            $table->foreign('cliente_id')
+                  ->references('id')->on('clientes');
             $table->foreign('conhecimento_id')
             ->references('id')->on('conhecimentos');
-            $table->foreign('vaga_id')
-                  ->references('id')->on('vagas');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateConhecimentoVagaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conhecimento_vaga');
+        Schema::dropIfExists('cliente_conhecimento');
     }
 }
