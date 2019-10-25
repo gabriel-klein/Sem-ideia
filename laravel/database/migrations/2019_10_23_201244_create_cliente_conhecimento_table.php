@@ -15,7 +15,7 @@ class CreateClienteConhecimentoTable extends Migration
     {
         Schema::create('cliente_conhecimento', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nivel');
+            $table->string('nivel')->nullable();
             $table->unsignedBigInteger('conhecimento_id');
             $table->unsignedBigInteger('cliente_id');
             $table->timestamps();    
@@ -23,7 +23,7 @@ class CreateClienteConhecimentoTable extends Migration
             $table->foreign('cliente_id')
                   ->references('id')->on('clientes');
             $table->foreign('conhecimento_id')
-            ->references('id')->on('conhecimentos');
+                  ->references('id')->on('conhecimentos');
         });
     }
 

@@ -15,13 +15,13 @@ class CreateConhecimentoVagaTable extends Migration
     {
         Schema::create('conhecimento_vaga', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nivel');
+            $table->string('nivel')->nullable();
             $table->unsignedBigInteger('conhecimento_id');
             $table->unsignedBigInteger('vaga_id');
             $table->timestamps();    
             
             $table->foreign('conhecimento_id')
-            ->references('id')->on('conhecimentos');
+                  ->references('id')->on('conhecimentos');
             $table->foreign('vaga_id')
                   ->references('id')->on('vagas');
         });

@@ -13,8 +13,18 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['cliente'])->group(function (){
+        
+    });
+    Route::middleware(['empresa'])->group(function (){
+        Route::resource('vagas', 'VagaController', ['except' => [
+            'destroy'
+        ]]);
+    });
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

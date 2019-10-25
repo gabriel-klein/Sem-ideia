@@ -33,6 +33,4 @@ class Cliente extends Model
     public function conhecimentos(){
         return $this->belongsToMany('App\Conhecimento');
     }
-    
-
 }

@@ -16,7 +16,7 @@ class CreateVagasTable extends Migration
         Schema::create('vagas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao');
-            $table->integer('qtd');
+            $table->integer('quantidade');
             $table->enum('status', ['Ativa', 'Desativada']);
             $table->unsignedBigInteger('empresa_id');
             $table->timestamps();
