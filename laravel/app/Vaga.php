@@ -30,7 +30,9 @@ class Vaga extends Model
      * @return array App\Conhecimento
      */
     public function conhecimentos(){
-        return $this->belongsToMany('App\Conhecimento');
+        return $this->belongsToMany('App\Conhecimento')
+                    ->withPivot('nivel')
+                    ->withTimestamps();
     }
 
 }
