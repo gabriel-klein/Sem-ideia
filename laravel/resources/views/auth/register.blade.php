@@ -94,12 +94,13 @@
                         
                         <div v-else-if="typeUser == 'Cliente'">
                             <div class="form-group row">
-                                <label for="age" class="col-md-4 col-form-label text-md-right">Idade</label>
+                                <label for="idade" class="col-md-4 col-form-label text-md-right">Idade</label>
                                 
                                 <div class="col-md-6">
-                                    <input id="age" type="text" class="form-control" name="age" required>
+                                    <input id="idade" type="text" class="form-control @error('idade') is-invalid @enderror" 
+                                        name="idade" value="{{ old('idade') }}" required>
                                     
-                                    @error('age')
+                                    @error('idade')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -111,9 +112,10 @@
                                 <label for="cel" class="col-md-4 col-form-label text-md-right">Celular</label>
     
                                 <div class="col-md-6">
-                                    <input id="cel" type="text" class="form-control telMask" name="cel" required>
+                                    <input id="cel" type="text" class="form-control telMask @error('cel1') is-invalid @enderror"
+                                        name="cel1" value="{{ old('cel1') }}" required>
                                     
-                                    @error('cel')
+                                    @error('cel1')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -125,7 +127,8 @@
                                 <label for="cel2" class="col-md-4 col-form-label text-md-right">Celular 2</label>
     
                                 <div class="col-md-6">
-                                    <input id="cel2" type="text" class="form-control telMask" name="cel2">
+                                    <input id="cel2" type="text" class="form-control telMask @error('cel2') is-invalid @enderror" 
+                                        name="cel2" value="{{ old('cel2') }}">
                                     
                                     @error('cel2')
                                         <span class="invalid-feedback" role="alert">
@@ -139,13 +142,29 @@
                                 <label for="h_disponivel" class="col-md-4 col-form-label text-md-right">Horário Disponível</label>
     
                                 <div class="col-md-6">
-                                    <input id="h_disponivel" type="text" class="form-control" name="h_disponivel">
-                                
-                                    @error('h_disponivel')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="hManha" name="h_disponivel" value="Manhã"
+                                            class="custom-control-input @error('h_disponivel') is-invalid @enderror" {{ old('h_disponivel') == "Manhã"? 'checked': '' }}>
+                                        <label class="custom-control-label" for="hManha">Manhã</label>
+                                    </div>
+                                    
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="hTarde" name="h_disponivel" value="Tarde"
+                                            class="custom-control-input @error('h_disponivel') is-invalid @enderror" {{ old('h_disponivel') == "Tarde"? 'checked': '' }}>
+                                        <label class="custom-control-label" for="hTarde">Tarde</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="hIntegral" name="h_disponivel" value="Integral"
+                                            class="custom-control-input @error('h_disponivel') is-invalid @enderror" {{ old('h_disponivel') == "Integral"? 'checked': '' }}>
+                                        <label class="custom-control-label" for="hIntegral">Integral</label>
+                                        
+                                        @error('h_disponivel')
+                                            <span class="invalid-feedback ml-3" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -154,13 +173,21 @@
     
                                 <div class="col-md 6">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="aprendizSim" name="aprendiz" class="custom-control-input" value="Sim">
+                                        <input type="radio" id="aprendizSim" name="aprendiz" value="Sim"
+                                            class="custom-control-input @error('aprendiz') is-invalid @enderror" {{ old('aprendiz') == "Sim"? 'checked': '' }}>
                                         <label class="custom-control-label" for="aprendizSim">Sim</label>
                                     </div>
                                     
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="aprendizNao" name="aprendiz" class="custom-control-input" value="Não">
+                                        <input type="radio" id="aprendizNao" name="aprendiz" value="Não"
+                                            class="custom-control-input @error('aprendiz') is-invalid @enderror" {{ old('aprendiz') == "Não"? 'checked': '' }}>
                                         <label class="custom-control-label" for="aprendizNao">Não</label>
+                                        
+                                        @error('aprendiz')
+                                            <span class="invalid-feedback ml-3" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

@@ -52,9 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'      => ['required', 'string', 'max:255'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'  => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -66,8 +66,29 @@ class RegisterController extends Controller
     protected function validateEmpresa (array $data)
     {
         return Validator::make($data, [
-            'cnpj' => ['required', 'string', 'max:20', new ValidaCnpj],
+            'cnpj' => [
+                'required', 'string', 'min:18', 
+                'max:18', new ValidaCnpj, 'unique:empresas'
+            ],
             'razao_social' => ['required', 'string'],
+        ]);
+    }
+    
+    /**
+     * Valida os dados referentes a empresa
+     *
+     * @param array $data
+     * @return void
+     */
+    protected function validateCliente (array $data)
+    {
+        //$data['idade'] = intval($data['idade']);
+        return Validator::make($data, [
+            'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
+            'cel1'          => ['required', 'string', 'min:15', 'max:16', 'unique:clientes'],
+            'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
+            'aprendiz'      => ['required', 'string'],
+            'h_disponivel'  => ['required', 'string'],
         ]);
     }
 
@@ -95,9 +116,12 @@ class RegisterController extends Controller
      */
     protected function createUserable (array $data, $user)
     {
-        if ($data['typeUser'] == "Empresa"){
-            $empresa = Empresa::create($data);
-            $empresa->user()->save($user);
+        if ($data['typeUser'] == "Empresa") {
+            $userable = Empresa::create($data);
         }
+        else if ($data['typeUser'] == "Cliente") {
+            $userable = Cliente::create($data);
+        }
+        $userable->user()->save($user);
     }
 }
