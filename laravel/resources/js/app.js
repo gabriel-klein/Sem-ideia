@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('jquery-mask-plugin');
 
 window.Vue = require('vue');
 
@@ -30,6 +31,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
     data: {
-        typeUser: ''
+        typeUser: '',
+        cliente: 'Cliente',
+        empresa: 'Empresa'
     }
-})
+});
+
+$("#app").bind("DOMSubtreeModified", function() {
+    $(".cnpjMask").mask("00.000.000/0000-00");
+    $(".telMask").mask("(00) 0000-00000");
+});
+
+

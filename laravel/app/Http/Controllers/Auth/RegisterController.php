@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\ValidaCnpj;
 use App\User;
+use App\Cliente;
+use App\Empresa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -56,6 +59,19 @@ class RegisterController extends Controller
     }
 
     /**
+     * Valida os dados referentes a empresa
+     *
+     * @return void
+     */
+    protected function validateEmpresa (array $data)
+    {
+        return Validator::make($data, [
+            'cnpj' => ['required', 'string', 'max:20', new ValidaCnpj],
+            'razao_social' => ['required', 'string'],
+        ]);
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -68,5 +84,20 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * Cria novo cliente ou empresa e associa ao usuário recém criado
+     *
+     * @param array $data
+     * @param [type] $user
+     * @return void
+     */
+    protected function createUserable (array $data, $user)
+    {
+        if ($data['typeUser'] == "Empresa"){
+            $empresa = Empresa::create($data);
+            $empresa->user()->save($user);
+        }
     }
 }
