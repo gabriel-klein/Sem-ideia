@@ -6329,7 +6329,6 @@ module.exports = function isBuffer (obj) {
 
 /***/ }),
 
-<<<<<<< HEAD
 /***/ "./node_modules/jquery-mask-plugin/dist/jquery.mask.js":
 /*!*************************************************************!*\
   !*** ./node_modules/jquery-mask-plugin/dist/jquery.mask.js ***!
@@ -6944,8 +6943,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-=======
->>>>>>> master
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -49967,11 +49964,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-<<<<<<< HEAD
 __webpack_require__(/*! jquery-mask-plugin */ "./node_modules/jquery-mask-plugin/dist/jquery.mask.js");
 
-=======
->>>>>>> master
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -49993,21 +49987,20 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app',
   data: {
-<<<<<<< HEAD
-    typeUser: '',
-    cliente: 'Cliente',
-    empresa: 'Empresa'
+    typeUser: ''
+  },
+  created: function created() {
+    if ($("input[name='typeUser']:checked").val() == 'Empresa') {
+      this.typeUser = "Empresa";
+    } else if ($("input[name='typeUser']:checked").val() == 'Cliente') {
+      this.typeUser = "Cliente";
+    }
   }
 });
 $("#app").bind("DOMSubtreeModified", function () {
   $(".cnpjMask").mask("00.000.000/0000-00");
   $(".telMask").mask("(00) 0000-00000");
 });
-=======
-    typeUser: ''
-  }
-});
->>>>>>> master
 
 /***/ }),
 

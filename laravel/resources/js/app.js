@@ -32,13 +32,20 @@ const app = new Vue({
     el: '#app',
     data: {
         typeUser: '',
-        cliente: 'Cliente',
-        empresa: 'Empresa'
-    }
+    },
+    created: function () {
+        if ($("input[name='typeUser']:checked").val() == 'Empresa'){
+            this.typeUser = "Empresa";
+        }
+        else if ($("input[name='typeUser']:checked").val() == 'Cliente'){
+            this.typeUser = "Cliente";
+        }
+      }
 });
 
 $("#app").bind("DOMSubtreeModified", function() {
     $(".cnpjMask").mask("00.000.000/0000-00");
     $(".telMask").mask("(00) 0000-00000");
 });
+
 
