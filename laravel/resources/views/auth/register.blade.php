@@ -65,6 +65,7 @@
                                 <label for="cnpj" class="col-md-4 col-form-label text-md-right">CNPJ</label>
     
                                 <div class="col-md-6">
+<<<<<<< HEAD
                                     <input id="cnpj" type="text" class="form-control cnpjMask @error('cnpj') is-invalid @enderror" name="cnpj" value="{{ old('cnpj') }}" required>
                                 
                                     @error('cnpj')
@@ -74,12 +75,17 @@
                                     @enderror
                                 </div>
 
+=======
+                                    <input id="cnpj" type="text" class="form-control" name="cnpj" required>
+                                </div>
+>>>>>>> master
                             </div>
 
                             <div class="form-group row">
                                 <label for="razaoSocial" class="col-md-4 col-form-label text-md-right">Razão Social</label>
     
                                 <div class="col-md-6">
+<<<<<<< HEAD
                                     <input id="razaoSocial" type="text" class="form-control @error('razao_social') is-invalid @enderror" name="razao_social" value="{{ old('razao_social') }}" required>
                                 </div>
                             </div>
@@ -90,6 +96,11 @@
                                     </span>
                             @enderror
 
+=======
+                                    <input id="razaoSocial" type="text" class="form-control" name="razaoSocial" required>
+                                </div>
+                            </div>
+>>>>>>> master
                         </div>
                         
                         <div v-else-if="typeUser == 'Cliente'">
@@ -105,7 +116,11 @@
                                 <label for="cel" class="col-md-4 col-form-label text-md-right">Celular</label>
     
                                 <div class="col-md-6">
+<<<<<<< HEAD
                                     <input id="cel" type="text" class="form-control telMask" name="cel" required>
+=======
+                                    <input id="cel" type="text" class="form-control" name="cel" required>
+>>>>>>> master
                                 </div>
                             </div>
 
@@ -113,6 +128,7 @@
                                 <label for="cel2" class="col-md-4 col-form-label text-md-right">Celular 2</label>
     
                                 <div class="col-md-6">
+<<<<<<< HEAD
                                     <input id="cel2" type="text" class="form-control telMask" name="cel2">
                                 </div>
                             </div>
@@ -138,6 +154,9 @@
                                         <input type="radio" id="aprendizNao" name="aprendiz" class="custom-control-input" value="Não">
                                         <label class="custom-control-label" for="aprendizNao">Não</label>
                                     </div>
+=======
+                                    <input id="cel2" type="text" class="form-control" name="cel2">
+>>>>>>> master
                                 </div>
                             </div>
                         </div>
@@ -147,16 +166,24 @@
 
                             <div class="col-md 6">
                                 <div class="custom-control custom-radio custom-control-inline">
+<<<<<<< HEAD
                                     <input type="radio" id="typeUserCliente" name="typeUser" 
                                         class="custom-control-input" {{ old('typeUser') == 'Cliente'? 'checked': '' }}
                                         v-model.lazy="typeUser" :value="cliente">
+=======
+                                    <input type="radio" id="typeUserCliente" name="type" class="custom-control-input" value="Cliente" v-model="typeUser">
+>>>>>>> master
                                     <label class="custom-control-label" for="typeUserCliente">Cliente</label>
                                 </div>
                                 
                                 <div class="custom-control custom-radio custom-control-inline">
+<<<<<<< HEAD
                                     <input type="radio" id="typeUserEmpresa" name="typeUser" 
                                         class="custom-control-input"
                                         v-model.lazy="typeUser" :value="empresa">
+=======
+                                    <input type="radio" id="typeUserEmpresa" name="type" class="custom-control-input" value="Empresa" v-model="typeUser">
+>>>>>>> master
                                     <label class="custom-control-label" for="typeUserEmpresa">Empresa</label>
                                 </div>
                             </div>
