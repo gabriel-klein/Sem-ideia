@@ -21,9 +21,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('empresa', 'EmpresaController');
 
-    Route::resource('vagas', 'VagaController', ['except' => [
+    Route::resource('vagas', 'VagaController')->except([
         'destroy'
-    ]]);
+    ]);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

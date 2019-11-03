@@ -82,7 +82,6 @@ class RegisterController extends Controller
      */
     protected function validateCliente (array $data)
     {
-        //$data['idade'] = intval($data['idade']);
         return Validator::make($data, [
             'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
             'cel1'          => ['required', 'string', 'min:15', 'max:16', 'unique:clientes'],
@@ -111,7 +110,7 @@ class RegisterController extends Controller
      * Cria novo cliente ou empresa e associa ao usuário recém criado
      *
      * @param array $data
-     * @param [type] $user
+     * @param App\User $user
      * @return void
      */
     protected function createUserable (array $data, $user)

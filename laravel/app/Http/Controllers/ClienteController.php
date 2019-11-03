@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
-use Illuminate\Cache\Console\ClearCommand;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +15,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
