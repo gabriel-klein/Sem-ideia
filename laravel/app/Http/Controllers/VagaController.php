@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Conhecimento;   
 use App\Vaga;
 use Illuminate\Http\Request;
 
 class VagaController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->conhecimentos = Conhecimento::all();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,8 @@ class VagaController extends Controller
      */
     public function create()
     {
-        return view('vagas.create');
+        $conhecimentos = $this->conhecimentos;
+        return view('vagas.create', compact('conhecimentos'));
     }
 
     /**

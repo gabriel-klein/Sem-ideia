@@ -26,8 +26,34 @@
   </div>
 </div>
 
+<div class="form-group row">
+  <label class="col-md-4 col-form-label text-md-right">Conhecimentos</label>
 
-
+  <div class="col-md-6">
+  @forelse ($conhecimentos as $conhecimento)
+    <div class="row">
+      <select class="custom-select col-md-6" name="{{ $conhecimento->nome }}" id="{{ $conhecimento->nome."nivel" }}">
+        <option disabled selected>Seçlecione um conhecimento</option>
+        <option value="{{ $conhecimento->id }}">{{ $conhecimento->nome }}</option>
+      </select>
+      <select class="custom-select col-md-6" name="{{ $conhecimento->nome."_nivel" }}" id="{{ $conhecimento->nome."nivel" }}">
+        <option disabled selected>Selecione o Nível</option>
+        @if (!(strpos($conhecimento->nome, "Ensino") === false))
+          <option value="Incompleto">Incompleto</option>
+          <option value="Cursando">Cursando</option>
+          <option value="Completo">Completo</option>
+        @else
+          <option value="Básico">Básico</option>
+          <option value="Intermediário">Intermediário</option>
+          <option value="Avançado">Avançado</option>
+        @endif
+      </select>
+    </div>
+  @empty
+    <p> Não foi possível carregar os conhecimentos </p>
+  @endforelse
+  </div>
+</div>
 
 
 
@@ -35,7 +61,7 @@
   <label for="status" class="col-md-4 col-form-label text-md-right">Status</label>
 
   <div class="col-md-6">
-    <select id="status" class="form-control @error('quantidade') is-invalid @enderror" 
+    <select id="status" class="custom-select @error('quantidade') is-invalid @enderror" 
       name="status" required>
       <option value="" disabled selected>Selecione o Status da Vaga</option>
       <option value="Ativa">Ativa</option>
