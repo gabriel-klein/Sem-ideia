@@ -28,11 +28,11 @@ class VagaController extends Controller
     {
         if (Auth::user()->userable_type == "App\Empresa"){
             $vagas =  Auth::user()->userable->vagas()
-                        ->latest()->simplePaginate(10);
+                        ->latest()->simplePaginate(8);
         }
         else {
             $vagas = Vaga::where('status', 'Ativa')
-                    ->latest()->simplePaginate(10);
+                    ->latest()->simplePaginate(8);
         }
 
         return view('vagas.index', compact('vagas'));
@@ -58,11 +58,11 @@ class VagaController extends Controller
      */
     public function store(VagaRequest $request)
     {
-        $vaga = Auth::user()->userable->vagas()->create([
-            'descricao' => $request->descricao,
-            'status' => $request->status,
-            'quantidade' => $request->quantidade,
-        ]);
+        $vaga = Auth::user()->userable->vagas()->create($request->all());
+        if (!$vaga){
+            return redirect()->route('vagas.index')
+                    ->with('erro', 'Erro ao cadastrar a vaga!');
+        }
         $vaga->conhecimentos()
              ->attach($request->escolaridade, ['nivel' => $request->escolaridade_nivel]);
         $conhecimentos = Arr::where($request->all(), function ($value, $key){
@@ -74,6 +74,8 @@ class VagaController extends Controller
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
         }
+        return redirect()->route('vagas.index')
+                    ->with('sucesso', 'Vaga cadastrada com sucesso!');
     }
 
     /**
@@ -84,7 +86,7 @@ class VagaController extends Controller
      */
     public function show(Vaga $vaga)
     {
-        return view('vagas.show');
+        return view('vagas.show', compact('vaga'));
     }
 
     /**
@@ -109,7 +111,10 @@ class VagaController extends Controller
      */
     public function update(VagaRequest $request, Vaga $vaga)
     {
-        $vaga->update($request->all());
+        if(!$vaga->update($request->all())){
+            return redirect()->route('vagas.index')
+                ->with('erro', 'Erro ao editar a vaga!');
+        }
         $vaga->conhecimentos()->detach();
         $vaga->conhecimentos()
              ->attach($request->escolaridade, ['nivel' => $request->escolaridade_nivel]);
@@ -123,6 +128,7 @@ class VagaController extends Controller
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
         }
+        return redirect()->route('vagas.index')
+                ->with('sucesso', 'Vaga editada com sucesso!');
     }
-
 }

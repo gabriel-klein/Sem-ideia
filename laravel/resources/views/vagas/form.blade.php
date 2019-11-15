@@ -1,4 +1,16 @@
 <div class="form-group row">
+  <label for="funcao" class="col-md-4 col-form-label text-md-right">Função</label>
+  <div class="col-md-6">
+    <input id="funcao" type="text" class="form-control @error('funcao') is-invalid @enderror" 
+    name="funcao" value="{{ isset($vaga->funcao)?$vaga->funcao:old('funcao') }}" required>
+      @error('funcao')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+  </div>
+</div>
+<div class="form-group row">
     <label for="descricao" class="col-md-4 col-form-label text-md-right">Descrição</label>
     <div class="col-md-6">
         <textarea class="form-control @error('descricao') is-invalid @enderror" 

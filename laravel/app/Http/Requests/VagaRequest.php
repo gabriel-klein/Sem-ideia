@@ -25,6 +25,7 @@ class VagaRequest extends FormRequest
     public function rules()
     {
         return [
+            'funcao' => 'required|min:7|max:255',
             'descricao' => 'required|min:15|max:255',
             'quantidade' => 'required|numeric|min:1|max:30',
             'status' => ['required', Rule::in(['Ativa', 'Desativada'])]

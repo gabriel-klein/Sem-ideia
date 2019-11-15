@@ -11,6 +11,7 @@
                         @csrf
                         @include('vagas.form')
                     </form>
+                    <a href="{{ route('vagas.index') }}">Voltar</a>
                 </div>
             </div>
         </div>
