@@ -7,8 +7,9 @@
             <div class="card">
                 <div class="card-header">Criar Vaga</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('vagas.store') }}">
+                    <form method="POST" action="{{ route('vagas.update', $vaga->id) }}">
                         @csrf
+                        @method('PUT')
                         @include('vagas.form')
                     </form>
                 </div>

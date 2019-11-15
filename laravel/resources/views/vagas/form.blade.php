@@ -1,9 +1,8 @@
 <div class="form-group row">
     <label for="descricao" class="col-md-4 col-form-label text-md-right">Descrição</label>
-
     <div class="col-md-6">
-        <textarea class="form-control @error('email') is-invalid @enderror" 
-          id="descricao" rows="2" name="descricao"></textarea>
+        <textarea class="form-control @error('descricao') is-invalid @enderror" 
+    id="descricao" rows="2" name="descricao">{{ isset($vaga->descricao)?$vaga->descricao:old('descricao') }}</textarea>
         @error('descricao')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -16,7 +15,7 @@
 
   <div class="col-md-6">
     <input id="quantidade" type="number" class="form-control @error('quantidade') is-invalid @enderror" 
-      name="email" value="{{ old('quantidade') }}" required>
+      name="quantidade" value="{{ isset($vaga->quantidade)?$vaga->quantidade:old('quantidade') }}" required>
 
       @error('quantidade')
           <span class="invalid-feedback" role="alert">
@@ -27,45 +26,59 @@
 </div>
 
 <div class="form-group row">
-  <label class="col-md-4 col-form-label text-md-right">Conhecimentos</label>
+  <label class="col-md-4 col-form-label text-md-right">Escolaridade</label>
 
   <div class="col-md-6">
-  @forelse ($conhecimentos as $conhecimento)
-    <div class="row">
-      <select class="custom-select col-md-6" name="{{ $conhecimento->nome }}" id="{{ $conhecimento->nome."nivel" }}">
-        <option disabled selected>Seçlecione um conhecimento</option>
-        <option value="{{ $conhecimento->id }}">{{ $conhecimento->nome }}</option>
-      </select>
-      <select class="custom-select col-md-6" name="{{ $conhecimento->nome."_nivel" }}" id="{{ $conhecimento->nome."nivel" }}">
-        <option disabled selected>Selecione o Nível</option>
+    <select class="custom-select col-md-6 mr-1" name="escolaridade" id="escolaridade">
+      <option disabled selected>Selecione sua escolaridade</option>
+      @foreach ($conhecimentos as $conhecimento)
         @if (!(strpos($conhecimento->nome, "Ensino") === false))
-          <option value="Incompleto">Incompleto</option>
-          <option value="Cursando">Cursando</option>
-          <option value="Completo">Completo</option>
-        @else
-          <option value="Básico">Básico</option>
-          <option value="Intermediário">Intermediário</option>
-          <option value="Avançado">Avançado</option>
+          <option value="{{ $conhecimento->id }}">{{ $conhecimento->nome }}</option>
         @endif
-      </select>
-    </div>
-  @empty
-    <p> Não foi possível carregar os conhecimentos </p>
-  @endforelse
+      @endforeach 
+    </select>
+    <select class="custom-select col-md-5" name="escolaridade_nivel" id="{{ "escolaridade_nivel" }}">
+      <option disabled selected>Selecione o Nível</option>
+        <option value="Incompleto">Incompleto</option>
+        <option value="Cursando">Cursando</option>
+        <option value="Completo">Completo</option>
+    </select>
   </div>
 </div>
 
+<div class="form-group row">
+  <label class="col-md-4 col-form-label text-md-right">Conhecimentos</label>
+
+  <div class="col-md-6 row">
+    @foreach ($conhecimentos as $conhecimento)
+      @if (strpos($conhecimento->nome, "Ensino") === false)
+        <div class="custom-control custom-checkbox col-md-5 pl-md-5">
+          <input type="checkbox" class="custom-control-input" name="{{ "con".$conhecimento->nome }}"
+            id="{{ "con".$conhecimento->nome }}" value="{{ $conhecimento->id }}">
+          <label class="custom-control-label" for="{{ "con".$conhecimento->nome }}">{{ $conhecimento->nome }}</label>
+        </div>
+        <select class="custom-select col-md-7" name="{{ "con".$conhecimento->nome."_nivel" }}" 
+          id="{{ "con".$conhecimento->nome."_nivel"  }}">
+          <option disabled selected>Selecione o Nível</option>
+            <option value="Básico">Básico</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
+        </select>
+      @endif
+    @endforeach 
+  </div>
+</div>
 
 
 <div class="form-group row">
   <label for="status" class="col-md-4 col-form-label text-md-right">Status</label>
 
   <div class="col-md-6">
-    <select id="status" class="custom-select @error('quantidade') is-invalid @enderror" 
+    <select id="status" class="custom-select @error('status') is-invalid @enderror" 
       name="status" required>
-      <option value="" disabled selected>Selecione o Status da Vaga</option>
-      <option value="Ativa">Ativa</option>
-      <option value="Desativada">Desativada</option>
+      <option disabled {{ !(isset($vaga->status) || old('status') != "")?"selected": "" }}>Selecione o Status da Vaga</option>
+      <option value="Ativa" {{ ((old('status') == "Ativa") || (@$vaga->status == "Ativa"))?"selected":"" }} >Ativa</option>
+      <option value="Desativada" {{ ((old('status') == "Desativada") || (@$vaga->status == "Desativada"))?"selected":"" }}>Desativada</option>
     </select>
     @error('status')
         <span class="invalid-feedback" role="alert">

@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Vaga extends Model
-{
+{    
     /**
      * Atributos que serão atriuidos em massa
      *
      * @var array
      */
     protected $fillable = [
-        'descricao', 'qtd', 'empresa_id', 'status'
+        'descricao', 'quantidade', 'empresa_id', 'status'
     ];
 
     /**

@@ -24,6 +24,14 @@ class Empresa extends Model
     public function user(){
         return $this->morphOne('App\User', 'userable');
     }
+    /**
+     * Método do relacionamento 1-N
+     *
+     * @return void
+     */
+    public function vagas(){
+        return $this->hasMany('App\Vaga');
+    }
     
     
 }
