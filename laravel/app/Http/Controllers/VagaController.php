@@ -34,7 +34,6 @@ class VagaController extends Controller
             $vagas = Vaga::where('status', 'Ativa')
                     ->latest()->simplePaginate(8);
         }
-
         return view('vagas.index', compact('vagas'));
     }
 
@@ -84,8 +83,8 @@ class VagaController extends Controller
      * @param  \App\Vaga  $vaga
      * @return \Illuminate\Http\Response
      */
-    public function show(Vaga $vaga)
-    {
+    public function show(Request $request,Vaga $vaga)
+    {   
         return view('vagas.show', compact('vaga'));
     }
 

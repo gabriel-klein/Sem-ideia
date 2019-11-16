@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 require('jquery-mask-plugin');
+require('jquery-ujs');
 
 window.Vue = require('vue');
 
@@ -48,4 +49,4 @@ $("#app").bind("DOMSubtreeModified", function() {
     $(".telMask").mask("(00) 0000-00000");
 });
 
-
+require('./remote');

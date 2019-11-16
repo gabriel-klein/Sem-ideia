@@ -16,7 +16,7 @@
                     <tbody>
                         @forelse ($vagas as $vaga)
                             <tr>
-                                <td><a href="{{route('vagas.show', $vaga->id)}}">
+                                <td><a href="{{ route('vagas.show', $vaga->id) }}" method="GET" data-remote="true">
                                     {{ $vaga->funcao }}
                                 </a></td>
                                 <td>{{ $vaga->quantidade }}</td>
@@ -38,6 +38,5 @@
                 <a href="{{route('vagas.create')}}">Criar uma nova vaga</a>
             </div>
         </div>
-
     </div>
 @endsection

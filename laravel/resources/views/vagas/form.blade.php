@@ -41,7 +41,7 @@
   <label class="col-md-4 col-form-label text-md-right">Escolaridade</label>
 
   <div class="col-md-6">
-    <select class="custom-select col-md-6 mr-1" name="escolaridade" id="escolaridade">
+    <select class="custom-select col-md-6 mr-1" name="escolaridade" id="escolaridade" required>
       <option disabled selected>Selecione sua escolaridade</option>
       @foreach ($conhecimentos as $conhecimento)
         @if (!(strpos($conhecimento->nome, "Ensino") === false))
@@ -49,7 +49,7 @@
         @endif
       @endforeach 
     </select>
-    <select class="custom-select col-md-5" name="escolaridade_nivel" id="{{ "escolaridade_nivel" }}">
+    <select class="custom-select col-md-5" name="escolaridade_nivel" id="{{ "escolaridade_nivel" }}" required>
       <option disabled selected>Selecione o Nível</option>
         <option value="Incompleto">Incompleto</option>
         <option value="Cursando">Cursando</option>
