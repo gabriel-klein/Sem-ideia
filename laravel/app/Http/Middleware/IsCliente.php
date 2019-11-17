@@ -22,6 +22,6 @@ class IsCliente
                 return $next($request);
             }   
         }
-        return route('welcome');
+        return redirect()->route('home')->with('erro', 'Ação não autorizada');
     }
 }

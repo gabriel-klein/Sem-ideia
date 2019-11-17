@@ -33,11 +33,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            @auth
+                        @auth
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('vagas.index') }}">Vagas</a>
-                            @endauth
-                        </li>
+                            </li>
+                            @emp
+                                <li class="nav-item">
+                                    <a href="{{ route('empresa.edit', Auth::user()->userable->id)}}" class="nav-link">
+                                        Meus Dados
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}" class="nav-link">
+                                        Meus Dados
+                                    </a>
+                                </li>
+                            @endemp
+                        @endauth
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -77,22 +91,24 @@
         </nav>
 
         <main class="py-3">
-            @if (session('sucesso'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('sucesso') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-            @if (session('erro'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('erro') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+            <div class="container">            
+                @if (session('sucesso'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('sucesso') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if (session('erro'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('erro') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
             @yield('content')
         </main>
     </div>

@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\Conhecimento;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
+    
+    
+    public function __construct()
+    {   
+        $this->middleware('cliente')->except(['index', 'show']);
+        $this->conhecimentos = Conhecimento::all();
+    }
     
     /**
      * Display a listing of the resource.
@@ -58,7 +66,8 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        $conhecimentos = $this->conhecimentos;
+        return view('cliente.edit', compact(['cliente', 'conhecimentos']));
     }
 
     /**

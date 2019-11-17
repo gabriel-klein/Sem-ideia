@@ -9,13 +9,13 @@
                         <tr>
                             <th>Função</th>
                             <th>Quantidade</th>
-                            @if (Auth::user()->userable_type == "App\Empresa")
+                            @emp
                                 <th>Status</th>
                                 <th>Ações</th>
                             @else
                                 <th>Empresa</th>
                                 <th>Criação</th>
-                            @endif
+                            @endemp
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +25,7 @@
                                     {{ $vaga->funcao }}
                                 </a></td>
                                 <td>{{ $vaga->quantidade }}</td>
-                                @if (Auth::user()->userable_type == "App\Empresa")
+                                @emp
                                     <td>{{ $vaga->status }}</td>
                                     <td class="py-1">
                                         <a class="btn btn-success"  href="{{ route('vagas.edit', $vaga->id) }}">
@@ -35,7 +35,7 @@
                                 @else
                                     <td>{{ $vaga->empresa->razao_social}}</td>
                                     <td>{{ $vaga->created_at->format('d.m.Y') }}</td>
-                                @endif
+                                @endemp
                             </tr>     
                         @empty
                             <tr><td>Não há vagas cadastradas ainda</td></tr>
@@ -47,8 +47,8 @@
         <div class="row justify-content-center">
                 {{ $vagas->links() }}
         </div>
-        @if (Auth::user()->userable_type == "App\Empresa")
+        @emp
             <a href="{{route('vagas.create')}}">Criar uma nova vaga</a>
-        @endif
+       @endemp
     </div>
 @endsection

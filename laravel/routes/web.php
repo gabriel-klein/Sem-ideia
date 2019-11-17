@@ -17,9 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::resource('cliente', 'ClienteController');
+    Route::resource('cliente', 'ClienteController')->except([
+        'destroy', 'create', 'store'
+    ]);
 
-    Route::resource('empresa', 'EmpresaController');
+    Route::resource('empresa', 'EmpresaController')->except([
+        'destroy', 'create', 'store'
+    ]);
 
     Route::resource('vagas', 'VagaController')->except([
         'destroy'
