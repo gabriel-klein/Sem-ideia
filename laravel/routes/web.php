@@ -25,6 +25,11 @@ Route::group(['middleware' => 'web'], function() {
     Route::get('/empresa/login','EmpresaController@login');
     Route::post('/empresa/cadastro','EmpresaController@registro');
     Route::post('/empresa/login','EmpresaController@postLogin');
+
+    Route::group(['middleware' =>'auth:web'], function(){
+        Route::get('/cliente/conhecimento','UserController@conhecimento');
+
+    });
 });
 
 Auth::routes();

@@ -1,9 +1,10 @@
 <?php
-
 namespace App\Providers;
-use Route;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Blade;
+use Route;
+use Auth;
+Use App\User;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,7 +16,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
     /**
      * Bootstrap any application services.
      *
@@ -27,5 +27,22 @@ class AppServiceProvider extends ServiceProvider
             'create' => 'criar',
             'edit' => 'editar',
         ]);
+        
+        Blade::if('emp', function(){
+            if(Auth::guard('empresa')){
+                return true;
+            }
+            else 
+                return false;
+        });
+        Blade::directive('cand', function(){
+            return "<?php if(auth()->guard('web')->check()): ?>";
+
+        });
+
+        Blade::directive('endcand', function(){
+            
+            return "<?php endif; ?>";
+        });
     }
 }

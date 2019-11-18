@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Conhecimento;
 
 class CreateConhecimentosTable extends Migration
 {
@@ -18,7 +19,21 @@ class CreateConhecimentosTable extends Migration
             $table->string('nome');
             $table->timestamps();
         });
-    }
+
+    Conhecimento::create([
+            'id' =>'10',
+            'nome' => 'escolaridade',
+    ]);
+    Conhecimento::create([
+            'nome' => 'excel',
+    ]);
+    Conhecimento::create([
+            'nome' => 'word',
+    ]);
+    Conhecimento::create([
+            'nome' => 'ingles',
+    ]);
+   }
 
     /**
      * Reverse the migrations.
