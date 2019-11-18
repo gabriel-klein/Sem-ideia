@@ -22,6 +22,6 @@ class IsEmpresa
                 return $next($request);
             }
         }
-        return redirect()->route('home')->with('erro', 'Ação não autorizada');
+        return route('welcome');
     }
 }

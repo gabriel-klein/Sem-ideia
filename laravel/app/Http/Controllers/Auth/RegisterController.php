@@ -55,6 +55,11 @@ class RegisterController extends Controller
             'name'      => ['required', 'string', 'max:255'],
             'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
+            'cel1'          => ['required', 'string', 'min:15', 'max:16', 'unique:users'],
+            'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
+            'aprendiz'      => ['required', 'string'],
+            'h_disponivel'  => ['required', 'string'],
         ]);
     }
 
@@ -103,6 +108,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'idade' => $data['idade'],
+            'cel1' => $data['cel1'],
+            'cel2' => $data['cel2'],
+            'h_disponivel' => $data['h_disponivel'],
+            'aprendiz' => $data['aprendiz'],
         ]);
     }
 
@@ -119,7 +129,13 @@ class RegisterController extends Controller
             $userable = Empresa::create($data);
         }
         else if ($data['typeUser'] == "Cliente") {
-            $userable = Cliente::create($data);
+            $userable = Cliente::create([
+                'idade' => $data['idade'],
+                'cel1' => $data['cel1'],
+                'cel2' => $data['cel2'],
+                'h_disponivel' => $data['h_disponivel'],
+                'aprendiz' => $data['aprendiz'],
+            ]);
         }
         $userable->user()->save($user);
     }

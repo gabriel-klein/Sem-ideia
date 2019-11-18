@@ -19,10 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            
-            $table->integer('userable_id')->nullable();
-            $table->string('userable_type')->nullable();
-            
+            $table->integer('idade');
+            $table->string('cel1')->unique();
+            $table->string('cel2')->nullable();
+            $table->enum('h_disponivel', ['Manhã', 'Tarde', 'Integral']);
+            $table->enum('aprendiz', ['Sim', 'Não'])->default('Não');
             $table->rememberToken();
             $table->timestamps();
         });

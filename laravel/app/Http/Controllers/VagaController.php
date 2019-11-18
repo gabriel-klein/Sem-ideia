@@ -16,7 +16,6 @@ class VagaController extends Controller
     
     public function __construct()
     {
-        $this->middleware('empresa')->except(['index', 'show']);
         $this->conhecimentos = Conhecimento::all();
     }
 
@@ -45,6 +44,7 @@ class VagaController extends Controller
      */
     public function create()
     {
+        $this->middleware('IsEmpresa');
         $conhecimentos = $this->conhecimentos;
         return view('vagas.create', compact('conhecimentos'));
     }
@@ -96,6 +96,7 @@ class VagaController extends Controller
      */
     public function edit(Vaga $vaga)
     {
+        $this->middleware('IsEmpresa');
         $conhecimentos = $this->conhecimentos;
         return view('vagas.edit', compact(['conhecimentos', 'vaga']));
     }

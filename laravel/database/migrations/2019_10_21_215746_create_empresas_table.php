@@ -16,7 +16,12 @@ class CreateEmpresasTable extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('cnpj', 20)->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->unique();
             $table->string('razao_social')->unique();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

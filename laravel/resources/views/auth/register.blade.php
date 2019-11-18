@@ -5,11 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Cadastro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}"> 
                         @csrf
+
+
                         
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -59,40 +61,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                    
-                        <div v-if="typeUser == 'Empresa'">
-                            <div class="form-group row">
-                                <label for="cnpj" class="col-md-4 col-form-label text-md-right">CNPJ</label>
-    
-                                <div class="col-md-6">
-                                    <input id="cnpj" type="text" class="form-control cnpjMask @error('cnpj') is-invalid @enderror" name="cnpj" value="{{ old('cnpj') }}" required>
-                                
-                                    @error('cnpj')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="razaoSocial" class="col-md-4 col-form-label text-md-right">Razão Social</label>
-    
-                                <div class="col-md-6">
-                                    <input id="razaoSocial" type="text" class="form-control @error('razao_social') is-invalid @enderror" name="razao_social" value="{{ old('razao_social') }}" required>
-                                    
-                                    @error('razao_social')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
                         
-                        <div v-else-if="typeUser == 'Cliente'">
                             <div class="form-group row">
                                 <label for="idade" class="col-md-4 col-form-label text-md-right">Idade</label>
                                 
@@ -191,27 +160,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Tipo de Usuário</label>
-
-                            <div class="col-md 6">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeUserCliente" name="typeUser" 
-                                        class="custom-control-input" {{ old('typeUser') == 'Cliente'? 'checked': '' }}
-                                        v-model="typeUser" value="Cliente">
-                                    <label class="custom-control-label" for="typeUserCliente">Cliente</label>
-                                </div>
-                                
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeUserEmpresa" name="typeUser" 
-                                        class="custom-control-input" {{ old('typeUser') == 'Empresa'? 'checked': '' }}
-                                        v-model="typeUser" value="Empresa">
-                                    <label class="custom-control-label" for="typeUserEmpresa">Empresa</label>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
