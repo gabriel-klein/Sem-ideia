@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills">
+                    <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
                           <a class="nav-link" @click="typeUser = 'Cliente'" :class="typeUser == 'Cliente' ? 'active': ''">Cliente</a>
                         </li>
@@ -200,27 +200,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Tipo de Usuário</label>
-
-                            <div class="col-md 6">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeUserCliente" name="typeUser" 
-                                        class="custom-control-input" {{ old('typeUser') == 'Cliente'? 'checked': '' }}
-                                        v-model="typeUser" value="Cliente">
-                                    <label class="custom-control-label" for="typeUserCliente">Cliente</label>
-                                </div>
-                                
-                               <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeUserEmpresa" name="typeUser" 
-                                        class="custom-control-input" {{ old('typeUser') == 'Empresa'? 'checked': '' }}
-                                        v-model="typeUser" value="Empresa">
-                                    <label class="custom-control-label" for="typeUserEmpresa">Empresa</label>
-                                </div> 
-                            </div>
-                        </div>
-                         -->
                          <input type="radio" id="typeUserEmpresa" name="typeUser" 
                                     class="custom-control-input" value="Empresa" v-model="typeUser"
                                     {{ old('typeUser') == 'Empresa'? 'checked': '' }} v-show="false">
