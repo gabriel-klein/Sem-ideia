@@ -10,15 +10,15 @@
 
             <div class="col-md-7">
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                 name="email" value="{{ $cliente->user->email }}" required autocomplete="email" disabled>
+                 name="email" value="{{ $cliente->user->email }}" required autocomplete="email">
             </div>
           </div>
           <div class="form-group row">
             <label for="email" class="col-md-5 col-form-label text-md-right">{{ __('Password') }}</label>
 
             <div class="col-md-7">
-                <input id="email" type="password" class="form-control @error('password') is-invalid @enderror"
-                 name="email" value="xxxxxxxx" required disabled>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                 name="password" value="{{ $cliente->user->password }}" required>
             </div>
 
             @error('password')
@@ -40,7 +40,7 @@
                 
                 <div class="col-md-5">
                     <input id="idade" type="text" class="form-control @error('idade') is-invalid @enderror" 
-                        name="idade" value="{{ old('idade') }}" required>
+                        name="idade" value="{{ $cliente->idade }}" required>
                     
                     @error('idade')
                         <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
 
                 <div class="col-md-5">
                     <input id="cel" type="text" class="form-control telMask @error('cel1') is-invalid @enderror"
-                        name="cel1" value="{{ old('cel1') }}" required>
+                        name="cel1" value="{{ $cliente->cel1 }}" required>
                     
                     @error('cel1')
                         <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
 
                 <div class="col-md-5">
                     <input id="cel2" type="text" class="form-control telMask @error('cel2') is-invalid @enderror" 
-                        name="cel2" value="{{ old('cel2') }}">
+                        name="cel2" value="{{ $cliente->cel2 }}">
                     
                     @error('cel2')
                         <span class="invalid-feedback" role="alert">

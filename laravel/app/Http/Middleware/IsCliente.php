@@ -18,7 +18,7 @@ class IsCliente
     {
         if(Auth::check()){
             $user = Auth::user();
-            if ($user->userable_type == "App\Cliente"){
+            if ($user->userable_type == "Cliente"){
                 return $next($request);
             }   
         }

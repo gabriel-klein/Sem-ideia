@@ -13,7 +13,7 @@ class CreateConhecimentosTable extends Migration
      * @return void
      */
     public function up()
-    {
+     {
         Schema::create('conhecimentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
@@ -21,7 +21,6 @@ class CreateConhecimentosTable extends Migration
         });
 
     Conhecimento::create([
-            'id' =>'10',
             'nome' => 'escolaridade',
     ]);
     Conhecimento::create([
@@ -34,7 +33,6 @@ class CreateConhecimentosTable extends Migration
             'nome' => 'ingles',
     ]);
    }
-
     /**
      * Reverse the migrations.
      *

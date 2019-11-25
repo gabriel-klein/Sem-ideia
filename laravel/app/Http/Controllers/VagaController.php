@@ -9,6 +9,7 @@ use App\Http\Requests\VagaRequest;
 use App\Vaga;
 use Auth;
 use App\Conhecimento;
+use App\conhecimento_vaga;
 
 
 class VagaController extends Controller
@@ -16,6 +17,7 @@ class VagaController extends Controller
     
     public function __construct()
     {
+        $this->middleware('empresa')->except(['index', 'show']);
         $this->conhecimentos = Conhecimento::all();
     }
 
@@ -26,7 +28,7 @@ class VagaController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->userable_type == "App\Empresa"){
+        if (Auth::user()->userable_type == "Empresa"){
             $vagas =  Auth::user()->userable->vagas()
                         ->latest()->simplePaginate(8);
         }
@@ -44,7 +46,6 @@ class VagaController extends Controller
      */
     public function create()
     {
-        $this->middleware('IsEmpresa');
         $conhecimentos = $this->conhecimentos;
         return view('vagas.create', compact('conhecimentos'));
     }
@@ -62,7 +63,7 @@ class VagaController extends Controller
             return redirect()->route('vagas.index')
                     ->with('erro', 'Erro ao cadastrar a vaga!');
         }
-        $vaga->conhecimentos()
+        /*$vaga->conhecimentos()
              ->attach($request->escolaridade, ['nivel' => $request->escolaridade_nivel]);
         $conhecimentos = Arr::where($request->all(), function ($value, $key){
             return Str::contains($key, 'con');
@@ -72,7 +73,14 @@ class VagaController extends Controller
                 $vaga->conhecimentos()
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
-        }
+        }*/
+        $escolaridade=$request->input('escolaridade');
+        $vaga->conhecimentos()->attach( array(
+                1 => array('nivel' => $request->input('escolaridade')),
+                2 => array('nivel' => $request->input('excel')),
+                3 => array('nivel' => $request->input('word')),
+                4 => array('nivel' => $request->input('ingles')),
+            ));
         return redirect()->route('vagas.index')
                     ->with('sucesso', 'Vaga cadastrada com sucesso!');
     }
@@ -94,11 +102,11 @@ class VagaController extends Controller
      * @param  \App\Vaga  $vaga
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vaga $vaga)
+    public function edit(Request $request,Vaga $vaga)
     {
-        $this->middleware('IsEmpresa');
-        $conhecimentos = $this->conhecimentos;
-        return view('vagas.edit', compact(['conhecimentos', 'vaga']));
+        $conhecimentos= $vaga->conhecimentos;
+        //dd($conhecimentos->find(1)->pivot->nivel);
+        return view('vagas.edit', compact(['conhecimentos','vaga']));
     }
 
     /**
@@ -114,7 +122,7 @@ class VagaController extends Controller
             return redirect()->route('vagas.index')
                 ->with('erro', 'Erro ao editar a vaga!');
         }
-        $vaga->conhecimentos()->detach();
+        /*$vaga->conhecimentos()->detach();
         $vaga->conhecimentos()
              ->attach($request->escolaridade, ['nivel' => $request->escolaridade_nivel]);
         
@@ -126,7 +134,20 @@ class VagaController extends Controller
                 $vaga->conhecimentos()
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
-        }
+        }*/
+        $vaga->funcao = $request->funcao;
+        $vaga->descricao = $request->descricao;
+        $vaga->quantidade = $request->quantidade;
+        $vaga->email_de_contato = $request->email_de_contato;
+        $vaga->status = $request->status;
+        $vaga->conhecimentos()->sync( array(
+                1 => array('nivel' => $request->input('escolaridade')),
+                2 => array('nivel' => $request->input('excel')),
+                3 => array('nivel' => $request->input('word')),
+                4 => array('nivel' => $request->input('ingles')),
+            ));
+        $vaga->save();
+
         return redirect()->route('vagas.index')
                 ->with('sucesso', 'Vaga editada com sucesso!');
     }

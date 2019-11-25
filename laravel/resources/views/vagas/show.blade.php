@@ -11,4 +11,6 @@
   @foreach ($vaga->conhecimentos as $conhecimento)
       <p class="my-1">{{ $conhecimento->nome." - ".$conhecimento->pivot->nivel }}</p>
   @endforeach
+  <p>E-mail de contato: {{ $vaga->email_de_contato }}</p>
+  
 @endsection

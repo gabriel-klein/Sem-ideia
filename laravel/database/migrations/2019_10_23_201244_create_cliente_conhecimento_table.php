@@ -21,7 +21,7 @@ class CreateClienteConhecimentoTable extends Migration
             $table->timestamps();    
             
             $table->foreign('cliente_id')
-                  ->references('id')->on('users');
+                  ->references('id')->on('clientes');
             $table->foreign('conhecimento_id')
                   ->references('id')->on('conhecimentos');
         });

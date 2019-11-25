@@ -6,7 +6,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="csrf-param" content="_token" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -34,11 +33,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @cand
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('cliente/conhecimento') }}">{{ __('Criar Currículo') }}</a>
-                        </li>
-                        @endcand
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('vagas.index') }}">Vagas</a>
+                            </li>
+                            @emp
+                                <li class="nav-item">
+                                    <a href="{{ route('cliente.index')}}" class="nav-link">
+                                        Currículos
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('empresa.edit', Auth::user()->userable->id)}}" class="nav-link">
+                                        Meus Dados
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                            <a class="nav-link" href="{{ url('cliente/curriculo') }}">{{ __('Currículo') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}" class="nav-link">
+                                        Meus Dados
+                                    </a>
+                                </li>
+                            @endemp
+                        @endauth
 
                     </ul>
 
@@ -47,23 +67,17 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('empresa/login') }}">{{ __('Login Empresa') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login Cliente') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('empresa/cadastro') }}">{{ __('Cadastro empresa') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastro cliente') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ auth()->user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -85,22 +99,24 @@
         </nav>
 
         <main class="py-3">
-            @if (session('sucesso'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('sucesso') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
-            @if (session('erro'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('erro') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+            <div class="container">            
+                @if (session('sucesso'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('sucesso') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if (session('erro'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('erro') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
             @yield('content')
         </main>
     </div>

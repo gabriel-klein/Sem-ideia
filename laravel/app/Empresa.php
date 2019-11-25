@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Rules\ValidaCnpj;
+use Illuminate\Database\Eloquent\Model;
 
-class Empresa extends Authenticatable
+class Empresa extends Model
 {
     
     /**
@@ -14,28 +13,17 @@ class Empresa extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'cnpj', 'name', 'email','password', 'razao_social'
+        'cnpj', 'razao_social'
     ];
-
-     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
     
     /**
      * Método da Agregação
      *
      * @return App\User
-     
+     */
     public function user(){
         return $this->morphOne('App\User', 'userable');
     }
-    */
     /**
      * Método do relacionamento 1-N
      *

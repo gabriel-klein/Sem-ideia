@@ -18,10 +18,10 @@ class IsEmpresa
     {
         if(Auth::check()){
             $user = Auth::user();
-            if ($user->userable_type == "App\Empresa"){
+            if ($user->userable_type == "Empresa"){
                 return $next($request);
             }
         }
-        return route('welcome');
+        return redirect()->route('home')->with('erro', 'Ação não autorizada');
     }
 }

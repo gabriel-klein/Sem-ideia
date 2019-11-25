@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Providers;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Route;
 use Auth;
-Use App\User;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
     /**
      * Bootstrap any application services.
      *
@@ -29,20 +32,10 @@ class AppServiceProvider extends ServiceProvider
         ]);
         
         Blade::if('emp', function(){
-            if(Auth::guard('empresa')){
+            if(Auth::user()->userable_type == "Empresa"){
                 return true;
             }
-            else 
-                return false;
-        });
-        Blade::directive('cand', function(){
-            return "<?php if(auth()->guard('web')->check()): ?>";
-
         });
 
-        Blade::directive('endcand', function(){
-            
-            return "<?php endif; ?>";
-        });
     }
 }
