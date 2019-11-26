@@ -5,12 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link" @click="typeUser = 'Cliente'" :class="typeUser == 'Cliente' ? 'active': ''">Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" @click="typeUser = 'Empresa'" :class="typeUser == 'Empresa' ? 'active': ''" >Empresa</a>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -192,27 +200,13 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Tipo de Usuário</label>
-
-                            <div class="col-md 6">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeUserCliente" name="typeUser" 
-                                        class="custom-control-input" {{ old('typeUser') == 'Cliente'? 'checked': '' }}
-                                        v-model="typeUser" value="Cliente">
-                                    <label class="custom-control-label" for="typeUserCliente">Cliente</label>
-                                </div>
-                                
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="typeUserEmpresa" name="typeUser" 
-                                        class="custom-control-input" {{ old('typeUser') == 'Empresa'? 'checked': '' }}
-                                        v-model="typeUser" value="Empresa">
-                                    <label class="custom-control-label" for="typeUserEmpresa">Empresa</label>
-                                </div>
-                            </div>
-                        </div>
-
+                         <input type="radio" id="typeUserEmpresa" name="typeUser" 
+                                    class="custom-control-input" value="Empresa" v-model="typeUser"
+                                    {{ old('typeUser') == 'Empresa'? 'checked': '' }} v-show="false">
+                        
+                        <input type="radio" id="typeUserCliente" name="typeUser" 
+                                    class="custom-control-input"  value="Cliente" v-model="typeUser"
+                                    {{ old('typeUser') == 'Cliente'? 'checked': '' }} v-show="false">
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
