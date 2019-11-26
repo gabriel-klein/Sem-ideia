@@ -183,17 +183,12 @@ class RegisterController extends Controller
      */
     protected function createUserable (array $data, $user)
     {
-        if(isset($data['typeUser'])){
-            if ($data['typeUser'] == "Empresa") {
-                $userable = Empresa::create($data);
-            }
-            else if ($data['typeUser'] == "Cliente") {
-                $userable = Cliente::create($data);
-            }
-            $userable->user()->save($user);
+        if ($data['typeUser'] == "Empresa") {
+            $userable = Empresa::create($data);
         }
-        else {
-            return false;
+        else if ($data['typeUser'] == "Cliente") {
+            $userable = Cliente::create($data);
         }
+        $userable->user()->save($user);
     }
 }

@@ -17,9 +17,7 @@
                     <tbody>
                         <tr>
                         @forelse ($users as $user)
-                                <td><a href="{{ route('cliente.show', $user->userable_id) }}" data-remote="true">
-                                    Currículo 
-                                </a></td>
+                                <td><a href="{{ route('cliente.show', $user->userable->id) }}" data-remote="true">Currículo</a></td>
                                 <td>{{$user->name}}</td>
                                 <td>{{ $user->userable->idade }}</td>
                                 <td>{{ $user->userable->aprendiz }}</td>
@@ -31,6 +29,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="row justify-content-center">
+                {{ $users->links() }}
         </div>
     </div>
 @endsection

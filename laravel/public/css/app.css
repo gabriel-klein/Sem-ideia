@@ -153,6 +153,9 @@ small {
   font-size: 80%;
 }
 
+.pointer {cursor: pointer;}
+.texto{opacity: 0.5;}
+
 sub,
 sup {
   position: relative;

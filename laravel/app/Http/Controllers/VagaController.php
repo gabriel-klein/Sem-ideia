@@ -9,7 +9,6 @@ use App\Http\Requests\VagaRequest;
 use App\Vaga;
 use Auth;
 use App\Conhecimento;
-use App\conhecimento_vaga;
 
 
 class VagaController extends Controller
@@ -120,7 +119,7 @@ class VagaController extends Controller
     {
         if(!$vaga->update($request->all())){
             return redirect()->route('vagas.index')
-                ->with('erro', 'Erro ao editar a vaga!');
+                ->with('erro', 'Erro ao atualizar a vaga!');
         }
         /*$vaga->conhecimentos()->detach();
         $vaga->conhecimentos()

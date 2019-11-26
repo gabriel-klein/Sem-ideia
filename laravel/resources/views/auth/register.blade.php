@@ -7,67 +7,88 @@
             <div class="card">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
+                    @guest
                         <li class="nav-item">
-                          <a class="nav-link" @click="typeUser = 'Cliente'" :class="typeUser == 'Cliente' ? 'active': ''">Cliente</a>
+                          <a class="nav-link pointer" @click="typeUser = 'Cliente'" :class="typeUser == 'Cliente' ? 'active': ''">Cliente</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" @click="typeUser = 'Empresa'" :class="typeUser == 'Empresa' ? 'active': ''" >Empresa</a>
+                          <a class="nav-link pointer"  @click="typeUser = 'Empresa'" :class="typeUser == 'Empresa' ? 'active': ''" >Empresa</a>
                         </li>
+                    @endguest
+                    @auth
+                    @emp
+                        <li class="nav-item">
+                          <a class="nav-link pointer" @click="typeUser = 'Empresa'" :class="typeUser == 'Empresa' ? 'active': ''" >Empresa</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                          <a class="nav-link pointer"  @click="typeUser = 'Cliente'" :class="typeUser == 'Empresa' ? 'active': 'active'">{{ __('Cliente') }}</a>
+                        </li>
+                    @endemp
+                    @endauth
                     </ul>
                 </div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div v-if="typeUser == ''">
+                            <div class="texto">
+                                Selecione uma opção de cadastro.
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div v-if="typeUser == 'Empresa' || typeUser == 'Cliente'">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                    
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+                            </div>
+                        
                         <div v-if="typeUser == 'Empresa'">
                             <div class="form-group row">
                                 <label for="cnpj" class="col-md-4 col-form-label text-md-right">CNPJ</label>
@@ -97,7 +118,13 @@
                                     @enderror
                                 </div>
                             </div>
-
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                        {{ __('Register') }}
+                                        </button>
+                                    </div>
+                                </div>
                         </div>
                         
                         <div v-else-if="typeUser == 'Cliente'">
@@ -199,6 +226,13 @@
                                     </div>
                                 </div>
                             </div>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Register') }}
+                                        </button>
+                                    </div>
+                                </div>
                         </div>
                          <input type="radio" id="typeUserEmpresa" name="typeUser" 
                                     class="custom-control-input" value="Empresa" v-model="typeUser"
@@ -207,13 +241,17 @@
                         <input type="radio" id="typeUserCliente" name="typeUser" 
                                     class="custom-control-input"  value="Cliente" v-model="typeUser"
                                     {{ old('typeUser') == 'Cliente'? 'checked': '' }} v-show="false">
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
+
+
+                        @auth
+                            @emp
+                                @else
+                                    <input type="radio" id="typeUserCliente" name="typeUser" 
+                                    class="custom-control-input"  value="Cliente" v-model="typeUser"
+                                    {{ ((old('typeUser') == 'Cliente') ||(@$users->find($cliente->id)->userable_type == "Cliente"))? 'checked': '' }} v-show="false">
+                            @endemp
+                        @endauth
+
 
                     </form>
                 </div>

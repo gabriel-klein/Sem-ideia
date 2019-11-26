@@ -27,8 +27,8 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = \App\Cliente::all();
-        $users = \App\User::where('userable_type','=','Cliente')->get();
-        //dd($users);
+        $users = \App\User::where('userable_type','=','Cliente')->simplePaginate(8);
+        //dd($users->find(2)->userable->idade);
         return view('cliente.index', compact('clientes','users'));
     }
 
@@ -73,8 +73,9 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        $conhecimentos = $this->conhecimentos;
-        return view('cliente.edit', compact(['cliente', 'conhecimentos']));
+        $users = \App\User::where('userable_type','=','Cliente');
+        //dd($users->find($cliente->id)->userable_type);
+        return view('cliente.edit', compact(['cliente', 'users']));
     }
 
     /**
@@ -86,7 +87,37 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'      => ['required', 'string', 'max:255', 'alpha'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'  => ['required', 'string', 'min:8', 'confirmed'],
+            'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
+            'cel1'          => ['required', 'string', 'min:15', 'max:16', 'unique:clientes'],
+            'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
+            'aprendiz'      => ['required', 'string'],
+            'h_disponivel'  => ['required', 'string'],
+            ]);
+            if( $validator->fails()){
+            return redirect('register')
+                     ->withErrors($validator)
+                     ->withInput();
+            }
+            else
+            {
+                $update= $cliente->update($validator);
+
+                if($update)
+                {
+                    return redirect()->route('home')
+                    ->with('sucesso','Dados atualizados com sucesso!!');
+                }
+                else
+                {
+                    return redirect()->route('cliente.edit',compact('cliente'))
+                    ->with('sucesso','Erro ao atualizar os dados!!')
+                    ->withInput();
+                }
+            }
     }
 
     /**
