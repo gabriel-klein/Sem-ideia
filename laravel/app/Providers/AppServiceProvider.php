@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Route;
 use Auth;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
             'edit' => 'editar',
         ]);
         
+        Relation::morphMap([
+            'Empresa' => 'App\Empresa',
+            'Cliente' => 'App\Cliente',
+        ]);
+
         Blade::if('emp', function(){
             if(Auth::user()->userable_type == "Empresa"){
                 return true;

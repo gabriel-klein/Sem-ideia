@@ -5,12 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\Relation;
-
-Relation::morphMap([
-    'Empresa' => 'App\Empresa',
-    'Cliente' => 'App\Cliente',
-]);
 
 class User extends Authenticatable
 {
