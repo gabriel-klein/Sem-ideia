@@ -11,6 +11,14 @@
   @foreach ($vaga->conhecimentos as $conhecimento)
       <p class="my-1">{{ $conhecimento->nome." - ".$conhecimento->pivot->nivel }}</p>
   @endforeach
-  <p>E-mail de contato: {{ $vaga->email_de_contato }}</p>
-  
+  <h5 class="h5 mt-2">E-mail de contato</h5>
+  <p>{{ $vaga->email_de_contato }}</p>
 @endsection
+
+@emp 
+    @section('footer')
+    <a class="btn btn-success"  href="{{ route('vagas.edit', $vaga->id) }}">
+        Editar
+    </a>
+    @endsection
+@endemp

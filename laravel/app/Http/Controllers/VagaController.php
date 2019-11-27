@@ -101,10 +101,9 @@ class VagaController extends Controller
      * @param  \App\Vaga  $vaga
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,Vaga $vaga)
+    public function edit(Request $request, Vaga $vaga)
     {
         $conhecimentos= $vaga->conhecimentos;
-        //dd($conhecimentos->find(1)->pivot->nivel);
         return view('vagas.edit', compact(['conhecimentos','vaga']));
     }
 
@@ -134,18 +133,12 @@ class VagaController extends Controller
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
         }*/
-        $vaga->funcao = $request->funcao;
-        $vaga->descricao = $request->descricao;
-        $vaga->quantidade = $request->quantidade;
-        $vaga->email_de_contato = $request->email_de_contato;
-        $vaga->status = $request->status;
         $vaga->conhecimentos()->sync( array(
                 1 => array('nivel' => $request->input('escolaridade')),
                 2 => array('nivel' => $request->input('excel')),
                 3 => array('nivel' => $request->input('word')),
                 4 => array('nivel' => $request->input('ingles')),
             ));
-        $vaga->save();
 
         return redirect()->route('vagas.index')
                 ->with('sucesso', 'Vaga editada com sucesso!');
