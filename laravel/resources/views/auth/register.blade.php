@@ -248,7 +248,7 @@
                                 @else
                                     <input type="radio" id="typeUserCliente" name="typeUser" 
                                     class="custom-control-input"  value="Cliente" v-model="typeUser"
-                                    {{ ((old('typeUser') == 'Cliente') ||(@$users->find($cliente->id)->userable_type == "Cliente"))? 'checked': '' }} v-show="false">
+                                    {{ ((old('typeUser') == 'Cliente') ||(@$cliente->user->userable_type == "Cliente"))? 'checked': '' }} v-show="false">
                             @endemp
                         @endauth
 

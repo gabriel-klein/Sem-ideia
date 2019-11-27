@@ -16,12 +16,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                        @forelse ($users as $user)
-                                <td><a href="{{ route('cliente.show', $user->userable->id) }}" data-remote="true">Currículo</a></td>
-                                <td>{{$user->name}}</td>
-                                <td>{{ $user->userable->idade }}</td>
-                                <td>{{ $user->userable->aprendiz }}</td>
-                                <td>{{ $user->userable->cel1 }}</td>
+                        @forelse ($clientes as $cliente)
+                                <td><a href="{{ route('cliente.show', $cliente->id) }}" data-remote="true">Currículo</a></td>
+                                <td>{{ $cliente->user->name}}</td>
+                                <td>{{ $cliente->idade }}</td>
+                                <td>{{ $cliente->aprendiz }}</td>
+                                <td>{{ $cliente->cel1 }}</td>
                             </tr>     
                         @empty
                             <tr><td>Não há Currículos cadastrados ainda</td></tr>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-                {{ $users->links() }}
+                {{ $clientes->links() }}
         </div>
     </div>
 @endsection

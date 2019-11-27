@@ -26,10 +26,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = \App\Cliente::all();
-        $users = \App\User::where('userable_type','=','Cliente')->simplePaginate(8);
-        //dd($users->find(2)->userable->idade);
-        return view('cliente.index', compact('clientes','users'));
+        $clientes = Cliente::simplePaginate(8);
+        return view('cliente.index', compact('clientes'));
     }
 
     /**
@@ -59,9 +57,8 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Cliente $cliente)
+    public function show(Cliente $cliente)
     {
-        //dd($cliente);
         return view('cliente.show', compact('cliente'));
     }
 
@@ -73,9 +70,8 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        $users = \App\User::where('userable_type','=','Cliente');
-        //dd($users->find($cliente->id)->userable_type);
-        return view('cliente.edit', compact(['cliente', 'users']));
+        
+        return view('cliente.edit', compact(['cliente']));
     }
 
     /**

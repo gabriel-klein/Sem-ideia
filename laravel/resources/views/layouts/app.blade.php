@@ -50,7 +50,7 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                            <a class="nav-link" href="{{ url('cliente/curriculo') }}">{{ __('Currículo') }}</a>
+                                    <a class="nav-link" href="{{ url('cliente/curriculo') }}">{{ __('Currículo') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}" class="nav-link">
