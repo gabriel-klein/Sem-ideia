@@ -75,7 +75,7 @@ class RegisterController extends Controller
                 'required', 'string', 'min:18', 
                 'max:18', new ValidaCnpj, 'unique:empresas'
             ],
-            'razao_social' => ['required', 'string'],
+            'razao_social' => ['required', 'string','unique:empresas'],
         ]);
     }
     

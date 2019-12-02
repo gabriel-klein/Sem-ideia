@@ -30,8 +30,5 @@
                 </table>
             </div>
         </div>
-        <div class="row justify-content-center">
-                {{ $clientes->links() }}
-        </div>
     </div>
 @endsection
