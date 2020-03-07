@@ -8,14 +8,15 @@
                     <thead>
                         <tr>
                             <th>Função</th>
-                            <th>Quantidade</th>
+                            <th>Qº Vagas</th>
                             @emp
+                                <th>Qº Candidatos</th>
                                 <th>Status</th>
-                                <th>Ações</th>
                             @else
                                 <th>Empresa</th>
                                 <th>Criação</th>
                             @endemp
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,9 @@
                                 </a></td>
                                 <td>{{ $vaga->quantidade }}</td>
                                 @emp
+                                    <td>
+                                        {{(count($vaga->clientes)) ? count($vaga->clientes) : "Não há candidatos"}}
+                                    </td>
                                     <td>{{ $vaga->status }}</td>
                                     <td class="py-1">
                                         <a class="btn btn-success"  href="{{ route('vagas.edit', $vaga->id) }}">
@@ -35,6 +39,23 @@
                                 @else
                                     <td>{{ $vaga->empresa->razao_social}}</td>
                                     <td>{{ $vaga->created_at->format('d.m.Y') }}</td>
+                                    <td>
+                                        @if (!$vaga->clientes()->find(Auth::user()->userable->id))
+                                            <form action="{{route('vagas.candidatar')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="vaga" value="{{ $vaga->id }}">
+                                                <input type="hidden" name="cliente" value="{{ Auth::user()->userable->id }}">
+                                                <button type="submit" class="btn btn-primary">Candidatar</button>
+                                            </form>
+                                        @else
+                                            <form action="{{route('vagas.cancelarCandidatura')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="vaga" value="{{ $vaga->id }}">
+                                                <input type="hidden" name="cliente" value="{{ Auth::user()->userable->id }}">
+                                                <button type="submit" class="btn btn-danger">Cancelar candidatura</button>
+                                            </form>
+                                    </td>
+                                    @endif
                                 @endemp
                             </tr>     
                         @empty
