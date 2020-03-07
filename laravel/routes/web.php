@@ -29,6 +29,12 @@ Route::middleware(['auth'])->group(function () {
         'destroy', 'create', 'store'
     ]);
     Route::resource('vagas', 'VagaController');
+    
+    Route::post('vagas/candidatar', 'VagaController@candidatar')
+        ->name('vagas.candidatar');
+
+    Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
+        ->name('vagas.cancelarCandidatura');
 
 });
 

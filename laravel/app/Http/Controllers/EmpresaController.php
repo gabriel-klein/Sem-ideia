@@ -62,7 +62,7 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        $user =\App\User::where([
+        $user = User::where([
             ['userable_id','=',$empresa->id],
             ['userable_type','=','Empresa'],
         ])->get()->first();
@@ -93,7 +93,7 @@ class EmpresaController extends Controller
             }
             else
             {
-                $user =\App\User::where('userable_id','=',$empresa->id,'and','userable_type','=','Empresa')->get()->first();
+                $user =User::where('userable_id','=',$empresa->id,'and','userable_type','=','Empresa')->get()->first();
                 if($request->input('password')==NULL)
                 {
                     $request['password']=$user->password;

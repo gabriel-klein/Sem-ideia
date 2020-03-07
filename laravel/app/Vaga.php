@@ -35,4 +35,14 @@ class Vaga extends Model
                     ->withTimestamps();
     }
 
+    /**
+     * Método da Relação N-N
+     *
+     * @return void
+     */
+    public function clientes(){
+        return $this->belongsToMany('App\Cliente')
+                    ->withTimestamps();
+    }
+
 }

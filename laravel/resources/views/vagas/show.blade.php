@@ -15,10 +15,26 @@
   <p>{{ $vaga->email_de_contato }}</p>
 @endsection
 
-@emp 
-    @section('footer')
-    <a class="btn btn-success"  href="{{ route('vagas.edit', $vaga->id) }}">
-        Editar
-    </a>
-    @endsection
-@endemp
+@section('footer')
+    @emp 
+        <a class="btn btn-success"  href="{{ route('vagas.edit', $vaga->id) }}">
+            Editar
+        </a>
+    @else
+        @if (!$vaga->clientes()->find(Auth::user()->userable->id)) 
+            <form action="{{route('vagas.candidatar')}}" method="post">
+                @csrf
+                <input type="hidden" name="vaga" value="{{ $vaga->id }}">
+                <input type="hidden" name="cliente" value="{{ Auth::user()->userable->id }}">
+                <button type="submit" class="btn btn-primary">Candidatar</button>
+            </form>
+        @else 
+            <form action="{{route('vagas.cancelarCandidatura')}}" method="post">
+                @csrf
+                <input type="hidden" name="vaga" value="{{ $vaga->id }}">
+                <input type="hidden" name="cliente" value="{{ Auth::user()->userable->id }}">
+                <button type="submit" class="btn btn-danger">Cancelar candidatura</button>
+            </form>
+        @endif 
+    @endemp
+@endsection

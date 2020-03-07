@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use App\Http\Requests\VagaRequest;
-use App\Vaga;
+
 use Auth;
+use App\Vaga;
 use App\Conhecimento;
+use App\Cliente;
 
 
 class VagaController extends Controller
@@ -16,7 +18,7 @@ class VagaController extends Controller
     
     public function __construct()
     {
-        $this->middleware('empresa')->except(['index', 'show']);
+        $this->middleware('empresa')->only(['create', 'edit', 'store', 'update']);
         $this->conhecimentos = Conhecimento::all();
     }
 
@@ -90,7 +92,7 @@ class VagaController extends Controller
      * @param  \App\Vaga  $vaga
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,Vaga $vaga)
+    public function show(Request $request, Vaga $vaga)
     {   
         return view('vagas.show', compact('vaga'));
     }
@@ -143,4 +145,22 @@ class VagaController extends Controller
         return redirect()->route('vagas.index')
                 ->with('sucesso', 'Vaga editada com sucesso!');
     }
+
+    
+    public function cancelarCandidatura(Request $request){
+        Vaga::find($request->vaga)
+            ->clientes()->detach(Cliente::find($request->cliente));
+        
+        return redirect()->route('vagas.index')
+            ->with('sucesso', 'Cancelamento de candidatura feito com sucesso!');
+    }
+    
+    public function candidatar(Request $request){
+        Vaga::find($request->vaga)
+            ->clientes()->attach(Cliente::find($request->cliente));
+        
+        return redirect()->route('vagas.index')
+                ->with('sucesso', 'Seus dados aparecerão na vaga! Boa Sorte!');
+    }
+
 }

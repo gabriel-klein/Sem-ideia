@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -50,88 +49,22 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function register(Request $request)
+    protected function validator(array $data)
     {
-        if($request->get('typeUser')=='Empresa')
-        {
-            //dd($request->get('typeUser'));
-            $validator = Validator::make($request->all(), [
+        return Validator::make($data, [
             'name'      => ['required', 'string', 'max:255'],
             'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password'  => ['required', 'string', 'min:8', 'confirmed'],
-            'cnpj'      => ['required', 'string', 'min:18', 'max:18',new ValidaCnpj, 'unique:empresas'],
-            'razao_social' => ['required', 'string'],
-            ]);
-            if( $validator->fails()){
-            return redirect('register')
-                     ->withErrors($validator)
-                     ->withInput();
-            }
-            else
-            {
-                $userable = Empresa::create([
-                'cnpj' => $request->get('cnpj'),
-                'razao_social' => $request->get('razao_social'),
-                ]);
-
-                $user = $userable->user()->create([
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
-                ]);
-            }
-        }
-        if($request->get('typeUser')=='Cliente')
-        {
-            $validator = Validator::make($request->all(), [
-            'name'      => ['required', 'string', 'max:255',],
-            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'  => ['required', 'string', 'min:8', 'confirmed'],
-            'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
-            'cel1'          => ['required', 'string', 'min:15', 'max:16', 'unique:clientes'],
-            'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
-            'aprendiz'      => ['required', 'string'],
-            'h_disponivel'  => ['required', 'string'],
-            ]);
-            if( $validator->fails()){
-            return redirect('register')
-                     ->withErrors($validator)
-                     ->withInput();
-            }
-            else
-            {
-                $userable = Cliente::create([
-                'idade' => $request->get('idade'),
-                'cel1' => $request->get('cel1'),
-                'cel2' => $request->get('cel2'),
-                'h_disponivel' => $request->get('h_disponivel'),
-                'aprendiz' => $request->get('aprendiz'),
-                ]);
-
-                $user = $userable->user()->create([
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
-                ]);
-            }
-        }
-        $credentials =['email' => $request->get('email'), 'password' => $request->get('password')];
-        if( Auth()->guard()->attempt($credentials))
-        {
-            return redirect('/home');
-        }
-
-         
+        ]);
     }
+
     /**
      * Valida os dados referentes a empresa
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return void
      */
-    public function validateEmpresa (array $data)
+    protected function validateEmpresa (array $data)
     {
-        dd($data);
         return Validator::make($data, [
             'cnpj' => [
                 'required', 'string', 'min:18', 
@@ -144,8 +77,8 @@ class RegisterController extends Controller
     /**
      * Valida os dados referentes a empresa
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param array $data
+     * @return void
      */
     protected function validateCliente (array $data)
     {
@@ -170,7 +103,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'userable_type' => $data['typeUser'],
         ]);
     }
 
@@ -183,12 +115,17 @@ class RegisterController extends Controller
      */
     protected function createUserable (array $data, $user)
     {
-        if ($data['typeUser'] == "Empresa") {
-            $userable = Empresa::create($data);
+        if(isset($data['typeUser'])){
+            if ($data['typeUser'] == "Empresa") {
+                $userable = Empresa::create($data);
+            }
+            else if ($data['typeUser'] == "Cliente") {
+                $userable = Cliente::create($data);
+            }
+            $userable->user()->save($user);
         }
-        else if ($data['typeUser'] == "Cliente") {
-            $userable = Cliente::create($data);
+        else {
+            return false;
         }
-        $userable->user()->save($user);
     }
 }

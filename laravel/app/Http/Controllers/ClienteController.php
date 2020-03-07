@@ -28,31 +28,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = \App\Cliente::all();
-        $users = \App\User::where('userable_type','=','Cliente')->simplePaginate(8);
-        //dd($users->find(2)->userable->idade);
-        return view('cliente.index', compact('clientes','users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $clientes = Cliente::paginate(8);
+        return view('cliente.index', compact('clientes'));
     }
 
     /**
@@ -61,9 +38,8 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Cliente $cliente)
+    public function show(Cliente $cliente)
     {
-        //dd($cliente);
         return view('cliente.show', compact('cliente'));
     }
 
@@ -75,7 +51,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        $user=\App\User::where([
+        $user= User::where([
             ['userable_id','=',$cliente->id],
             ['userable_type','=','Cliente'],
         ])->get()->first();
@@ -109,7 +85,7 @@ class ClienteController extends Controller
             }
             else
             {
-                $user =\App\User::where('userable_id','=',$cliente->id,'and','userable_type','=','Cliente')->get()->first();
+                $user = User::where('userable_id','=',$cliente->id,'and','userable_type','=','Cliente')->get()->first();
                 if($request->input('password')==NULL)
                 {
                     $request['password']=$user->password;
@@ -143,10 +119,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
-    {
-        //
-    }
+
     public function curriculo()
     {
         return view('cliente/curriculo');
