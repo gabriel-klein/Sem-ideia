@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">    
-            @foreach ($vagas as $vaga)
+            @forelse ($vagas as $vaga)
                 @component('layouts.cards')
                     @slot('title')
                         {{$vaga->funcao}}
@@ -21,11 +21,11 @@
                         {{$vaga->email_de_contato}}
                     @endslot
 
-                    @section('requisitos')
+                    @slot('requisitos')
                         <p>Requisitos</p>
-                    @endsection
+                    @endslot
 
-                    @section('actions')
+                    @slot('actions')
                         @emp
                             <a class="btn waves-effect waves-light"  href="{{ route('vagas.edit', $vaga->id) }}">
                                 <i class="material-icons right">edit</i>  Editar
@@ -48,7 +48,7 @@
                                 </form>
                             @endif
                         @endemp
-                    @endsection
+                    @endslot
                 @endcomponent
             @empty
                 <p>Não há vagas cadastradas ainda</p>
