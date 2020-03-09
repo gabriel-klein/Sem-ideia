@@ -13,10 +13,10 @@
       <p>{{ $emailContato }}</p>
       <hr>
       <h4>Requisitos</h4>
-      @yield('requisitos')
+      {{ $requisitos }}
     </div>
     <div class="card-action">
-      @yield('actions')
+      {{ $actions }}
     </div>
   </div>
 </div>
