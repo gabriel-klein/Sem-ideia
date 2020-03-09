@@ -6,7 +6,8 @@
 
 require('./bootstrap');
 require('jquery-mask-plugin');
-require('jquery-ujs');
+require('jquery-ujs');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+require('../../node_modules/materialize-css/dist/js/materialize');
 
 window.Vue = require('vue');
 
@@ -47,6 +48,19 @@ const app = new Vue({
 $("#app").bind("DOMSubtreeModified", function() {
     $(".cnpjMask").mask("00.000.000/0000-00");
     $(".telMask").mask("(00) 0000-00000");
+});
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+});
+
+$('.vagaActivator').click(function (){
+    $('.vaga').removeClass('large');
+    $(this).parents('.vaga').addClass('large');
+});
+
+$('.vagaDeactivator').click(function (){
+    $('.vaga').removeClass('large');
 });
 
 require('./remote');
