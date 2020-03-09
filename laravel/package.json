@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "jquery-mask-plugin": "^1.14.16",
-        "jquery-ujs": "^1.2.2"
+        "jquery-ujs": "^1.2.2",
+        "materialize-css": "^1.0.0-rc.2"
     }
 }
