@@ -18,6 +18,7 @@ class CreateClientesTable extends Migration
             $table->integer('idade');
             $table->string('cel1')->unique();
             $table->string('cel2')->nullable();
+            $table->string('bairro');
             $table->enum('h_disponivel', ['Manhã', 'Tarde', 'Integral']);
             $table->enum('aprendiz', ['Sim', 'Não'])->default('Não');
             $table->timestamps();

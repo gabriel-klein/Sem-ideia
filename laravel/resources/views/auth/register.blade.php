@@ -173,6 +173,126 @@
                                 </div>
                             </div>
 
+<div class="form-group row">
+  <label for="bairro" class="col-md-4 col-form-label text-md-right">Bairro</label>
+  <div class="col-md-6">
+    <select id="bairro" class="custom-select @error('bairro') is-invalid @enderror" 
+      name="bairro" required>
+      <option  selected disabled >Selecione o seu bairro</option>
+
+      <option value="Badu" {{ ((old('bairro') == "Badu") || (@$cliente->bairro == "Badu"))?"selected":"" }}>Badu</option>
+
+      <option value="Baldeador" {{ ((old('bairro') == "Baldeador") || (@$cliente->bairro == "Baldeador"))?"selected":"" }}>Baldeador</option>
+
+      <option value="Barreto" {{ ((old('bairro') == "Barreto") || (@$cliente->bairro == "Barreto"))?"selected":"" }}>Barreto</option>
+
+      <option value="Boa Viagem" {{ ((old('bairro') == "Boa Viagem") || (@$cliente->bairro == "Boa Viagem"))?"selected":"" }}>Boa Viagem</option>
+
+      <option value="Cachoeiras" {{ ((old('bairro') == "Cachoeiras") || (@$cliente->bairro == "Cachoeiras"))?"selected":"" }}>Cachoeiras</option>
+
+      <option value="Cafubá" {{ ((old('bairro') == "Cafubá") || (@$cliente->bairro == "Cafubá"))?"selected":"" }}>Cafubá</option>
+
+      <option value="Camboinhas" {{ ((old('bairro') == "Camboinhas") || (@$cliente->bairro == "Camboinhas"))?"selected":"" }}>Camboinhas</option>
+
+      <option value="Cantagalo" {{ ((old('bairro') == "Cantagalo") || (@$cliente->bairro == "Cantagalo"))?"selected":"" }}>Cantagalo</option>
+
+      <option value="Cantareira" {{ ((old('bairro') == "Cantareira") || (@$cliente->bairro == "Cantareira"))?"selected":"" }}>Cantareira</option>
+
+      <option value="Caramujo" {{ ((old('bairro') == "Caramujo") || (@$cliente->bairro == "Caramujo"))?"selected":"" }}>Caramujo</option>
+
+      <option value="Charitas" {{ ((old('bairro') == "Charitas") || (@$cliente->bairro == "Charitas"))?"selected":"" }}>Charitas</option>
+
+      <option value="Cubango" {{ ((old('bairro') == "Cubango") || (@$cliente->bairro == "Cubango"))?"selected":"" }}>Cubango</option>
+
+      <option value="Engenho do Mato" {{ ((old('bairro') == "Engenho do Mato") || (@$cliente->bairro == "Engenho do Mato"))?"selected":"" }}>Engenho do Mato</option>
+
+      <option value="Engenhoca" {{ ((old('bairro') == "Engenhoca") || (@$cliente->bairro == "Engenhoca"))?"selected":"" }}>Engenhoca</option>
+
+      <option value="Fátima" {{ ((old('bairro') == "Fátima") || (@$cliente->bairro == "Fátima"))?"selected":"" }}>Fátima</option>
+
+      <option value="Fonseca" {{ ((old('bairro') == "Fonseca") || (@$cliente->bairro == "Fonseca"))?"selected":"" }}>Fonseca</option>
+
+      <option value="Gragoatá" {{ ((old('bairro') == "Gragoatá") || (@$cliente->bairro == "Gragoatá"))?"selected":"" }}>Gragoatá</option>
+
+      <option value="Icaraí" {{ ((old('bairro') == "Icaraí") || (@$cliente->bairro == "Icaraí"))?"selected":"" }}>Icaraí</option>
+
+      <option value="Ilha da Conceição" {{ ((old('bairro') == "Ilha da Conceição") || (@$cliente->bairro == "Ilha da Conceição"))?"selected":"" }}>Ilha da Conceição</option>
+
+      <option value="Ingá" {{ ((old('bairro') == "Ingá") || (@$cliente->bairro == "Ingá"))?"selected":"" }}>Ingá</option>
+
+      <option value="Itacoatiara" {{ ((old('bairro') == "Itacoatiara") || (@$cliente->bairro == "Itacoatiara"))?"selected":"" }}>Itacoatiara</option>
+
+      <option value="Itaipu" {{ ((old('bairro') == "Itaipu") || (@$cliente->bairro == "Itaipu"))?"selected":"" }}>Itaipu</option>
+
+      <option value="Ititioca" {{ ((old('bairro') == "Ititioca") || (@$cliente->bairro == "Ititioca"))?"selected":"" }}>Ititioca</option>
+
+      <option value="Jacaré" {{ ((old('bairro') == "Jacaré") || (@$cliente->bairro == "Jacaré"))?"selected":"" }}>Jacaré</option>
+
+      <option value="Jardim Imbuí" {{ ((old('bairro') == "Jardim Imbuí") || (@$cliente->bairro == "Jardim Imbuí"))?"selected":"" }}>Jardim Imbuí</option>
+
+      <option value="Jurujuba" {{ ((old('bairro') == "Jurujuba") || (@$cliente->bairro == "Jurujuba"))?"selected":"" }}>Jurujuba</option>
+
+      <option value="Largo da Batalha" {{ ((old('bairro') == "Largo da Batalha") || (@$cliente->bairro == "Largo da Batalha"))?"selected":"" }}>Largo da Batalha</option>
+
+      <option value="Maceió" {{ ((old('bairro') == "Maceió") || (@$cliente->bairro == "Maceió"))?"selected":"" }}>Maceió</option>
+
+      <option value="Maravista" {{ ((old('bairro') == "Maravista") || (@$cliente->bairro == "Maravista"))?"selected":"" }}>Maravista</option>
+
+      <option value="Maria Paula" {{ ((old('bairro') == "Maria Paula") || (@$cliente->bairro == "Maria Paula"))?"selected":"" }}>Maria Paula</option>
+
+      <option value="Matapaca" {{ ((old('bairro') == "Matapaca") || (@$cliente->bairro == "Matapaca"))?"selected":"" }}>Matapaca</option>
+
+      <option value="Morro do Estado" {{ ((old('bairro') == "Morro do Estado") || (@$cliente->bairro == "Morro do Estado"))?"selected":"" }}>Morro do Estado</option>
+
+      <option value="Muriqui" {{ ((old('bairro') == "Muriqui") || (@$cliente->bairro == "Muriqui"))?"selected":"" }}>Muriqui</option>
+
+      <option value="Pé Pequeno" {{ ((old('bairro') == "Pé Pequeno") || (@$cliente->bairro == "Pé Pequeno"))?"selected":"" }}>Pé Pequeno</option>
+
+      <option value="Piratininga" {{ ((old('bairro') == "Piratininga") || (@$cliente->bairro == "Piratininga"))?"selected":"" }}>Piratininga</option>
+
+      <option value="Ponta d'Areia" {{ ((old('bairro') == "Ponta d'Areia") || (@$cliente->bairro == "Ponta d'Areia"))?"selected":"" }}>Ponta d'Areia</option>
+
+      <option value="Rio do Ouro" {{ ((old('bairro') == "Rio do Ouro") || (@$cliente->bairro == "Rio do Ouro"))?"selected":"" }}>Rio do Ouro</option>
+
+      <option value="Santa Bárbara" {{ ((old('bairro') == "Santa Bárbara") || (@$cliente->bairro == "Santa Bárbara"))?"selected":"" }}>Santa Bárbara</option>
+
+      <option value="Santa Rosa" {{ ((old('bairro') == "Santa Rosa") || (@$cliente->bairro == "Santa Rosa"))?"selected":"" }}>Santa Rosa</option>
+
+      <option value="Santana" {{ ((old('bairro') == "Santana") || (@$cliente->bairro == "Santana"))?"selected":"" }}>Santana</option>
+
+      <option value="Santo Antônio" {{ ((old('bairro') == "Santo Antônio") || (@$cliente->bairro == "Santo Antônio"))?"selected":"" }}>Santo Antônio</option>
+
+      <option value="São Domingos" {{ ((old('bairro') == "São Domingos") || (@$cliente->bairro == "São Domingos"))?"selected":"" }}>São Domingos</option>
+
+      <option value="São Francisco" {{ ((old('bairro') == "São Francisco") || (@$cliente->bairro == "São Francisco"))?"selected":"" }}>São Francisco</option>
+
+      <option value="São Lourenço" {{ ((old('bairro') == "São Lourenço") || (@$cliente->bairro == "São Lourenço"))?"selected":"" }}>São Lourenço</option>
+
+      <option value="Sapê" {{ ((old('bairro') == "Sapê") || (@$cliente->bairro == "Sapê"))?"selected":"" }}>Sapê</option>
+
+      <option value="Serra Grande" {{ ((old('bairro') == "Serra Grande") || (@$cliente->bairro == "Serra Grande"))?"selected":"" }}>Serra Grande</option>
+
+      <option value="Tenente Jardim" {{ ((old('bairro') == "Tenente Jardim") || (@$cliente->bairro == "Tenente Jardim"))?"selected":"" }}>Tenente Jardim</option>
+
+      <option value="Várzea das Moças" {{ ((old('bairro') == "Várzea das Moças") || (@$cliente->bairro == "Várzea das Moças"))?"selected":"" }}>Várzea das Moças</option>
+
+      <option value="Viçoso Jardim" {{ ((old('bairro') == "Viçoso Jardim") || (@$cliente->bairro == "Viçoso Jardim"))?"selected":"" }}>Viçoso Jardim</option>
+
+      <option value="Vila Progresso" {{ ((old('bairro') == "Vila Progresso") || (@$cliente->bairro == "Vila Progresso"))?"selected":"" }}>Vila Progresso</option>
+
+      <option value="Viradouro" {{ ((old('bairro') == "Viradouro") || (@$cliente->bairro == "Viradouro"))?"selected":"" }}>Viradouro</option>
+
+      <option value="Vital Brazil" {{ ((old('bairro') == "Vital Brazil") || (@$cliente->bairro == "Vital Brazil"))?"selected":"" }}>Vital Brazil</option>
+      
+    </select>
+      @error('bairro')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+      @enderror
+  </div>
+</div>
+
                             <div class="form-group row">
                                 <label for="h_disponivel" class="col-md-4 col-form-label text-md-right">Horário Disponível</label>
     

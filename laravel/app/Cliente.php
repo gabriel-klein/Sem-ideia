@@ -13,7 +13,7 @@ class Cliente extends Model
      * @var array
      */
     protected $fillable = [
-        'idade', 'cel1', 'cel2', 'h_disponivel', 'aprendiz'
+        'idade', 'cel1', 'cel2','bairro', 'h_disponivel', 'aprendiz'
     ];
     
     /**
