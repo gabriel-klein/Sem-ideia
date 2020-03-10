@@ -182,11 +182,11 @@
 </div>
 
  <div class="form-group row">
-  <label for="email_de_contato" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail De Contato A Vaga') }}</label>
+  <label for="emailDeContato" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail De Contato A Vaga') }}</label>
     <div class="col-md-6">
-      <input id="email_de_contato" type="email" class="form-control @error('email_de_contato') is-invalid @enderror" name="email_de_contato" value="{{ isset($vaga->email_de_contato)?$vaga->email_de_contato:old('email_de_contato') }}"  autocomplete="email_de_contato">
+      <input id="emailDeContato" type="email" class="form-control @error('emailDeContato') is-invalid @enderror" name="emailDeContato" value="{{ isset($vaga->emailDeContato)?$vaga->emailDeContato:old('emailDeContato') }}"  autocomplete="emailDeContato">
                                 
-        @error('email_de_contato')
+        @error('emailDeContato')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
           </span>

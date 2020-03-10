@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -86,6 +87,7 @@ class RegisterController extends Controller
             'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
             'cel1'          => ['required', 'string', 'min:15', 'max:16', 'unique:clientes'],
             'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
+            'bairro'        => ['required'],
             'aprendiz'      => ['required', 'string'],
             'h_disponivel'  => ['required', 'string'],
         ]);
