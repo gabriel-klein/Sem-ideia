@@ -12,7 +12,7 @@ class Vaga extends Model
      * @var array
      */
     protected $fillable = [
-        'descricao', 'quantidade', 'empresa_id', 'status', 'funcao','email_de_contato'
+        'descricao', 'quantidade', 'empresa_id', 'status', 'funcao','emailDeContato'
     ];
 
     /**
