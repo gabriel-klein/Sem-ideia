@@ -18,11 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('cliente/curriculo','ClienteController@curriculo');
-    Route::post('cliente/conhecimento','ClienteController@conhecimento');
-
+    Route::post('cliente/conhecimento', 'ClienteController@conhecimento')
+        ->name('cliente.conhecimento');
+    
     Route::resource('cliente', 'ClienteController')->except([
-        'destroy', 'create', 'store'
+        'destroy', 'create', 'store',
     ]);
 
     Route::resource('empresa', 'EmpresaController')->except([
@@ -35,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
         ->name('vagas.cancelarCandidatura');
+
+    Route::get('cliente/{id}/curriculo','ClienteController@curriculo')
+        ->name('cliente.curriculo');
+    
+
 
 });
 

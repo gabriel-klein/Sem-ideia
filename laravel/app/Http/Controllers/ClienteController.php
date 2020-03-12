@@ -40,7 +40,30 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        return view('cliente.show', compact('cliente'));
+        $validator = Validator::make($request->all(), [
+            'escolaridade'      => ['required'],
+            'descricaoPessoal'  =>['required','min:15','max:255'],
+        ]);
+
+        if( $validator->fails()){
+            return redirect('cliente/conhecimento')
+                     ->withErrors($validator)
+                     ->withInput();
+        }
+        else{
+            $user = Cliente::find(auth()->user()->userable->id);
+
+            $user->conhecimentos()->sync( array(
+                1 => array('nivel' => $request->input('escolaridade')),
+                2 => array('nivel' => $request->input('excel')),
+                3 => array('nivel' => $request->input('word')),
+                4 => array('nivel' => $request->input('ingles')),
+            ));
+
+            dd($user);
+
+            return redirect('home');
+        }
     }
 
     /**
@@ -75,6 +98,7 @@ class ClienteController extends Controller
             'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
             'cel1'          => ['required', 'string', 'min:15', 'max:16', Rule::unique('clientes')->ignore($cliente->id)],
             'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
+            'bairro'        => ['required'],
             'aprendiz'      => ['required', 'string'],
             'h_disponivel'  => ['required', 'string'],
             ]);
@@ -122,17 +146,21 @@ class ClienteController extends Controller
 
     public function curriculo()
     {
-        return view('cliente/curriculo');
+        $user = Cliente::find(auth()->user()->userable->id);
+        $conhecimentos = $user->conhecimentos;
+
+        return view('cliente/curriculo',compact(['conhecimentos']));
     }
 
-    public function Conhecimento(Request $request)
+    public function conhecimento(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'escolaridade'      => ['required'],
+            'descricaoPessoal'  =>['required','min:15','max:255'],
         ]);
 
         if( $validator->fails()){
-            return redirect('cliente/conhecimento')
+            return redirect()->route('cliente.curriculo',Auth::user()->userable_id)
                      ->withErrors($validator)
                      ->withInput();
         }
@@ -145,6 +173,8 @@ class ClienteController extends Controller
                 3 => array('nivel' => $request->input('word')),
                 4 => array('nivel' => $request->input('ingles')),
             ));
+
+            $user->descricaoPessoal = $request->descricaoPessoal;
 
             return redirect('home');
         }
