@@ -8,7 +8,7 @@
                 <div class="card-header">
                  <ul class="nav nav-tabs card-header-tabs">
                      <li class="nav-item">
-                        <a class="nav-link pointer"  @click="typeUser = 'Empresa'" :class="typeUser == 'Empresa' ? 'active': 'active'">{{ __('Empresa') }}</a>
+                        <a class="nav-link"  @click="typeUser = 'Empresa'" :class="typeUser == 'Empresa' ? 'active': 'active'">{{ __('Empresa') }}</a>
                     </li>
                 </ul>
                 </div>

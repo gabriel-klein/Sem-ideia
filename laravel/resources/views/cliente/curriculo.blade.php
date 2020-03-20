@@ -11,19 +11,19 @@
                     <form method="POST" action="{{ route('cliente.conhecimento') }}"> 
                         @csrf
 
-                             <div class="form-group row">
+                            <div class="form-group row">
                               <label for="escolaridade" class="col-md-4 col-form-label text-md-right">Escolaridade</label>
 
                               <div class="col-md-6">
                                 <select id="escolaridade" class="custom-select @error('escolaridade') is-invalid @enderror" 
                                   name="escolaridade" required>
                                   <option  selected disabled >Selecione sua Escolaridade</option>
-                                  <option value="Superior_completo" {{ ((old('escolaridade') == "Superior_completo") || (@$cliente->escolaridade == "Superior_completo"))?"selected":"" }}>Superior Completo</option>
-                                  <option value="Superior_incompleto" {{ ((old('escolaridade') == "Superior_incompleto") || (@$cliente->escolaridade == "Superior_incompleto"))?"selected":"" }}  >Superior Incompleto</option>
-                                  <option value="Médio_completo" {{ ((old('escolaridade') == "Médio_completo") || (@$cliente->escolaridade == "Médio_completo"))?"selected":"" }} >Médio Completo</option>
-                                  <option value="Médio_incompleto" {{ ((old('escolaridade') == "Médio_incompleto") || (@$cliente->escolaridade == "Médio_incompleto"))?"selected":"" }}  >Médio Incompleto</option>
-                                  <option value="Fundamental_completo" {{ ((old('escolaridade') == "Fundamental_completo") || (@$cliente->escolaridade == "Fundamental_completo"))?"selected":"" }}>Fundamental Completo</option>
-                                  <option value="Fundamental_incompleto" {{ ((old('escolaridade') == "Fundamental_incompleto") || (@$cliente->escolaridade == "Fundamental_incompleto"))?"selected":"" }}>Fundamental Incompleto</option>
+                                  <option value="Superior_completo" {{ ((old('escolaridade') == "Superior_completo") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Superior_completo"))?"selected":"" }}>Superior Completo</option>
+                                  <option value="Superior_incompleto" {{ ((old('escolaridade') == "Superior_incompleto") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Superior_incompleto"))?"selected":"" }}  >Superior Incompleto</option>
+                                  <option value="Médio_completo" {{ ((old('escolaridade') == "Médio_completo") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Médio_completo"))?"selected":"" }} >Médio Completo</option>
+                                  <option value="Médio_incompleto" {{ ((old('escolaridade') == "Médio_incompleto") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Médio_incompleto"))?"selected":"" }}  >Médio Incompleto</option>
+                                  <option value="Fundamental_completo" {{ ((old('escolaridade') == "Fundamental_completo") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Fundamental_completo"))?"selected":"" }}>Fundamental Completo</option>
+                                  <option value="Fundamental_incompleto" {{ ((old('escolaridade') == "Fundamental_incompleto") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Fundamental_incompleto"))?"selected":"" }}>Fundamental Incompleto</option>
                                 </select>
                                 @error('escolaridade')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                 <label for="descricaoPessoal" class="col-md-4 col-form-label text-md-right">Descrição Pessoal</label>
                                 <div class="col-md-6">
                                     <textarea class="form-control @error('descricaoPessoal') is-invalid @enderror" 
-                                id="descricaoPessoal" rows="2" name="descricaoPessoal">{{ isset($Cliente->descricaoPessoal)?$Cliente->descricaoPessoal:old('descricaoPessoal') }}</textarea>
+                                id="descricaoPessoal" rows="2" name="descricaoPessoal">{{ isset($user->descricaoPessoal)?$user->descricaoPessoal:old('descricaoPessoal') }}</textarea>
                                     @error('descricaoPessoal')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

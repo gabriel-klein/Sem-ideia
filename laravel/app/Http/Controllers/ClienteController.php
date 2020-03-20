@@ -40,30 +40,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        $validator = Validator::make($request->all(), [
-            'escolaridade'      => ['required'],
-            'descricaoPessoal'  =>['required','min:15','max:255'],
-        ]);
-
-        if( $validator->fails()){
-            return redirect('cliente/conhecimento')
-                     ->withErrors($validator)
-                     ->withInput();
-        }
-        else{
-            $user = Cliente::find(auth()->user()->userable->id);
-
-            $user->conhecimentos()->sync( array(
-                1 => array('nivel' => $request->input('escolaridade')),
-                2 => array('nivel' => $request->input('excel')),
-                3 => array('nivel' => $request->input('word')),
-                4 => array('nivel' => $request->input('ingles')),
-            ));
-
-            dd($user);
-
-            return redirect('home');
-        }
+        
     }
 
     /**
@@ -78,8 +55,20 @@ class ClienteController extends Controller
             ['userable_id','=',$cliente->id],
             ['userable_type','=','Cliente'],
         ])->get()->first();
-        //dd($user->userable_type);
-        return view('cliente.edit', compact(['cliente', 'user']));
+
+        $bairros = ["badu","Baldeador","Barreto","Boa Viagem","Cachoeiras","Cafubá",
+                  "Camboinhas","Cantagalo","Cantareira","Caramujo","Charitas","Cubango",
+                  "Engenho do Mato","Engenhoca","Fátima","Fonseca","Gragoatá","Icaraí",
+                  "Ilha da Conceição","Ingá","Itacoatiara","Itaipu","Ititioca","Jacaré",
+                  "Jardim Imbuí","Jurujuba","Largo da Batalha","Maceió","Maravista",
+                  "Maria Paula","Matapaca","Morro do Estado","Muriqui","Pé Pequeno",
+                  "Piratininga","Ponta d'Areia","Rio do Ouro","Santa Bárbara",
+                  "Santa Rosa","Santana","Santo Antônio","São Domingos","São Francisco",
+                  "São Lourenço","Sapê","Serra Grande","Tenente Jardim",
+                  "Várzea das Moças","Viçoso Jardim","Vila Progresso","Viradouro",
+                  "Vital Brazil"];
+        
+        return view('cliente.edit', compact(['cliente', 'user','bairros']));
     }
 
     /**
@@ -149,7 +138,7 @@ class ClienteController extends Controller
         $user = Cliente::find(auth()->user()->userable->id);
         $conhecimentos = $user->conhecimentos;
 
-        return view('cliente/curriculo',compact(['conhecimentos']));
+        return view('cliente/curriculo',compact(['conhecimentos','user']));
     }
 
     public function conhecimento(Request $request)
@@ -174,9 +163,12 @@ class ClienteController extends Controller
                 4 => array('nivel' => $request->input('ingles')),
             ));
 
-            $user->descricaoPessoal = $request->descricaoPessoal;
 
-            return redirect('home');
+            $user->descricaoPessoal = $request->descricaoPessoal;
+            $user->save();
+
+            return redirect('home')
+                        ->with('sucesso', 'Currículo cadastrado com sucesso!');
         }
     }
 }
