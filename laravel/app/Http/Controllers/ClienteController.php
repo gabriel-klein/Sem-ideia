@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ClienteRequest;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ConhecimentoRequest;
+
+use Auth;
+use App\User;
 use App\Cliente;
 use App\Conhecimento;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Auth;
-use Illuminate\Validation\Rule;
-use App\User;
-use Illuminate\Support\Facades\Hash;
 
 class ClienteController extends Controller
 {
@@ -78,52 +80,42 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $validator = Validator::make($request->all(), [
-            'name'      => ['required', 'string', 'max:255', ],
-            'email'     => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user()->id)],
-            'password'  => ['nullable', 'string', 'min:8', 'confirmed'],
-            'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
-            'cel1'          => ['required', 'string', 'min:15', 'max:16', Rule::unique('clientes')->ignore($cliente->id)],
-            'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
-            'bairro'        => ['required'],
-            'aprendiz'      => ['required', 'string'],
-            'h_disponivel'  => ['required', 'string'],
-            ]);
-            if( $validator->fails() ){
-            return back()
-                     ->withErrors($validator)
-                     ->withInput();
+        if(!$cliente->update($request->all())){
+        return back()
+                 ->with('erro','Erro ao atualizar os dados!!');
+        }
+        else
+        {
+            $user = User::where([
+                ['userable_id','=',$cliente->id],
+                ['userable_type','=','Cliente']
+            ])->get()->first();
+            
+            if($request->input('password')==NULL)
+            {
+                $request['password']=$user->password;
             }
+
             else
             {
-                $user = User::where('userable_id','=',$cliente->id,'and','userable_type','=','Cliente')->get()->first();
-                if($request->input('password')==NULL)
-                {
-                    $request['password']=$user->password;
-                    //dd($request->get('password'));
-                }
-                else
-                {
-                    $request['password'] = Hash::make($request->get('password'));
-                }
-                $data = $request->all();
-                $update= auth()->user()->userable()->update($data);
-                $update_2= auth()->user()->update($data);
-
-                if($update && $update_2)
-                {
-                    return redirect()->route('home')
-                    ->with('sucesso','Dados atualizados com sucesso!!');
-                }
-                else
-                {
-                    return redirect()->route('cliente.edit',compact(['cliente', 'user']))
-                    ->with('erro','Erro ao atualizar os dados!!')
-                    ->withInput();
-                }
+                $request['password'] = Hash::make($request->get('password'));
             }
+
+            if($user->update($request->all()))
+            {
+                return redirect()->route('home')
+                ->with('sucesso','Dados atualizados com sucesso!!');
+            }
+
+            else
+            {
+                return redirect()->route('cliente.edit',compact(['cliente', 'user']))
+                ->with('erro','Erro ao atualizar os dados!!')
+                ->withInput();
+            }
+        }
     }
 
     /**
@@ -143,32 +135,19 @@ class ClienteController extends Controller
 
     public function conhecimento(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'escolaridade'      => ['required'],
-            'descricaoPessoal'  =>['required','min:15','max:255'],
-        ]);
+        $user = Cliente::find(auth()->user()->userable->id);
 
-        if( $validator->fails()){
-            return redirect()->route('cliente.curriculo',Auth::user()->userable_id)
-                     ->withErrors($validator)
-                     ->withInput();
-        }
-        else{
-            $user = Cliente::find(auth()->user()->userable->id);
+        $user->conhecimentos()->sync( array(
+            1 => array('nivel' => $request->input('escolaridade')),
+            2 => array('nivel' => $request->input('excel')),
+            3 => array('nivel' => $request->input('word')),
+            4 => array('nivel' => $request->input('ingles')),
+        ));
 
-            $user->conhecimentos()->sync( array(
-                1 => array('nivel' => $request->input('escolaridade')),
-                2 => array('nivel' => $request->input('excel')),
-                3 => array('nivel' => $request->input('word')),
-                4 => array('nivel' => $request->input('ingles')),
-            ));
+        $user->descricaoPessoal = $request->descricaoPessoal;
+        $user->save();
 
-
-            $user->descricaoPessoal = $request->descricaoPessoal;
-            $user->save();
-
-            return redirect('home')
-                        ->with('sucesso', 'Currículo cadastrado com sucesso!');
-        }
+        return redirect('home')
+                    ->with('sucesso', 'Currículo cadastrado com sucesso!');
     }
 }

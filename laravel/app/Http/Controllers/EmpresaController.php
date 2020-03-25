@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use App\User;
+use App\Http\Requests\EmpresaRequest;
 use Illuminate\Support\Facades\Validator;
-use App\Rules\ValidaCnpj;
+
+use App\User;
+use App\Empresa;
 
 class EmpresaController extends Controller
 {
@@ -77,40 +77,35 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(EmpresaRequest $request, Empresa $empresa)
     {
-         $validator = Validator::make($request->all(), [
-            'name'      => ['required', 'string', 'max:255', ],
-            'email'     => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user()->id)],
-            'password'  => ['nullable', 'string', 'min:8', 'confirmed'],
-            'cnpj'      => ['required', 'string', 'min:18', 'max:18',new ValidaCnpj, Rule::unique('empresas')->ignore($empresa->id)],
-            'razao_social' => ['required', 'string'],
-        ]);
-            if( $validator->fails() ){
+            if(!$empresa->update($request->all())){
             return back()
-                     ->withErrors($validator)
-                     ->withInput();
+                     ->with('erro','Erro ao atualizar os dados!!');
             }
             else
             {
-                $user =User::where('userable_id','=',$empresa->id,'and','userable_type','=','Empresa')->get()->first();
+                $user = User::where([
+                    ['userable_id','=',$empresa->id],
+                    ['userable_type','=','Empresa']
+                ])->get()->first();
+                
                 if($request->input('password')==NULL)
                 {
                     $request['password']=$user->password;
                 }
+
                 else
                 {
                     $request['password'] = Hash::make($request->get('password'));
                 }
-                $data = $request->all();
-                $update= auth()->user()->userable()->update($data);
-                $update_2= auth()->user()->update($data);
 
-                if($update && $update_2)
+                if($user->update($request->all()))
                 {
                     return redirect()->route('home')
                     ->with('sucesso','Dados atualizados com sucesso!!');
                 }
+
                 else
                 {
                     return redirect()->route('empresa.edit',compact(['empresa', 'user']))
