@@ -9,7 +9,10 @@ use App\Empresa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
@@ -25,7 +28,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RedirectsUsers;
 
     /**
      * Where to redirect users after registration.
@@ -130,4 +133,80 @@ class RegisterController extends Controller
             return false;
         }
     }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $bairros = [
+            "Badu","Baldeador","Barreto","Boa Viagem","Cachoeiras","Cafubá",
+            "Camboinhas","Cantagalo","Cantareira","Caramujo","Charitas","Cubango",
+            "Engenho do Mato","Engenhoca","Fátima","Fonseca","Gragoatá","Icaraí",
+            "Ilha da Conceição","Ingá","Itacoatiara","Itaipu","Ititioca","Jacaré",
+            "Jardim Imbuí","Jurujuba","Largo da Batalha","Maceió","Maravista",
+            "Maria Paula","Matapaca","Morro do Estado","Muriqui","Pé Pequeno",
+            "Piratininga","Ponta d'Areia","Rio do Ouro","Santa Bárbara",
+            "Santa Rosa","Santana","Santo Antônio","São Domingos","São Francisco",
+            "São Lourenço","Sapê","Serra Grande","Tenente Jardim",
+            "Várzea das Moças","Viçoso Jardim","Vila Progresso","Viradouro",
+            "Vital Brazil"
+        ];
+        
+        return view('auth.register', compact(['bairros']));
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {   
+        $this->validator($request->all())->validate();
+        if ($request->typeUser == "Empresa"){
+            $this->validateEmpresa($request->all())->validate();
+        }
+        else if ($request->typeUser == "Cliente"){
+            $this->validateCliente($request->all())->validate();
+        }
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        $this->createUserable($request->all(), $user);
+        if (($user->userable == NULL) || ($user->userable == null)){
+            $user->delete();
+            $request->session()->flash('erro', 'Ops! Ocorreu um erro ao criar sua conta!');
+            return false;
+        }
+        $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
+    }
+
 }
