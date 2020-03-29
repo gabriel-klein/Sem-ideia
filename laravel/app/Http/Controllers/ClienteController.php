@@ -89,7 +89,7 @@ class ClienteController extends Controller
         else
         {
             $user = User::where([
-                ['userable_id','=',$cliente->id],
+                ['userable_id','=', $cliente->id],
                 ['userable_type','=','Cliente']
             ])->get()->first();
             

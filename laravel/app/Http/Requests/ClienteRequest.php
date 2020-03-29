@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-
+use Auth;
 class ClienteRequest extends FormRequest
 {
     /**
@@ -14,7 +14,7 @@ class ClienteRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::user()->userable_type == "Cliente";
     }
 
     /**
@@ -30,7 +30,7 @@ class ClienteRequest extends FormRequest
             'password'      => ['nullable', 'string', 'min:8', 'confirmed'],
             'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
             'cel1'          => ['required', 'string', 'min:15', 'max:16', 
-                                Rule::unique('clientes')->ignore($cliente->id)],
+                                Rule::unique('clientes')->ignore(Auth::user()->userable_id)],
             'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
             'bairro'        => ['required'],
             'aprendiz'      => ['required', 'string'],
