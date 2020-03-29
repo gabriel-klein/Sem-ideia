@@ -7,7 +7,7 @@
 require('./bootstrap');
 require('jquery-mask-plugin');
 require('jquery-ujs');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-require('../../node_modules/materialize-css/dist/js/materialize');
+require('materialize-css');
 
 window.Vue = require('vue');
 
@@ -36,7 +36,13 @@ $("#app").bind("DOMSubtreeModified", function() {
     $(".telMask").mask("(00) 0000-00000");
 });
 
+$('form').submit(() => {
+    $('#loader').removeClass('hide');
+})
+
 $(document).ready(() => {
+    $('#loader').addClass('hide');
+    
     $(".dropdown-trigger").dropdown();
     
     $('.tabs').tabs().click(() => {
