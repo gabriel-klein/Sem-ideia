@@ -5,8 +5,10 @@
  */
 
 require('./bootstrap');
+// require('jquery');
+
 require('jquery-mask-plugin');
-require('jquery-ujs');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+require('jquery-ujs');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 require('../../node_modules/materialize-css/dist/js/materialize');
 
 window.Vue = require('vue');
@@ -22,7 +24,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,19 +32,23 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-    data: {
-        typeUser: '',
+var data = {
+    typeUser : ''
+}
+
+const registerFormPage = new Vue({
+    el: '#registerFormPage',
+    data,
+    created: () => {
+        data.typeUser = $('.tab > a.active').text();
     },
-    created: function () {
-        if ($("input[name='typeUser']:checked").val() == 'Empresa'){
-            this.typeUser = "Empresa";
+    watch: {
+        typeUser: () => {
+            $(document).ready(() => {
+                $('select').formSelect();
+            });
         }
-        else if ($("input[name='typeUser']:checked").val() == 'Cliente'){
-            this.typeUser = "Cliente";
-        }
-      }
+    }
 });
 
 $("#app").bind("DOMSubtreeModified", function() {
@@ -50,17 +56,13 @@ $("#app").bind("DOMSubtreeModified", function() {
     $(".telMask").mask("(00) 0000-00000");
 });
 
-$(document).ready(function(){
-    $('.collapsible').collapsible();
-});
+$(document).ready(() => {
+    $(".dropdown-trigger").dropdown();
+    $('.tabs').tabs().click(() => {
+        data.typeUser = $('.tab > a.active').text();
+    });
 
-$('.vagaActivator').click(function (){
-    $('.vaga').removeClass('large');
-    $(this).parents('.vaga').addClass('large');
-});
-
-$('.vagaDeactivator').click(function (){
-    $('.vaga').removeClass('large');
+    $('select').formSelect();
 });
 
 require('./remote');

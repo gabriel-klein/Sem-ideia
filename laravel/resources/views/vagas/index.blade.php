@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">    
-            @forelse ($vagas as $vaga)
-                @component('layouts.cards')
+    <div class="container">  
+        @forelse ($vagas as $vaga)
+            <div class="row">
+                @component('layouts.components.vaga')
                     @slot('title')
                         {{$vaga->funcao}}
+                    @endslot
+
+                    @slot('empresa')
+                        @if(Auth::user()->userable_type == "Cliente")
+                            {{ $vaga->empresa->razao_social }}
+                        @endif
                     @endslot
 
                     @slot('descricao')
@@ -50,22 +56,22 @@
                         @endemp
                     @endslot
                 @endcomponent
-            @empty
-                <p>Não há vagas cadastradas ainda</p>
-            @endforelse
-        </div>
+            </div>
+        @empty
+            <p>Não há vagas cadastradas ainda</p>
+        @endforelse
+
         <div class="row justify-content-center">
-                {{ $vagas->links() }}
+            {{ $vagas->links() }}
         </div>
         @emp
             {{-- <a href="{{route('vagas.create')}}">Criar uma nova vaga</a> --}}
-
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large blue pulse" href="{{route('vagas.create')}}">
                     <i class="large material-icons">add</i>
                 </a>
             </div>
         
-       @endemp
+        @endemp
     </div>
 @endsection
