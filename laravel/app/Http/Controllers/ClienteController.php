@@ -147,7 +147,7 @@ class ClienteController extends Controller
         $user->descricaoPessoal = $request->descricaoPessoal;
         $user->save();
 
-        return redirect('home')
-                    ->with('sucesso', 'Currículo cadastrado com sucesso!');
+        return redirect('experiencia')
+                    ->with('sucesso','Conhecimentos cadastrados com sucesso!!');
     }
 }

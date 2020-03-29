@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cliente/{id}/curriculo','ClienteController@curriculo')
         ->name('cliente.curriculo');
     
-
+    Route::resource('experiencia', 'ExperienciaController');
 
 });
 
