@@ -58292,10 +58292,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 
 var data = {
-  typeUser: ''
+  typeUser: '',
+  editPassword: true
 };
 var registerFormPage = new Vue({
-  el: '#registerFormPage',
+  el: '#app',
   data: data,
   created: function created() {
     data.typeUser = $('.tab > a.active').text();
@@ -58307,7 +58308,13 @@ var registerFormPage = new Vue({
       });
     }
   }
-});
+}); // const userForm = new Vue({
+//     el: '#passwordUserForm',
+//     data: {
+//         editPassword: data.editPassword
+//     }
+// })
+
 $("#app").bind("DOMSubtreeModified", function () {
   $(".cnpjMask").mask("00.000.000/0000-00");
   $(".telMask").mask("(00) 0000-00000");
