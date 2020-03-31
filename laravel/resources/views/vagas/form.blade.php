@@ -2,7 +2,7 @@
   <label for="funcao" class="col-md-4 col-form-label text-md-right">Função</label>
   <div class="col-md-6">
     <select id="funcao" class="custom-select @error('funcao') is-invalid @enderror" 
-      name="funcao" required>
+      name="funcao" >
       <option  selected disabled >Selecione a função</option>
       <option value="Operador(a) de Caixa" {{ ((old('funcao') == "Operador(a) de Caixa") || (@$vaga->funcao == "Operador(a) de Caixa"))?"selected":"" }}>Operador(a) de Caixa</option>
       <option value="Vendedor" {{ ((old('funcao') == "Vendedor") || (@$vaga->funcao == "Vendedor"))?"selected":"" }}>Vendedor(a)</option>
@@ -41,7 +41,7 @@
 
   <div class="col-md-6">
     <input id="quantidade" type="number" class="form-control @error('quantidade') is-invalid @enderror" 
-      name="quantidade" value="{{ isset($vaga->quantidade)?$vaga->quantidade:old('quantidade') }}" required>
+      name="quantidade" value="{{ isset($vaga->quantidade)?$vaga->quantidade:old('quantidade') }}" >
 
       @error('quantidade')
           <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
 
   <div class="col-md-6">
     <select id="escolaridade" class="custom-select @error('escolaridade') is-invalid @enderror" 
-      name="escolaridade" required>
+      name="escolaridade" >
       <option  selected disabled >Selecione sua Escolaridade</option>
       <option value="Superior_completo" {{ ((old('escolaridade') == "Superior_completo") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Superior_completo"))?"selected":"" }}>Superior Completo</option>
       <option value="Superior_incompleto" {{ ((old('escolaridade') == "Superior_incompleto") || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="Superior_incompleto"))?"selected":"" }}  >Superior Incompleto</option>
@@ -78,7 +78,7 @@
                               <label for="excel" class="col-md-4 col-form-label text-md-right">Excel</label>
                               <div class="col-md-6">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" required id="excel_Básico" name="excel" value="Básico"
+                                        <input type="radio"  id="excel_Básico" name="excel" value="Básico"
                                             class="custom-control-input @error('excel') is-invalid @enderror" {{ ((old('excel') == "Básico")||(@$conhecimentos->find(2)->nome == "excel") && (@$conhecimentos->find(2)->pivot->nivel=="Básico"))? 'checked': '' }}>
                                         <label class="custom-control-label" for="excel_Básico">Básico</label>
                                     </div>
@@ -107,7 +107,7 @@
                         <label for="excel" class="col-md-4 col-form-label text-md-right">Word</label>
                             <div class="col-md-6">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" required id="word_Básico" name="word" value="Básico"
+                                        <input type="radio"  id="word_Básico" name="word" value="Básico"
                                             class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Básico")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Básico"))? 'checked': '' }}>
                                         <label class="custom-control-label" for="word_Básico">Básico</label>
                                     </div>
@@ -137,7 +137,7 @@
     
                                 <div class="col-md-6">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" required id="ingles_Básico" name="ingles" value="Básico"
+                                        <input type="radio"  id="ingles_Básico" name="ingles" value="Básico"
                                             class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Básico")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Básico"))? 'checked': '' }}>
                                         <label class="custom-control-label" for="ingles_Básico">Básico</label>
                                     </div>
@@ -168,7 +168,7 @@
 
   <div class="col-md-6">
     <select id="status" class="custom-select @error('status') is-invalid @enderror" 
-      name="status" required>
+      name="status" >
       <option disabled {{ !(isset($vaga->status) || old('status') != "")?"selected": "" }}>Selecione o Status da Vaga</option>
       <option value="Ativa" {{ ((old('status') == "Ativa") || (@$vaga->status == "Ativa"))?"selected":"" }} >Ativa</option>
       <option value="Desativada" {{ ((old('status') == "Desativada") || (@$vaga->status == "Desativada"))?"selected":"" }}>Desativada</option>

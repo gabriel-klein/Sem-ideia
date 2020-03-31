@@ -40,4 +40,13 @@ class Cliente extends Model
         return $this->belongsToMany('App\Vaga')
                     ->withTimestamps();
     }
+
+    /**
+     * Método do relacionamento 1-N
+     *
+     * @return void
+     */
+    public function experiencias(){
+        return $this->hasMany('App\Experiencia');
+    }
 }

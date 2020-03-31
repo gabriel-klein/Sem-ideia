@@ -75,64 +75,64 @@
                                 </div>
                             </div>
 
-                      <div class="form-group row">
-                        <label for="excel" class="col-md-4 col-form-label text-md-right">Word</label>
-                            <div class="col-md-6">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" required id="word_Básico" name="word" value="Básico"
-                                            class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Básico")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Básico"))? 'checked': '' }}>
-                                        <label class="custom-control-label" for="word_Básico">Básico</label>
-                                    </div>
-                                    
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="word_Intermediário" name="word" value="Intermediário"
-                                            class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Intermediário")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Intermediário"))? 'checked': '' }}>
-                                        <label class="custom-control-label" for="word_Intermediário">Intermediário</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="word_Avançado" name="word" value="Avançado"
-                                            class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Avançado")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Avançado"))? 'checked': '' }}>
-                                        <label class="custom-control-label" for="word_Avançado">Avançado</label>
-                                        
-                                        @error('word')
-                                            <span class="invalid-feedback ml-3" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="form-group row">
-                              <label for="excel" class="col-md-4 col-form-label text-md-right">Inglês</label>
-    
+                            <label for="excel" class="col-md-4 col-form-label text-md-right">Word</label>
                                 <div class="col-md-6">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" required id="ingles_Básico" name="ingles" value="Básico"
-                                            class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Básico")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Básico"))? 'checked': '' }}>
-                                        <label class="custom-control-label" for="ingles_Básico">Básico</label>
-                                    </div>
-                                    
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="ingles_Intermediário" name="ingles" value="Intermediário"
-                                            class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Intermediário")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Intermediário"))? 'checked': '' }}>
-                                        <label class="custom-control-label" for="ingles_Intermediário">Intermediário</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="ingles_Avançado" name="ingles" value="Avançado"
-                                            class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Avançado")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Avançado"))? 'checked': '' }}>
-                                        <label class="custom-control-label" for="ingles_Avançado">Avançado</label>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" required id="word_Básico" name="word" value="Básico"
+                                                class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Básico")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Básico"))? 'checked': '' }}>
+                                            <label class="custom-control-label" for="word_Básico">Básico</label>
+                                        </div>
                                         
-                                        @error('ingles')
-                                            <span class="invalid-feedback ml-3" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="word_Intermediário" name="word" value="Intermediário"
+                                                class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Intermediário")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Intermediário"))? 'checked': '' }}>
+                                            <label class="custom-control-label" for="word_Intermediário">Intermediário</label>
+                                        </div>
+
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="word_Avançado" name="word" value="Avançado"
+                                                class="custom-control-input @error('word') is-invalid @enderror" {{ ((old('word') == "Avançado")||(@$conhecimentos->find(3)->nome == "word") && (@$conhecimentos->find(3)->pivot->nivel=="Avançado"))? 'checked': '' }}>
+                                            <label class="custom-control-label" for="word_Avançado">Avançado</label>
+                                            
+                                            @error('word')
+                                                <span class="invalid-feedback ml-3" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="form-group row">
+                                  <label for="excel" class="col-md-4 col-form-label text-md-right">Inglês</label>
+
+                                    <div class="col-md-6">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" required id="ingles_Básico" name="ingles" value="Básico"
+                                                class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Básico")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Básico"))? 'checked': '' }}>
+                                            <label class="custom-control-label" for="ingles_Básico">Básico</label>
+                                        </div>
+                                        
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="ingles_Intermediário" name="ingles" value="Intermediário"
+                                                class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Intermediário")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Intermediário"))? 'checked': '' }}>
+                                            <label class="custom-control-label" for="ingles_Intermediário">Intermediário</label>
+                                        </div>
+
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="ingles_Avançado" name="ingles" value="Avançado"
+                                                class="custom-control-input @error('ingles') is-invalid @enderror" {{ ((old('ingles') == "Avançado")||(@$conhecimentos->find(4)->nome == "ingles") && (@$conhecimentos->find(4)->pivot->nivel=="Avançado"))? 'checked': '' }}>
+                                            <label class="custom-control-label" for="ingles_Avançado">Avançado</label>
+                                            
+                                            @error('ingles')
+                                                <span class="invalid-feedback ml-3" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

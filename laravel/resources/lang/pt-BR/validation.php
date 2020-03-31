@@ -145,6 +145,26 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+    'name'                      => 'Nome',
+    'email'                     => 'E-mail',
+    'password'                  => 'Senha',
+    'password_confirmation'     => 'Confirmação De Senha',
+    'cnpj'                      => 'CNPJ',
+    'razao_social'              => 'Razão Social',
+    'idade'                     => 'Idade',
+    'cel1'                      => 'Celular',
+    'cel2'                      => 'Celular 2',
+    'bairro'                    => 'Bairro',
+    'aprendiz'                  => 'Aprendiz',
+    'h_disponivel'              => 'Horário Disponível',
+    'escolaridade'              => 'Escolaridade',
+    'descricaoPessoal'          => 'Descrição Pessoal',
+    'local'                     => 'Nome Do Local',
+    'descricao'                 => 'Descrição',
+    'data_inicio'               => 'Data De Início',
+    'data_fim'                  => 'Data De Término',
+    'comprovacao'               => 'Comprovação',
+],
 
 ];

@@ -1,8 +1,10 @@
-<div class="form-group row">
-    <label for="local" class="col-md-4 col-form-label text-md-right">Nome do local</label>
-    <div class="col-md-6">
-        <input type="text" class=" form-control @error('local') is-invalid @enderror" 
-    id="local" name="local"></input>
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">place_outline</i>
+        <input type="text" class=" @error('local') is-invalid @enderror" id="local"
+            name="local" ></input>
+        <label for="local">Nome do local</label>
+        
         @error('local')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -10,11 +12,14 @@
         @enderror
     </div>
 </div>
-<div class="form-group row">
-    <label for="descricao" class="col-md-4 col-form-label text-md-right">Descrição</label>
-    <div class="col-md-6">
-        <textarea class="form-control @error('descricao') is-invalid @enderror" 
+
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">description</i>
+        <textarea class="materialize-textarea @error('descricao') is-invalid @enderror" 
     id="descricao" rows="2" name="descricao"></textarea>
+    <label for="descricao">Descrição</label>
+        
         @error('descricao')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -22,11 +27,14 @@
         @enderror
     </div>
 </div>
-<div class="form-group row">
-    <label for="data_inicio" class="col-md-4 col-form-label text-md-right">Data de Inicio</label>
-    <div class="col-md-6">
-        <input type="text" class=" datepicker form-control @error('data_inicio') is-invalid @enderror" 
-    id="data_inicio" rows="2" name="data_inicio"></input>
+
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">today</i>
+        <input type="text" class=" datepicker  @error('data_inicio') is-invalid @enderror" 
+    id="data_inicio" name="data_inicio"></input>
+        <label for="data_inicio">Data de Início</label>
+
         @error('data_inicio')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -34,11 +42,14 @@
         @enderror
     </div>
 </div>
-<div class="form-group row">
-    <label for="data_fim" class="col-md-4 col-form-label text-md-right">Data de Término</label>
-    <div class="col-md-6">
-        <input type="text" class=" datepicker form-control @error('data_fim') is-invalid @enderror" 
-    id="data_fim" rows="2" name="data_fim"></input>
+
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">today</i>
+        <input type="text" class=" datepicker  @error('data_fim') is-invalid @enderror" 
+    id="data_fim" name="data_fim"></input>
+        <label for="data_fim">Data de Término</label>
+        
         @error('data_fim')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -46,32 +57,31 @@
         @enderror
     </div>
 </div>
-<div class="form-group row">
-    <label for="comprovacao" class="col-md-4 col-form-label text-md-right">Existe alguma comprovação dessa experiência?</label>
 
-    <div class="col-md 6">
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="comprovacaoSim" name="comprovacao" value="Sim"
-                class="custom-control-input @error('comprovacao') is-invalid @enderror" {{ old('comprovacao') == "Sim"? 'checked': '' }}>
-            <label class="custom-control-label" for="comprovacaoSim">Sim</label>
-        </div>
-        <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="comprovacaoNao" name="comprovacao" value="Não"
-                class="custom-control-input @error('comprovacao') is-invalid @enderror" {{ old('comprovacao') == "Não"? 'checked': '' }}>
-            <label class="custom-control-label" for="comprovacaoNao">Não</label>
-            
-            @error('comprovacao')
-                <span class="invalid-feedback ml-3" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-</div>
-<div class="form-group row mb-0">
-    <div class="col-md-6 offset-md-4">
-        <button type="submit" class="btn btn-primary">
-            {{ __('Register') }}
-        </button>
+<div class="row">
+    <div class="col 12">
+        <p for="comprovacao">Existe alguma comprovação dessa experiência?</p>
+        <p>
+            <label for="comprovacaoSim">
+                <input type="radio" id="comprovacaoSim" name="comprovacao" value="Sim"
+                    class="@error('comprovacao') invalid @enderror" 
+                    {{ old('comprovacao') == "Sim" ? 'checked' : (@$experiencia->comprovacao == "Sim"? 'checked': '') }}>
+                <span>Sim</span>
+            </label> 
+        </p>
+        <p>
+            <label for="comprovacaoNao">
+                <input type="radio" id="comprovacaoNao" name="comprovacao" value="Não"
+                    class="@error('comprovacao') invalid 
+                    @enderror" {{ old('comprovacao') == "Não" ? 'checked' : (@$experiencia->comprovacao == "Não"? 'checked': '') }}
+                >
+                <span>Não</span>
+            </label>
+        </p>
+        @error('comprovacao')
+            <span class="helper-text red-text ml-3" >
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 </div>
