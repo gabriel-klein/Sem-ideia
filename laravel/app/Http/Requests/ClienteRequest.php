@@ -46,8 +46,6 @@ class ClienteRequest extends FormRequest
     public function messages()
     {
         return [
-            'quantidade.min' => 'A quantidade deve ser de no mínimo 1',
-            'quantidade.max' => 'A quantidade deve ser de no máximo 30',
         ];
     }
 }

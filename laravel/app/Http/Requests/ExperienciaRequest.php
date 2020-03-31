@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class VagaRequest extends FormRequest
+class ExperienciaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,11 @@ class VagaRequest extends FormRequest
     public function rules()
     {
         return [
-            'funcao' => 'required|min:7|max:255',
-            'descricao' => 'required|min:15|max:255',
-            'quantidade' => 'required|numeric|min:1|max:30',
-            'status' => ['required', Rule::in(['Ativa', 'Desativada'])],
-            'emailDeContato'     => ['nullable','string', 'email', 'max:255',]
+            'local'       => ['required','string','max:255'],
+            'descricao'   => ['required','min:15','max:255'],
+            'data_inicio' => ['required'],
+            'data_fim'    => ['required'],
+            'comprovacao' => ['required', Rule::in(['Sim', 'Não'])],
         ];
     }
 
