@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Rules\ValidaData;
 
 class ExperienciaRequest extends FormRequest
 {
@@ -27,8 +28,8 @@ class ExperienciaRequest extends FormRequest
         return [
             'local'       => ['required','string','max:255'],
             'descricao'   => ['required','min:15','max:255'],
-            'data_inicio' => ['required'],
-            'data_fim'    => ['required'],
+            'data_inicio' => ['required','date_format:Y-m-d'],
+            'data_fim'    => ['required','date_format:Y-m-d', 'after:data_inicio', new ValidaData],
             'comprovacao' => ['required', Rule::in(['Sim', 'Não'])],
         ];
     }
@@ -41,6 +42,9 @@ class ExperienciaRequest extends FormRequest
     public function messages()
     {
         return [
+            'data_inicio.date_format' => 'O campo Data De Início não corresponde ao formato desejado',
+
+            'data_fim.date_format' => 'O campo Data De Término não corresponde ao formato desejado',
         ];
     }
 }

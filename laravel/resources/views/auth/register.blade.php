@@ -35,6 +35,7 @@
                 @csrf
 
                 <div id="none" class="center-align" v-if="typeUser == ''" >
+                    <br>
                     <p> Selecione uma opção de cadastro. </p>
                 </div>
 
