@@ -67,9 +67,9 @@ $(document).ready(() => {
     labelMonthSelect: 'Selecione um mês',
     labelYearSelect: 'Selecione um ano',
     },
-    format: 'dd mmmm, yyyy',
+    format: 'yyyy-mm-dd',
     container: 'body',
-    minDate: new Date(),
+    minDate: new Date('1950-01-01'),
 });
 
 });
