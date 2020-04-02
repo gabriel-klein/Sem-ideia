@@ -47,8 +47,15 @@ class VagaController extends Controller
      */
     public function create()
     {
+        $funcoes = ["Operador(a) de Caixa","Coordenador(a)/Gerente de Loja",
+                    "Vigia/Prevenção de perdas","Estoquista","Babá/Cuidador","Estimulador",
+                    "Cozinheiro","Garçom/Garçonete","Atendente de Telemarketing","Frentista"
+                  ];
+        $escolaridades = ["Superior Completo","Superior Incompleto","Médio Completo",
+                          "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
+                         ]; 
         $conhecimentos = $this->conhecimentos;
-        return view('vagas.create', compact('conhecimentos'));
+        return view('vagas.create', compact('conhecimentos','funcoes','escolaridades'));
     }
 
     /**
