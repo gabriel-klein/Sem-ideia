@@ -165,6 +165,14 @@ return [
     'data_inicio'               => 'Data De Início',
     'data_fim'                  => 'Data De Término',
     'comprovacao'               => 'Comprovação',
+    'funcao'                    => 'Função',
+    'quantidade'                => 'Quantidade',
+    'escolaridade'              => 'Escolaridade',
+    'excel'                     => 'Excel',
+    'word'                      => 'Word',
+    'ingles'                    => 'Inglês',
+    'status'                    => 'Status',
+    'emailDeContato'            => 'E-mail De Contato',
 ],
 
 ];
