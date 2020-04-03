@@ -2,7 +2,7 @@
 
 @section('content')
         
-    @component('layouts.forms.card')
+    @component('layouts.form')
         
         @slot('id')
             registerFormPage
@@ -40,15 +40,15 @@
                 </div>
 
                 <div v-if="typeUser == 'Empresa' || typeUser == 'Cliente'">
-                    @include('layouts.forms.user')
+                    @include('auth.form')
                 </div>
                 
                 <div id="Empresa" v-if="typeUser == 'Empresa'">
-                    @include('layouts.forms.empresa')
+                    @include('empresa.form')
                 </div>
                 
                 <div id="Cliente" v-if="typeUser == 'Cliente'">
-                    @include('layouts.forms.cliente')
+                    @include('cliente.form')
                 </div>
                 <div class="row" v-if="typeUser == 'Empresa' || typeUser == 'Cliente'">
                     <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
