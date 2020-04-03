@@ -1,49 +1,28 @@
 <input type="text" class="hide" name="typeUser" value="Cliente">
-<div class="row">
-    <div class="input-field col s12">
-        <i class="material-icons prefix">event</i>
-        <input id="idade" type="text" class="@error('idade') invalid @enderror" 
-            name="idade" 
-            value="{{ old('idade') != "" ? old('idade') : @$cliente->idade }}" required>
-        <label for="idade">Idade</label>
-        
-        @error('idade')
-            <span class="helper-text red-text">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-</div>
 
-<div class="row">
-    <div class="input-field col s12">
-        <i class="material-icons prefix">phone</i>
-        <input id="cel" type="text" class="telMask @error('cel1') invalid @enderror"
-        name="cel1" value="{{ old('cel1') != "" ? old('cel1') : @$cliente->cel1  }}" required>
-        <label for="cel">Celular</label>
-        
-        @error('cel1')
-            <span class="helper-text red-text">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-</div>
+@input([
+    'name' => 'idade', 
+    'icon' => 'event', 
+    'data' => @$cliente->idade,
+    'label' => 'Idade'
+])
 
-<div class="row">
-    <div class="input-field col s12">
-        <i class="material-icons prefix">phone</i>
-        <input id="cel2" type="text" class="telMask @error('cel2') invalid @enderror" 
-        name="cel2" value="{{ old('cel2') != "" ? old('cel2') : @$cliente->cel2 }}">
-        <label for="cel2">Celular 2</label>
-        
-        @error('cel2')
-            <span class="helper-text red-text" >
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-</div>
+@input([
+    'name' => 'cel1', 
+    'icon' => 'phone', 
+    'data' => @$cliente->cel1,
+    'label' => 'Celular',
+    'class' => 'telMask'
+])
+
+@input([
+    'name' => 'cel2', 
+    'icon' => 'phone', 
+    'data' => @$cliente->cel2,
+    'label' => 'Celular 2',
+    'class' => 'telMask',
+    'required' => false
+])
 
 <div class="row">
     <div class="input-field col s12">

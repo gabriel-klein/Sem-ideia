@@ -1,4 +1,4 @@
-.PHONY: up down mysql_bash app_bash
+.PHONY: up down mysql_bash app_bash migrate
 
 up: 
 	cd laradock && \
@@ -13,6 +13,10 @@ install:
 		php artisan migrate:install && \
 		php artisan migrate \
 	"
+
+migrate: 
+	cd laradock && \
+	docker-compose exec workspace php artisan migrate
 
 down: 
 	cd laradock && \

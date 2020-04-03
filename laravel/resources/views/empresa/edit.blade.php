@@ -2,13 +2,11 @@
 
 @section('content')
 
-    @component('layouts.forms.card')
+    @component('layouts.form')
           
         @slot('id')
             empresaEdit
         @endslot
-
-        @slot('top') @endslot
 
         @slot('title')
             Editar
@@ -19,8 +17,8 @@
                 @csrf
                 @method('PUT')
 
-                @include('layouts.forms.user')
-                @include('layouts.forms.empresa')
+                @include('auth.form')
+                @include('empresa.form')
 
                 <div class="row">
                     <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">

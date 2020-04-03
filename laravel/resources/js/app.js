@@ -48,8 +48,13 @@ $(document).ready(() => {
     $('.tabs').tabs().click(() => {
         data.typeUser = $('.tab > a.active').text();
     });
-
     $('select').formSelect();
+    // $('.chips').chips();
+    $('.chips-placeholder').chips({
+        placeholder: 'Insira um conhecimento',
+        secondaryPlaceholder: '+Conhecimentos'
+    });
+
 });
 
 require('./remote');

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('layouts.forms.card')
+    @component('layouts.form')
           
         @slot('id')
             clienteEdit
@@ -19,8 +19,8 @@
                 @csrf
                 @method('PUT')
 
-                @include('layouts.forms.user')
-                @include('layouts.forms.cliente')
+                @include('auth.form')
+                @include('cliente.form')
                 
                 <div class="row">
                     <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
