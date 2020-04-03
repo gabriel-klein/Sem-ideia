@@ -37,11 +37,16 @@ class AppServiceProvider extends ServiceProvider
             'Cliente' => 'App\Cliente',
         ]);
 
+        
+        Blade::if('typeUser', function($typeUser){
+            return Auth::user()->userable_type == $typeUser;
+        });
+           
+        // Remover Gradualmente do Código
         Blade::if('emp', function(){
-            if(Auth::user()->userable_type == "Empresa"){
-                return true;
-            }
+            return Auth::user()->userable_type == "Empresa";
         });
 
+        Blade::include('layouts.components.input', 'input');
     }
 }

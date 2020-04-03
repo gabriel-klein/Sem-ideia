@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\ClienteRequest;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\ConhecimentoRequest;
 
 use Auth;
 use App\User;
 use App\Cliente;
 use App\Conhecimento;
+use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\ConhecimentoRequest;
 
 class ClienteController extends Controller
 {
@@ -125,27 +126,28 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function curriculo()
+    public function curriculo($id)
     {
-        $user = Cliente::find(auth()->user()->userable->id);
-        $conhecimentos = $user->conhecimentos;
+        $cliente = Cliente::find($id);
+        $conhecimentos = Conhecimento::all();
 
-        return view('cliente/curriculo',compact(['conhecimentos','user']));
+        return view('cliente/curriculo',compact(['conhecimentos','cliente']));
     }
 
     public function conhecimento(Request $request)
     {
-        $user = Cliente::find(auth()->user()->userable->id);
-
-        $user->conhecimentos()->sync( array(
-            1 => array('nivel' => $request->input('escolaridade')),
-            2 => array('nivel' => $request->input('excel')),
-            3 => array('nivel' => $request->input('word')),
-            4 => array('nivel' => $request->input('ingles')),
-        ));
-
-        $user->descricaoPessoal = $request->descricaoPessoal;
-        $user->save();
+        $cliente = Cliente::find(auth()->user()->userable->id);
+        $conhecimentos = [];
+        
+        foreach ($request->all() as $parametro => $valor) {
+            if (Str::contains($parametro, "Conhecimento") && $valor != "") {
+                $conhecimentos[Str::after($parametro, "Conhecimento_")] = ["nivel" => $valor];
+            }
+        }
+        
+        $cliente->conhecimentos()->sync($conhecimentos);
+        $cliente->descricaoPessoal = $request->descricaoPessoal;
+        $cliente->save();
 
         return redirect('experiencia')
                     ->with('sucesso','Conhecimentos cadastrados com sucesso!!');
