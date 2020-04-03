@@ -5,10 +5,10 @@
     @endif
 
     <input id="{{ $name }}" name="{{ $name }}" autocomplete="{{ $name }}" 
-      class="{{ isset($class) ?? $class }} @error($name) invalid @enderror" 
-      type="{{ isset($type) ? $type : 'text' }}"
+      class="{{ $class ?? '' }} @error($name) invalid @enderror" 
+      type="{{ $type ?? 'text' }}"
       @if(isset($value)) value="{{ $value }}" @endif
-      @if(isset($data)) value="{{ old($name) ? old($name) : (isset($data) ?? $data) }}" @endif
+      @if(isset($data)) value="{{ old($name) ?? ($data ?? '' ) }}" @endif
       @if(!isset($required) || $required) required @endif
       @if(isset($vueDisabled)) :disabled="!{{$vueDisabled}}" @endif>
     
