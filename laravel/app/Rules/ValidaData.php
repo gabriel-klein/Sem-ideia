@@ -37,6 +37,8 @@ class ValidaData implements Rule
 
         if($qtd_dias < 30)
             return false;
+
+        return true;
     }
 
     /**
