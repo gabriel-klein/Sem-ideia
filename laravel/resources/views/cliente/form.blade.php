@@ -24,45 +24,41 @@
     'required' => false
 ])
 
-<div class="row">
-    <div class="input-field col s12">
-        <i class="material-icons prefix">place_outline</i>
-        <select id="bairro" class="@error('bairro') invalid @enderror" 
-            name="bairro" >
-            <option disabled selected>Selecione o seu bairro</option>
-            @foreach ($bairros as $bairro)
-                <option value="{{$bairro}}" {{ old('bairro') == $bairro ? "selected": (@$cliente->bairro == $bairro ? "selected" : "") }}>{{$bairro}}</option>
-            @endforeach
-        </select>
-        <label for="bairro">Bairro</label>
+@select([
+    'name' => 'bairro',
+    'icon' => 'place_outline',
+    'label' => 'Bairro',
+    'textOptionDefault' => 'Selecione o seu bairro'
+])
+    @slot('options')
+        @foreach ($bairros as $item)
+            @option([
+                'name' => 'bairro',
+                'value' => $item,
+                'data' => @$cliente->bairro,
+                'label' => $item
+            ])
+        @endforeach
+    @endslot
+@endselect
 
-        @error('bairro')
-            <span class="helper-text red-text" >
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-  </div>
-</div>
-
-<div class="row">
-    <div class="input-field col s12">
-        <i class="material-icons prefix">access_time</i>
-        <select id="h_disponivel" class="@error('h_disponivel') invalid @enderror" 
-        name="h_disponivel" >
-            <option disabled selected>Selecione seu horário dispinível</option>
-            <option value="Manhã" {{ old('h_disponivel') == "Manhã" ? "selected" : (@$cliente->h_disponivel == "Manhã"? 'selected': '') }}>Manhã</option>
-            <option value="Tarde" {{ old('h_disponivel') == "Tarde" ? "selected" : (@$cliente->h_disponivel == "Tarde"? 'selected': '') }}>Tarde</option>
-            <option value="Integral" {{ old('h_disponivel') == "Integral" ? "selected" : (@$cliente->h_disponivel == "Integral"? 'selected': '') }} >Integral</option>
-        </select>
-        <label for="h_disponivel">Horário Disponível</label>
-        
-        @error('h_disponivel')
-            <span class="helper-text red-text ml-3" >
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-</div>
+@select([
+    'name' => 'h_disponivel',
+    'icon' => 'access_time',
+    'label' => 'Horário Disponível',
+    'textOptionDefault' => 'Selecione seu horário dispinível'
+])
+    @slot('options')
+        @foreach (['Manhã', 'Tarde', 'Noite'] as $item)
+            @option([
+                'name' => 'h_disponivel',
+                'value' => $item,
+                'data' => @$cliente->h_disponivel,
+                'label' => $item
+            ])
+        @endforeach
+    @endslot
+@endselect
 
 <div class="row">
     <div class="col 12">
