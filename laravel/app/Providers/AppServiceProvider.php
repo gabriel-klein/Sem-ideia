@@ -46,7 +46,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('emp', function(){
             return Auth::user()->userable_type == "Empresa";
         });
-
+        
+        Blade::include('layouts.components.navbar', 'navbar');
         Blade::include('layouts.components.input', 'input');
         Blade::include('layouts.components.option', 'option');
         Blade::component('layouts.components.select', 'select');
