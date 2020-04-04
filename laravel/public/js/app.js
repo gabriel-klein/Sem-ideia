@@ -32138,6 +32138,7 @@ $('form').submit(function () {
 });
 $(document).ready(function () {
   $('#loader').addClass('hide');
+  $('.sidenav').sidenav();
   $(".dropdown-trigger").dropdown();
   $('.tabs').tabs().click(function () {
     data.typeUser = $('.tab > a.active').text();

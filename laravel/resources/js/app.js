@@ -43,11 +43,14 @@ $('form').submit(() => {
 $(document).ready(() => {
     $('#loader').addClass('hide');
     
+    $('.sidenav').sidenav();
+    
     $(".dropdown-trigger").dropdown();
     
     $('.tabs').tabs().click(() => {
         data.typeUser = $('.tab > a.active').text();
     });
+    
     $('select').formSelect();
 
     $('.datepicker').datepicker({
