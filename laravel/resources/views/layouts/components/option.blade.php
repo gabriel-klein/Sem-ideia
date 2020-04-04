@@ -1,4 +1,7 @@
 <option value="{{ $value }}" 
-  {{ ((old($name) == $value) || ($data == $value)) ? "selected" : "" }}>
-  {{ $label }}
+  {{ old($name) ? 
+    ((old($name) == "$value") ? "selected" : '') :
+    (isset($data) ?
+      (($data == "$value") ? "selected" : '') : '')}}>
+{{ $label }}
 </option>
