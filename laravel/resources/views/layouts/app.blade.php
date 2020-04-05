@@ -17,7 +17,13 @@
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body>
+@if (session('sucesso'))
+    <body onload="M.toast({html:'Dados cadastrados com sucesso',classes:'sucesso'})">
+@endif
+
+@if (session('erro'))
+    <body onload="M.toast({html:'Não foi possível cadastrar os dados!!!',classes:'erro'})">
+@endif
     @stack('loader')
     <div id="app">
         @navbar

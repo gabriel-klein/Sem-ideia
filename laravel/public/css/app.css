@@ -9388,3 +9388,50 @@ input[type=range]::-ms-thumb {
   top: 40%;
 }
 
+.toast.sucesso {
+  border-radius: 4px;
+  top: 35px;
+  width: auto;
+  margin-top: 10px;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  min-height: 48px;
+  line-height: 1.5em;
+  background-color: #ccffcc;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #008040;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  cursor: default;
+}
+
+.toast.erro {
+  border-radius: 4px;
+  top: 35px;
+  width: auto;
+  margin-top: 10px;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  min-height: 48px;
+  line-height: 1.5em;
+  background-color: #ffb3b3;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #800000;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  cursor: default;
+}

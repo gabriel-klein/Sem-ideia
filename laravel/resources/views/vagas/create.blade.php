@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @component('layouts.forms.card')
+    @component('layouts.form')
               
         @slot('id')
             

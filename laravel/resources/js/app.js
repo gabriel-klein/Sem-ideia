@@ -76,4 +76,9 @@ $(document).ready(() => {
 
 });
 
+function myfunction(argument) {
+    if(session('sucesso'))
+    alert(session('sucesso'));
+}
+
 require('./remote');
