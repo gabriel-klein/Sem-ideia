@@ -18,11 +18,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 @if (session('sucesso'))
-    <body onload="M.toast({html:'Dados cadastrados com sucesso',classes:'sucesso'})">
+    <body onload="M.toast({html:'{{session('sucesso')}}',classes:'sucesso'})">
 @endif
 
 @if (session('erro'))
-    <body onload="M.toast({html:'Não foi possível cadastrar os dados!!!',classes:'erro'})">
+    <body onload="M.toast({html:'{{session('erro')}}',classes:'erro'})">
 @endif
     @stack('loader')
     <div id="app">
