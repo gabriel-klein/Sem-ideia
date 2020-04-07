@@ -8,7 +8,10 @@
       class="{{ $class ?? '' }} @error($name) invalid @enderror" 
       type="{{ $type ?? 'text' }}"
       @if(isset($value)) value="{{ $value }}" @endif
-      @if(isset($data)) value="{{ old($name) ?? ($data ?? '' ) }}" @endif
+      
+      @if(isset($data)) value="{{ old($name) ?? ($data ?? '' ) }}"
+      @else value="{{old($name)}}" @endif
+      
       @if(!isset($required) || $required) required @endif
       @if(isset($vueDisabled)) :disabled="!{{$vueDisabled}}" @endif>
     

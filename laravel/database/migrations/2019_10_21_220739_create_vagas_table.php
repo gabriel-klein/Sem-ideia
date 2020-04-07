@@ -18,6 +18,7 @@ class CreateVagasTable extends Migration
             $table->string('funcao');                                                                     
             $table->string('descricao');
             $table->integer('quantidade');
+            $table->string('escolaridade');
             $table->string('emailDeContato')->nullable();
             $table->enum('status', ['Ativa', 'Desativada']);
             $table->unsignedBigInteger('empresa_id');

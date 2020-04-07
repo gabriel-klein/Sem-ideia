@@ -1,8 +1,8 @@
 <input type="text" class="hide" name="typeUser" value="Cliente">
 
 @input([
-    'name' => 'idade', 
-    'icon' => 'event', 
+    'name' => 'idade',
+    'icon' => 'event',
     'data' => @$cliente->idade,
     'label' => 'Idade'
 ])
@@ -16,8 +16,8 @@
 ])
 
 @input([
-    'name' => 'cel2', 
-    'icon' => 'phone', 
+    'name' => 'cel2',
+    'icon' => 'phone',
     'data' => @$cliente->cel2,
     'label' => 'Celular 2',
     'class' => 'telMask',
@@ -49,7 +49,7 @@
     'textOptionDefault' => 'Selecione seu horário dispinível'
 ])
     @slot('options')
-        @foreach (['Manhã', 'Tarde', 'Noite'] as $item)
+        @foreach (['Manhã', 'Tarde', 'Integral'] as $item)
             @option([
                 'name' => 'h_disponivel',
                 'value' => $item,

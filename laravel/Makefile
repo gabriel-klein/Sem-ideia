@@ -16,7 +16,7 @@ install:
 
 migrate: 
 	cd laradock && \
-	docker-compose exec workspace php artisan migrate
+	docker-compose run --rm workspace php artisan migrate
 
 down: 
 	cd laradock && \
