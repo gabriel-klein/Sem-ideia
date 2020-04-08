@@ -16,6 +16,10 @@ class Empresa extends Model
         'cnpj', 'razao_social'
     ];
     
+    protected $attributes = [
+        'autorizada' => false
+    ];
+
     /**
      * Método da Agregação
      *

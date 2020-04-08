@@ -38,7 +38,7 @@
 
     @input([
         'type' => 'password',
-        'name' => 'password-confirm',
+        'name' => 'password_confirmation',
         'icon' => 'lock_outline',
         'label' => 'Confirme a Senha',
         'vueDisabled' => 'editPassword'

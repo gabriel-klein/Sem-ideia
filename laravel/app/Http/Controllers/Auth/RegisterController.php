@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Rules\ValidaCnpj;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+
 use App\User;
 use App\Cliente;
 use App\Empresa;
+use App\Rules\ValidaCnpj;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RedirectsUsers;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -168,14 +168,14 @@ class RegisterController extends Controller
     {   
         $this->validator($request->all())->validate();
         if ($request->typeUser == "Empresa"){
-            $this->validateEmpresa($request->all())->validate();
+            $this->validateEmpresa($request->all());
         }
         else if ($request->typeUser == "Cliente"){
-            $this->validateCliente($request->all())->validate();
+            $this->validateCliente($request->all());
         }
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        // $this->guard()->login($user);
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
@@ -201,12 +201,14 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         $this->createUserable($request->all(), $user);
-        if (($user->userable == NULL) || ($user->userable == null)){
-            $user->delete();
-            $request->session()->flash('erro', 'Ops! Ocorreu um erro ao criar sua conta!');
-            return false;
+        if ($request->typeUser == "Empresa" || $request->typeUser == "Cliente") {    
+            if (($user->userable == NULL) || ($user->userable == null)){
+                $user->delete();
+                $request->session()->flash('erro', 'Ops! Ocorreu um erro ao criar sua conta!');
+                return false;
+            }
+            $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
         }
-        $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
     }
 
 }

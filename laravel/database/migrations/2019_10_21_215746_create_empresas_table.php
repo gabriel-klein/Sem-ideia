@@ -17,6 +17,7 @@ class CreateEmpresasTable extends Migration
             $table->bigIncrements('id');
             $table->string('cnpj', 20)->unique();
             $table->string('razao_social')->unique();
+            $table->boolean('autorizada');
             $table->timestamps();
         });
     }
