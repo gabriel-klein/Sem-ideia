@@ -129,9 +129,14 @@ class ClienteController extends Controller
     public function curriculo($id)
     {
         $cliente = Cliente::find($id);
+
         $conhecimentos = Conhecimento::all();
 
-        return view('cliente/curriculo',compact(['conhecimentos','cliente']));
+        $escolaridades = ["Superior Completo","Superior Incompleto","Médio Completo",
+                          "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
+                         ]; 
+
+        return view('cliente/curriculo',compact(['conhecimentos','cliente','escolaridades']));
     }
 
     public function conhecimento(Request $request)

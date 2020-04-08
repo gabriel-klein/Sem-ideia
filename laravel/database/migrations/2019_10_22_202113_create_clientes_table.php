@@ -20,7 +20,7 @@ class CreateClientesTable extends Migration
             $table->string('cel2')->nullable();
             $table->string('bairro');
             $table->string('descricaoPessoal')->nullable();
-            $table->string('escolaridade');
+            $table->string('escolaridade')->nullable();
             $table->enum('h_disponivel', ['Manhã', 'Tarde', 'Integral']);
             $table->enum('aprendiz', ['Sim', 'Não'])->default('Não');
             $table->timestamps();

@@ -1,72 +1,53 @@
-<div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix">work</i>
-    <select id="funcao" class="@error('funcao') invalid @enderror" 
-    name="funcao" >
-    <option  selected disabled >Selecione a função</option>
-    @foreach ($funcoes as $funcao)
-      <option value="{{$funcao}}" {{ old('funcao') == $funcao ? "selected": (@$vaga->funcao == $funcao ? "selected" : "") }}>{{$funcao}}</option>
-    @endforeach
-    </select>
-  <label for="funcao">Função</label>
-    
-      @error('funcao')
-          <span class="helper-text red-text">
-              <strong>{{ $message }}</strong>
-          </span>
-      @enderror
-  </div>
-</div>
+@select([
+    'name' => 'funcao',
+    'icon' => 'work',
+    'label' => 'Função',
+    'textOptionDefault' => 'Selecione a função'
+])
+    @slot('options')
+        @foreach ($funcoes as $funcao)
+            @option([
+                'name' => 'funcao',
+                'value' => $funcao,
+                'data' => @$cliente->funcao,
+                'label' => $funcao
+            ])
+        @endforeach
+    @endslot
+@endselect
 
-<div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix">description</i>
-    <textarea class="materialize-textarea @error('descricao') invalid @enderror" 
-    id="descricao" rows="2" name="descricao">{{ isset($vaga->descricao)?$vaga->descricao:old('descricao') }}</textarea>
-    <label for="descricao">Descrição</label>
-        
-        @error('descricao')
-            <span class="helper-text red-text">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-  </div>
-</div>
+@textarea([
+    'name' => 'descricao',
+    'icon' => 'description',
+    'data' => @$vaga->descricao,
+    'label' => 'Descrição'
+])
 
-<div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix">format_list_numbered</i>
-    <input id="quantidade" type="number" class="@error('quantidade') invalid @enderror" 
-    name="quantidade" value="{{ isset($vaga->quantidade)?$vaga->quantidade:old('quantidade') }}" >
-  <label for="quantidade">Quantidade</label>
+@input([
+    'name' => 'quantidade',
+    'icon' => 'format_list_numbered',
+    'data' => @$vaga->quantidade,
+    'label' => 'Quantidade',
+    'type'  => 'number'
+])
 
-      @error('quantidade')
-          <span class="helper-text red-text">
-              <strong>{{ $message }}</strong>
-          </span>
-      @enderror
-  </div>
-</div>
-
-<div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix">school</i>
-    <select id="escolaridade" class="@error('escolaridade') invalid @enderror" 
-      name="escolaridade" >
-      <option  selected disabled >Selecione sua Escolaridade</option>
-      @foreach ($escolaridades as $escolaridade)
-        <option value="{{$escolaridade}}" {{ ((old('escolaridade') == $escolaridade) || (@$conhecimentos->find(1)->nome == "escolaridade") && (@$conhecimentos->find(1)->pivot->nivel=="$escolaridade"))?"selected":""  }}>{{$escolaridade}}</option>
-      @endforeach
-    </select>
-  <label for="escolaridade">Escolaridade</label>
-
-      @error('escolaridade')
-          <span class="helper-text red-text">
-              <strong>{{ $message }}</strong>
-          </span>
-      @enderror
-  </div>
-</div>
+@select([
+    'name' => 'escolaridade',
+    'icon' => 'school',
+    'label' => 'Escolaridade',
+    'textOptionDefault' => 'Selecione sua Escolaridade'
+])
+    @slot('options')
+        @foreach ($escolaridades as $escolaridade)
+            @option([
+                'name' => 'escolaridade',
+                'value' => $escolaridade,
+                'data' => @$conhecimentos->find(1)->pivot->nivel,
+                'label' => $escolaridade
+            ])
+        @endforeach
+    @endslot
+@endselect
 
 <div class="row center">
   <div class="col 12 offset-s2">
@@ -170,35 +151,32 @@
     </div>
 </div>
 
-<div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix">notifications_active</i>
-    <select id="status" class="@error('status') is-invalid @enderror" 
-    name="status" >
-      <option disabled {{ !(isset($vaga->status) || old('status') != "")?"selected": "" }}>Selecione o Status da Vaga</option>
-      <option value="Ativa" {{ ((old('status') == "Ativa") || (@$vaga->status == "Ativa"))?"selected":"" }} >Ativa</option>
-      <option value="Desativada" {{ ((old('status') == "Desativada") || (@$vaga->status == "Desativada"))?"selected":"" }}>Desativada</option>
-    </select>
-  <label for="status">Status</label>
+@select([
+    'name' => 'status',
+    'icon' => 'notifications_active',
+    'label' => 'Status',
+    'textOptionDefault' => 'Selecione o Status da Vaga'
+])
+    @slot('options')
+      @option([
+          'name' => 'status',
+          'value' => 'Ativa',
+          'data' => @$vaga->status,
+          'label' => 'Ativa'
+        ])
+        @option([
+          'name' => 'status',
+          'value' => 'Desativada',
+          'data' => @$vaga->status,
+          'label' => 'Desativada'
+        ])
+      @endslot
+@endselect
 
-    @error('status')
-        <span class="helper-text red-text">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-  </div>
-</div>
-
-<div class="row">
-  <div class="input-field col s12">
-    <i class="material-icons prefix">mail_outline</i>
-    <input id="emailDeContato" type="email" class="form-control @error('emailDeContato') is-invalid @enderror" name="emailDeContato" value="{{ isset($vaga->emailDeContato)?$vaga->emailDeContato:old('emailDeContato') }}"  autocomplete="emailDeContato">
-  <label for="emailDeContato">E-Mail De Contato A Vaga</label>
-                     
-      @error('emailDeContato')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-      @enderror
-  </div>
-</div>
+@input([
+    'name' => 'emailDeContato',
+    'icon' => 'mail_outline',
+    'data' => @$vaga->emailDeContato,
+    'label' => 'E-Mail De Contato A Vaga',
+    'type'  => 'email'
+])

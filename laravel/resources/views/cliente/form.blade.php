@@ -46,7 +46,7 @@
     'name' => 'h_disponivel',
     'icon' => 'access_time',
     'label' => 'Horário Disponível',
-    'textOptionDefault' => 'Selecione seu horário dispinível'
+    'textOptionDefault' => 'Selecione seu horário disponível'
 ])
     @slot('options')
         @foreach (['Manhã', 'Tarde', 'Integral'] as $item)
@@ -60,31 +60,10 @@
     @endslot
 @endselect
 
-<div class="row">
-    <div class="col 12">
-        <p for="aprendiz">Deseja visualizar vagas de Aprendiz?</p>
-        <p>
-            <label for="aprendizSim">
-                <input type="radio" id="aprendizSim" name="aprendiz" value="Sim"
-                    class="@error('aprendiz') invalid @enderror" 
-                    {{ old('aprendiz') == "Sim" ? 'checked' : (@$cliente->aprendiz == "Sim"? 'checked': '') }}>
-                <span>Sim</span>
-            </label> 
-        </p>
-        <p>
-            <label for="aprendizNao">
-                <input type="radio" id="aprendizNao" name="aprendiz" value="Não"
-                    class="@error('aprendiz') invalid 
-                    @enderror" {{ old('aprendiz') == "Não" ? 'checked' : (@$cliente->aprendiz == "Não"? 'checked': '') }}
-                >
-                <span>Não</span>
-            </label>
-        </p>
-        @error('aprendiz')
-            <span class="helper-text red-text ml-3" >
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
-</div>
-
+@radio([
+    'name' => 'aprendiz',
+    'texto' => 'Deseja visualizar vagas de Aprendiz?',
+    'labelSim' => 'aprendizSim',
+    'data' => @$cliente->aprendiz,
+    'labelNao' => 'aprendizNao'
+    ])

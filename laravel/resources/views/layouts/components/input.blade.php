@@ -12,7 +12,6 @@
       @if(isset($data)) value="{{ old($name) ?? ($data ?? '' ) }}"
       @else value="{{old($name)}}" @endif
       
-      @if(!isset($required) || $required) required @endif
       @if(isset($vueDisabled)) :disabled="!{{$vueDisabled}}" @endif>
     
     <label for="{{ $name }}">{{ $label }}</label>
