@@ -20,7 +20,8 @@
     'name' => 'descricao',
     'icon' => 'description',
     'data' => @$vaga->descricao,
-    'label' => 'Descrição'
+    'label' => 'Descrição',
+    'dica' => 'Informe quais serão as obrigações do contratado, suas responsabilidades e caso exija alguma experiência na área. '
 ])
 
 @input([

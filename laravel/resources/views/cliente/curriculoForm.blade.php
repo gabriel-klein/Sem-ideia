@@ -20,7 +20,8 @@
     'name' => 'descricaoPessoal',
     'icon' => 'description',
     'data' => @$cliente->descricaoPessoal,
-    'label' => 'Descrição Pessoal'
+    'label' => 'Descrição Pessoal',
+    'dica' => 'Resumo de suas qualificações, habilidades e competências.'
 ])
 
 <div class="row">

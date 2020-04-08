@@ -9,7 +9,8 @@
     'name' => 'descricao',
     'icon' => 'description',
     'data' => @$experiencia->descricao,
-    'label' => 'Descrição'
+    'label' => 'Descrição',
+    'dica' => 'Informe o cargo que desempenhou e as atividades exercidas.'
 ])
 
 @input([

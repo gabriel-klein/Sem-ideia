@@ -5378,19 +5378,19 @@ small {
   z-index: 2000;
   background-color: transparent;
   border-radius: 2px;
-  color: #fff;
+  color: #323232;
   min-height: 36px;
   line-height: 120%;
   opacity: 0;
   position: absolute;
   text-align: center;
-  max-width: calc(100% - 4px);
+  max-width: calc(30%);
   overflow: hidden;
   left: 0;
   top: 0;
   pointer-events: none;
   visibility: hidden;
-  background-color: #323232;
+  background-color: #f1f2b6;
 }
 
 .backdrop {
@@ -9398,7 +9398,7 @@ input[type=range]::-ms-thumb {
   height: auto;
   min-height: 48px;
   line-height: 1.5em;
-  background-color: #99ffbb;
+  background-color: #ccffe6;
   padding: 10px 25px;
   font-size: 1.1rem;
   font-weight: 300;
@@ -9435,3 +9435,4 @@ input[type=range]::-ms-thumb {
   justify-content: space-between;
   cursor: default;
 }
+
