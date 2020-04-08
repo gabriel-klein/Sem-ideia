@@ -32164,6 +32164,7 @@ $(document).ready(function () {
     container: 'body',
     minDate: new Date('1950-01-01')
   });
+  $('.tooltipped').tooltip();
 });
 
 function myfunction(argument) {
