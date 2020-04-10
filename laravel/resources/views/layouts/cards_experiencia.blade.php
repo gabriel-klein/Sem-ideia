@@ -15,7 +15,7 @@
       <p>{{ $comprovacao }}</p>
     </div>
     <div class="card-action">
-      <a class="waves-effect waves-light btn" href="{{ route('experiencia.edit', $id) }}">Editar</a>
+      <a class="waves-effect waves-light btn" href="{{ route('experiencias.edit', [$cliente->id, $id]) }}">Editar</a>
     </div>
   </div>
 </div>

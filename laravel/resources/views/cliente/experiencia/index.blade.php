@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">    
             @forelse ($experiencias as $experiencia)
-                @component('layouts.cards_experiencia')
+                @component('layouts.cards_experiencia', ['cliente' => $cliente])
                     @slot('id')
                         {{$experiencia->id}}
                     @endslot
@@ -32,7 +32,7 @@
             @endforelse
         </div>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large blue pulse" href="{{route('experiencia.create')}}">
+            <a class="btn-floating btn-large blue pulse" href="{{route('experiencias.create', $cliente->id)}}">
                 <i class="large material-icons">add</i>
             </a>
         </div>

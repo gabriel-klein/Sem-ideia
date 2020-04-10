@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('cliente', 'ClienteController')->except([
         'destroy', 'create', 'store',
     ]);
-        
+    
     Route::put('cliente/{cliente}/curriculo', 'ClienteController@curriculoUpdate')
         ->name('cliente.curriculo.update');
         
@@ -35,11 +35,11 @@ Route::middleware(['auth'])->group(function () {
     
     Route::post('vagas/candidatar', 'VagaController@candidatar')
         ->name('vagas.candidatar');
+    
+    Route::resource('cliente/{cliente}/experiencias', 'ExperienciaController');
 
     Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
         ->name('vagas.cancelarCandidatura');
-    
-    Route::resource('experiencia', 'ExperienciaController');
 
 });
 
