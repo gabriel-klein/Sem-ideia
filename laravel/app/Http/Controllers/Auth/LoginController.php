@@ -66,7 +66,7 @@ class LoginController extends Controller
                 if (!$user->userable->autorizada) {
                 $this->guard()->logout();
                 $this->incrementLoginAttempts($request);
-                return redirect()->route('login')->with('error', 'Acesso pendente de autorização');
+                return redirect()->route('login')->with('erro', 'Acesso pendente de autorização');
              }
             }
             return $this->sendLoginResponse($request);
