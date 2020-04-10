@@ -15,7 +15,16 @@
       <p>{{ $comprovacao }}</p>
     </div>
     <div class="card-action">
-      <a class="waves-effect waves-light btn" href="{{ route('experiencias.edit', [$cliente->id, $id]) }}">Editar</a>
+        <form action="{{ route('experiencia.destroy', [$cliente->id, $id]) }}" method="POST">
+        @csrf
+        @method('DELETE')
+
+        <a class="waves-effect waves-light btn green" href="{{ route('experiencia.edit', [$cliente->id, $id]) }}">Editar</a>
+
+        <button type="submit" class="waves-effect waves-light btn red">
+          {{ __('Excluir') }}
+        </button>
+      </form>
     </div>
   </div>
 </div>

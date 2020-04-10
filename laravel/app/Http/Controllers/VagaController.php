@@ -81,14 +81,14 @@ class VagaController extends Controller
                 $vaga->conhecimentos()
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
-        }*/
+        }
         $escolaridade=$request->input('escolaridade');
         $vaga->conhecimentos()->attach( array(
                 1 => array('nivel' => $request->input('escolaridade')),
                 2 => array('nivel' => $request->input('excel')),
                 3 => array('nivel' => $request->input('word')),
                 4 => array('nivel' => $request->input('ingles')),
-            ));
+            ));*/
         return redirect()->route('vagas.index')
                     ->with('sucesso', 'Vaga cadastrada com sucesso!');
     }
@@ -112,8 +112,14 @@ class VagaController extends Controller
      */
     public function edit(Request $request, Vaga $vaga)
     {
-        $conhecimentos= $vaga->conhecimentos;
-        return view('vagas.edit', compact(['conhecimentos','vaga']));
+        $funcoes = ["Operador(a) de Caixa","Coordenador(a)/Gerente de Loja",
+                    "Vigia/Prevenção de perdas","Estoquista","Babá/Cuidador","Estimulador",
+                    "Cozinheiro","Garçom/Garçonete","Atendente de Telemarketing","Frentista"
+                  ];
+        $escolaridades = ["Superior Completo","Superior Incompleto","Médio Completo",
+                          "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
+                         ]; 
+        return view('vagas.edit', compact(['vaga','funcoes','escolaridades']));
     }
 
     /**
@@ -141,13 +147,13 @@ class VagaController extends Controller
                 $vaga->conhecimentos()
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
-        }*/
+        }
         $vaga->conhecimentos()->sync( array(
                 1 => array('nivel' => $request->input('escolaridade')),
                 2 => array('nivel' => $request->input('excel')),
                 3 => array('nivel' => $request->input('word')),
                 4 => array('nivel' => $request->input('ingles')),
-            ));
+            ));*/
 
         return redirect()->route('vagas.index')
                 ->with('sucesso', 'Vaga editada com sucesso!');
@@ -168,6 +174,17 @@ class VagaController extends Controller
         
         return redirect()->route('vagas.index')
                 ->with('sucesso', 'Seus dados aparecerão na vaga! Boa Sorte!');
+    }
+
+    public function destroy (Vaga $vaga)
+    {
+        if(!$vaga->delete())
+        {
+            return redirect()->route('vagas.index')
+            ->with('erro', 'Erro ao excluir a Vaga');
+        }
+        return redirect()->route('vagas.index')
+            ->with('sucesso', 'Vaga excluida com sucesso!');
     }
 
 }

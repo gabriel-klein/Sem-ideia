@@ -43,11 +43,11 @@ class ExperienciaController extends Controller
         $experiencia = $cliente->experiencias()->create($request->all());
         
         if (!$experiencia){
-            return redirect()->route('experiencias.index', $cliente->id)
+            return redirect()->route('experiencia.index', $cliente->id)
                     ->with('erro', 'Erro ao cadastrar a experiência!');
                 }
         else
-            return redirect()->route('experiencias.index', $cliente->id)
+            return redirect()->route('experiencia.index', $cliente->id)
                     ->with('sucesso', 'Experiência cadastrada com sucesso!');
     }
 
@@ -85,10 +85,10 @@ class ExperienciaController extends Controller
 
         if(!$experiencia->update($request->all()))
         {
-            return redirect()->route('experiencias.index', $cliente->id)
+            return redirect()->route('experiencia.index', $cliente->id)
                 ->with('erro', 'Erro ao atualizar a Experiência!');
         }
-        return redirect()->route('experiencias.index', $cliente->id)
+        return redirect()->route('experiencia.index', $cliente->id)
             ->with('sucesso', 'Experiência editada com sucesso!');
     }
 
@@ -98,8 +98,14 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cliente $cliente, Experiencia $experiencia)
     {
-        //
+        if(!$experiencia->delete())
+        {
+            return redirect()->route('experiencia.index', $cliente->id)
+            ->with('erro', 'Erro ao excluir a Experiência');
+        }
+        return redirect()->route('experiencia.index', $cliente->id)
+            ->with('sucesso', 'Experiência excluida com sucesso!');
     }
 }

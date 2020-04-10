@@ -36,11 +36,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('vagas/candidatar', 'VagaController@candidatar')
         ->name('vagas.candidatar');
     
-    Route::resource('cliente/{cliente}/experiencias', 'ExperienciaController');
+    Route::resource('cliente/{cliente}/experiencia', 'ExperienciaController',['parameters' => [
+    'experiencia' => 'experiencia']]);
 
     Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
         ->name('vagas.cancelarCandidatura');
 
 });
-
 Route::get('/home', 'HomeController@index')->name('home');

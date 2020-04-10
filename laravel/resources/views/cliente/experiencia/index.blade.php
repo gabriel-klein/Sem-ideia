@@ -32,7 +32,7 @@
             @endforelse
         </div>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large blue pulse" href="{{route('experiencias.create', $cliente->id)}}">
+            <a class="btn-floating btn-large blue pulse" href="{{route('experiencia.create', $cliente->id)}}">
                 <i class="large material-icons">add</i>
             </a>
         </div>

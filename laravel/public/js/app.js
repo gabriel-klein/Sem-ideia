@@ -32162,24 +32162,18 @@ $(document).ready(function () {
     },
     format: 'yyyy-mm-dd',
     container: 'body',
-    minDate: new Date('1950-01-01')
+    minDate: new Date('1950-01-01'),
+    maxDate: new Date()
   });
   $('.tooltipped').tooltip();
 });
-
-$(function(){
-    $('.changeCardSize ').click(function(){
+$(function () {
+  $('.changeCardSize ').click(function () {
     var id = this.id;
     var elemento = document.getElementById(id);
-
-    if(elemento.className!='card blue-grey sticky-action large')
-    elemento.classList.add('large');
-
-    else
-    elemento.classList.remove('large');
-    });
+    if (elemento.className != 'card blue-grey sticky-action large') elemento.classList.add('large');else elemento.classList.remove('large');
+  });
 });
-
 
 __webpack_require__(/*! ./remote */ "./resources/js/remote.js");
 
