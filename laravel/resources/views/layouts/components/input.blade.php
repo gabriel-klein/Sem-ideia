@@ -12,7 +12,7 @@
       @if(isset($data)) value="{{ old($name) ?? ($data ?? '' ) }}"
       @else value="{{old($name)}}" @endif
       
-      @if(isset($vueDisabled)) :disabled="!{{$vueDisabled}}" @endif>
+      ></input>
     
     <label for="{{ $name }}">{{ $label }}</label>
     @error($name)

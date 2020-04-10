@@ -9436,3 +9436,6 @@ input[type=range]::-ms-thumb {
   cursor: default;
 }
 
+.destacado{
+  color:#9ea33c;
+}

@@ -73,12 +73,21 @@ $(document).ready(() => {
         container: 'body',
         minDate: new Date('1950-01-01')
     });
-
+    $('.tooltipped').tooltip();
 });
 
-function myfunction(argument) {
-    if(session('sucesso'))
-    alert(session('sucesso'));
-}
+$(function(){
+    $('.changeCardSize ').click(function(){
+    var id = this.id;
+    var elemento = document.getElementById(id);
+
+    if(elemento.className!='card blue-grey sticky-action large')
+    elemento.classList.add('large');
+
+    else
+    elemento.classList.remove('large');
+    });
+});
+
 
 require('./remote');

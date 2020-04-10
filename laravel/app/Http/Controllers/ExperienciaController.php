@@ -8,6 +8,7 @@ use App\Http\Requests\ExperienciaRequest;
 use Auth;
 use App\User;
 use App\Cliente;
+use App\Experiencia;
 
 class ExperienciaController extends Controller
 {
@@ -71,7 +72,9 @@ class ExperienciaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $experiencia = Experiencia::where('id', '=', $id)->get()->first();
+        
+        return view('experiencia.edit', compact('experiencia'));
     }
 
     /**
@@ -81,9 +84,17 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExperienciaRequest $request, $id)
     {
-        //
+        $experiencia = Experiencia::where('id', '=', $id)->get()->first();
+
+        if(!$experiencia->update($request->all()))
+        {
+            return redirect()->route('experiencia.index')
+                ->with('erro', 'Erro ao atualizar a Experiência!');
+        }
+        return redirect()->route('experiencia.index')
+            ->with('sucesso', 'Experiência editada com sucesso!');
     }
 
     /**
