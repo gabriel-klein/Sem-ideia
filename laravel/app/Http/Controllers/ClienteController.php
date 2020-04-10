@@ -10,7 +10,6 @@ use App\Cliente;
 use App\Conhecimento;
 use App\Http\Requests\ClienteRequest;
 
-
 class ClienteController extends Controller
 {
     
@@ -66,35 +65,25 @@ class ClienteController extends Controller
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
-        if(!$cliente->update($request->all())){
-        return back()
-                 ->with('erro','Erro ao atualizar os dados!!');
-        }
-        else
-        {
+        if(!$cliente->update($request->all())) {
+            return back()
+                ->with('erro','Erro ao atualizar os dados!!');
+        } else {
             $user = $cliente->user;
 
-            if($request->input('password')==NULL)
-            {
+            if($request->input('password') == null) {
                 $request['password'] = $user->password;
-            }
-
-            else
-            {
+            } else {
                 $request['password'] = Hash::make($request->get('password'));
             }
 
-            if($user->update($request->all()))
-            {
+            if($user->update($request->all())) {
                 return redirect()->route('home')
-                ->with('sucesso','Dados atualizados com sucesso!!');
-            }
-
-            else
-            {
+                    ->with('sucesso','Dados atualizados com sucesso!!');
+            } else {
                 return redirect()->route('cliente.edit',compact(['cliente', 'user']))
-                ->with('erro','Erro ao atualizar os dados!!')
-                ->withInput();
+                    ->with('erro','Erro ao atualizar os dados!!')
+                    ->withInput();
             }
         }
     }

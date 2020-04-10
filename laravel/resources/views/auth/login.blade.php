@@ -3,7 +3,7 @@
 @section('content')
     @component('layouts.form')
         @slot('col')
-            col s12 m6 offset-m3
+            col s12 m8 offset-m2 l6 offset-l3
         @endslot
 
         @slot('title')

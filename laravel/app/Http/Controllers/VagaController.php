@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
-use App\Http\Requests\VagaRequest;
 
 use Auth;
 use App\Vaga;
-use App\Conhecimento;
 use App\Cliente;
+use App\Conhecimento;
+use App\Http\Requests\VagaRequest;
 
 
 class VagaController extends Controller
@@ -47,14 +45,19 @@ class VagaController extends Controller
      */
     public function create()
     {
-        $funcoes = ["Operador(a) de Caixa","Coordenador(a)/Gerente de Loja",
-                    "Vigia/Prevenção de perdas","Estoquista","Babá/Cuidador","Estimulador",
-                    "Cozinheiro","Garçom/Garçonete","Atendente de Telemarketing","Frentista"
-                  ];
-        $escolaridades = ["Superior Completo","Superior Incompleto","Médio Completo",
-                          "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
-                         ]; 
+        $funcoes = [
+            "Operador(a) de Caixa","Coordenador(a)/Gerente de Loja",
+            "Vigia/Prevenção de perdas","Estoquista","Babá/Cuidador","Estimulador",
+            "Cozinheiro","Garçom/Garçonete","Atendente de Telemarketing","Frentista"
+        ];
+
+        $escolaridades = [
+            "Superior Completo","Superior Incompleto","Médio Completo",
+            "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
+        ]; 
+
         $conhecimentos = $this->conhecimentos;
+
         return view('vagas.create', compact('conhecimentos','funcoes','escolaridades'));
     }
 
@@ -67,6 +70,7 @@ class VagaController extends Controller
     public function store(VagaRequest $request)
     {
         $vaga = Auth::user()->userable->vagas()->create($request->all());
+
         if (!$vaga){
             return redirect()->route('vagas.index')
                     ->with('erro', 'Erro ao cadastrar a vaga!');
@@ -100,7 +104,7 @@ class VagaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Vaga $vaga)
-    {   
+    {
         return view('vagas.show', compact('vaga'));
     }
 
@@ -112,7 +116,8 @@ class VagaController extends Controller
      */
     public function edit(Request $request, Vaga $vaga)
     {
-        $conhecimentos= $vaga->conhecimentos;
+        $conhecimentos = $this->conhecimentos;
+
         return view('vagas.edit', compact(['conhecimentos','vaga']));
     }
 

@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\EmpresaRequest;
-use Illuminate\Support\Facades\Validator;
 
-use App\User;
 use App\Empresa;
+use App\Http\Requests\EmpresaRequest;
 
 class EmpresaController extends Controller
 {
@@ -62,11 +60,8 @@ class EmpresaController extends Controller
      */
     public function edit(Empresa $empresa)
     {
-        $user = User::where([
-            ['userable_id','=',$empresa->id],
-            ['userable_type','=','Empresa'],
-        ])->get()->first();
-        //dd($user->name);
+        $user = $empresa->user;
+        
         return view('empresa.edit', compact(['empresa', 'user']));
     }
 
@@ -85,10 +80,7 @@ class EmpresaController extends Controller
             }
             else
             {
-                $user = User::where([
-                    ['userable_id','=',$empresa->id],
-                    ['userable_type','=','Empresa']
-                ])->get()->first();
+                $user = $empresa->user;
                 
                 if($request->input('password')==NULL)
                 {

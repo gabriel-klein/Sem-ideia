@@ -3,7 +3,7 @@
 @endpush
 <div class="container" @if(isset($id)) id="{{$id}}" @endif>
   <div class="row" style="margin-top: 2em">
-    <div class="{{ isset($col) ? $col : "col s12 m8 offset-m2" }}">
+    <div class="{{ $col ?? "col s12 m10 offset-m1 l8 offset-l2" }}">
       <div class="card z-depth-2">
         @if (isset($top))
           {{ $top }}  
