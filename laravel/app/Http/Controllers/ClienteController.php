@@ -36,28 +36,14 @@ class ClienteController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cliente $cliente)
-    {
-        
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Cliente $cliente
+     * @return void
      */
     public function edit(Cliente $cliente)
     {
-        $user= User::where([
-            ['userable_id','=',$cliente->id],
-            ['userable_type','=','Cliente'],
-        ])->get()->first();
+        $user = $cliente->user();
 
         $bairros = ["badu","Baldeador","Barreto","Boa Viagem","Cachoeiras","Cafubá",
                   "Camboinhas","Cantagalo","Cantareira","Caramujo","Charitas","Cubango",
@@ -77,9 +63,9 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ClienteRequest $request
+     * @param Cliente $cliente
+     * @return void
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
@@ -89,14 +75,11 @@ class ClienteController extends Controller
         }
         else
         {
-            $user = User::where([
-                ['userable_id','=', $cliente->id],
-                ['userable_type','=','Cliente']
-            ])->get()->first();
-            
+            $user = $cliente->user;
+
             if($request->input('password')==NULL)
             {
-                $request['password']=$user->password;
+                $request['password'] = $user->password;
             }
 
             else
@@ -119,31 +102,29 @@ class ClienteController extends Controller
         }
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function curriculo($id)
+    * Show the form for editing the specified resource.
+    *
+    * @param Cliente $cliente
+    * @return void
+    */
+    public function curriculoEdit(Cliente $cliente)
     {
-        $cliente = Cliente::find($id);
-
         $conhecimentos = Conhecimento::all();
 
-        $escolaridades = ["Superior Completo","Superior Incompleto","Médio Completo",
-                          "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
-                         ]; 
+        $escolaridades = [
+            "Superior Completo","Superior Incompleto","Médio Completo",
+            "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
+        ]; 
 
-        return view('cliente/curriculo',compact(['conhecimentos','cliente','escolaridades']));
+        return view('cliente.curriculo.edit',compact(['conhecimentos','cliente','escolaridades']));
     }
 
-    public function conhecimento(Request $request)
+    public function curriculoUpdate(Request $request, Cliente $cliente)
     {
-        $cliente = Cliente::find(auth()->user()->userable->id);
         $conhecimentos = [];
-        
+    
         foreach ($request->all() as $parametro => $valor) {
             if (Str::contains($parametro, "Conhecimento") && $valor != "") {
                 $conhecimentos[Str::after($parametro, "Conhecimento_")] = ["nivel" => $valor];

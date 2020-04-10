@@ -70,10 +70,8 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Experiencia $experiencia)
     {
-        $experiencia = Experiencia::where('id', '=', $id)->get()->first();
-        
         return view('experiencia.edit', compact('experiencia'));
     }
 
@@ -84,9 +82,8 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ExperienciaRequest $request, $id)
+    public function update(ExperienciaRequest $request, Experiencia $experiencia)
     {
-        $experiencia = Experiencia::where('id', '=', $id)->get()->first();
 
         if(!$experiencia->update($request->all()))
         {

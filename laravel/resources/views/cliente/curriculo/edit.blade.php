@@ -13,9 +13,10 @@
         @endslot
         
         @slot('content')
-            <form method="POST" action="{{ route('cliente.conhecimento') }}"> 
+            <form method="POST" action="{{ route('cliente.curriculo.update', $cliente->id) }}"> 
                 @csrf
-                @include('cliente.curriculoForm')
+                @method('PUT')
+                @include('cliente.curriculo.form')
                 
                 <div class="row">
                     <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">

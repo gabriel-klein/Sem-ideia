@@ -168,10 +168,10 @@ class RegisterController extends Controller
     {   
         $this->validator($request->all())->validate();
         if ($request->typeUser == "Empresa"){
-            $this->validateEmpresa($request->all());
+            $this->validateEmpresa($request->all())->validate();
         }
         else if ($request->typeUser == "Cliente"){
-            $this->validateCliente($request->all());
+            $this->validateCliente($request->all())->validate();
         }
         event(new Registered($user = $this->create($request->all())));
 

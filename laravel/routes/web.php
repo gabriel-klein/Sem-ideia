@@ -18,12 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
-    Route::post('cliente/conhecimento', 'ClienteController@conhecimento')
-        ->name('cliente.conhecimento');
-    
     Route::resource('cliente', 'ClienteController')->except([
         'destroy', 'create', 'store',
     ]);
+        
+    Route::put('cliente/{cliente}/curriculo', 'ClienteController@curriculoUpdate')
+        ->name('cliente.curriculo.update');
+        
+    Route::get('cliente/{cliente}/curriculo/editar','ClienteController@curriculoEdit')
+        ->name('cliente.curriculo.edit');
 
     Route::resource('empresa', 'EmpresaController')->except([
         'destroy', 'create', 'store'
@@ -35,9 +38,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
         ->name('vagas.cancelarCandidatura');
-
-    Route::get('cliente/{id}/curriculo','ClienteController@curriculo')
-        ->name('cliente.curriculo');
     
     Route::resource('experiencia', 'ExperienciaController');
 
