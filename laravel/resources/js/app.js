@@ -71,7 +71,8 @@ $(document).ready(() => {
         },
         format: 'yyyy-mm-dd',
         container: 'body',
-        minDate: new Date('1950-01-01')
+        minDate: new Date('1950-01-01'),
+        maxDate: new Date()
     });
     $('.tooltipped').tooltip();
 });
