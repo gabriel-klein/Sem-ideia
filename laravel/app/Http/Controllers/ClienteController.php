@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
-use Auth;
-use App\User;
 use App\Cliente;
 use App\Conhecimento;
 use App\Http\Requests\ClienteRequest;
-use App\Http\Requests\ConhecimentoRequest;
+
 
 class ClienteController extends Controller
 {
@@ -135,7 +132,7 @@ class ClienteController extends Controller
         $cliente->descricaoPessoal = $request->descricaoPessoal;
         $cliente->save();
 
-        return redirect('experiencia')
+        return redirect()->route('experiencias.index', $cliente->id)
                     ->with('sucesso','Conhecimentos cadastrados com sucesso!!');
     }
 }

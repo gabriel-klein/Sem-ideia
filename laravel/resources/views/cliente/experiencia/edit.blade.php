@@ -15,7 +15,7 @@
         @endslot
 
         @slot('content')
-            <form method="POST" action="{{ route('experiencia.update', $experiencia->id) }}">
+            <form method="POST" action="{{ route('experiencias.update', [$cliente->id, $experiencia->id]) }}">
                 @csrf
                 @method('PUT')
 

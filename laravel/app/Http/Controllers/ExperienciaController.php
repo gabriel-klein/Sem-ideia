@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\ExperienciaRequest;
 
-use Auth;
-use App\User;
 use App\Cliente;
 use App\Experiencia;
 
@@ -17,12 +14,12 @@ class ExperienciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Cliente $cliente)
     {
-        $experiencias =  Auth::user()->userable->experiencias()
+        $experiencias =  $cliente->experiencias()
                         ->latest()->simplePaginate(8);
 
-        return view('experiencia.index', compact('experiencias'));
+        return view('cliente.experiencia.index', compact('experiencias', 'cliente'));
     }
 
     /**
@@ -30,9 +27,9 @@ class ExperienciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Cliente $cliente)
     {
-        return view('experiencia.create');
+        return view('cliente.experiencia.create', compact('cliente'));
     }
 
     /**
@@ -41,15 +38,16 @@ class ExperienciaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ExperienciaRequest $request)
+    public function store(Cliente $cliente, ExperienciaRequest $request)
     {
-        $experiencia = Auth::user()->userable->experiencias()->create($request->all());
+        $experiencia = $cliente->experiencias()->create($request->all());
+        
         if (!$experiencia){
-            return redirect()->route('experiencia.index')
+            return redirect()->route('experiencias.index', $cliente->id)
                     ->with('erro', 'Erro ao cadastrar a experiência!');
                 }
         else
-            return redirect()->route('experiencia.index')
+            return redirect()->route('experiencias.index', $cliente->id)
                     ->with('sucesso', 'Experiência cadastrada com sucesso!');
     }
 
@@ -70,9 +68,9 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Experiencia $experiencia)
+    public function edit(Cliente $cliente, Experiencia $experiencia)
     {
-        return view('experiencia.edit', compact('experiencia'));
+        return view('cliente.experiencia.edit', compact('experiencia', 'cliente'));
     }
 
     /**
@@ -82,15 +80,15 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ExperienciaRequest $request, Experiencia $experiencia)
+    public function update(Cliente $cliente, ExperienciaRequest $request, Experiencia $experiencia)
     {
 
         if(!$experiencia->update($request->all()))
         {
-            return redirect()->route('experiencia.index')
+            return redirect()->route('experiencias.index', $cliente->id)
                 ->with('erro', 'Erro ao atualizar a Experiência!');
         }
-        return redirect()->route('experiencia.index')
+        return redirect()->route('experiencias.index', $cliente->id)
             ->with('sucesso', 'Experiência editada com sucesso!');
     }
 
