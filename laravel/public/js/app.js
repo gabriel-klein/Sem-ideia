@@ -32167,9 +32167,19 @@ $(document).ready(function () {
   $('.tooltipped').tooltip();
 });
 
-function myfunction(argument) {
-  if (session('sucesso')) alert(session('sucesso'));
-}
+$(function(){
+    $('.changeCardSize ').click(function(){
+    var id = this.id;
+    var elemento = document.getElementById(id);
+
+    if(elemento.className!='card blue-grey sticky-action large')
+    elemento.classList.add('large');
+
+    else
+    elemento.classList.remove('large');
+    });
+});
+
 
 __webpack_require__(/*! ./remote */ "./resources/js/remote.js");
 

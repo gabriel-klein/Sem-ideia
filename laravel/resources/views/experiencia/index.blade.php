@@ -5,6 +5,9 @@
         <div class="row">    
             @forelse ($experiencias as $experiencia)
                 @component('layouts.cards_experiencia')
+                    @slot('id')
+                        {{$experiencia->id}}
+                    @endslot
                     @slot('title')
                         {{$experiencia->local}}
                     @endslot
@@ -28,15 +31,10 @@
                 <p>Não há experiencias cadastradas ainda</p>
             @endforelse
         </div>
-        <div class="row justify-content-center">
-                {{ $experiencias->links() }}
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large blue pulse" href="{{route('experiencia.create')}}">
+                <i class="large material-icons">add</i>
+            </a>
         </div>
-            {{-- <a href="{{route('experiencias.create')}}">Cadastrar uma nova experiência</a> --}}
-
-            <div class="fixed-action-btn">
-                <a class="btn-floating btn-large blue pulse" href="{{route('experiencia.create')}}">
-                    <i class="large material-icons">add</i>
-                </a>
-            </div>
-        </div>
+    </div>
 @endsection

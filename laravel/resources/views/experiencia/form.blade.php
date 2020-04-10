@@ -1,8 +1,8 @@
 @input([
     'name' => 'local',
-    'icon' => 'place_outline',
+    'icon' => 'place',
     'data' => @$experiencia->local,
-    'label' => 'local'
+    'label' => 'Local'
 ])
 
 @textarea([
