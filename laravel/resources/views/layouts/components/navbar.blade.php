@@ -42,7 +42,7 @@
               </li>
           @elsetypeUser("Cliente")
               <li>
-                <a href="{{ route('cliente.curriculo', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+                <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
               </li>
           @endtypeUser
         @endauth
@@ -67,7 +67,7 @@
     </li>
     @typeUser("Cliente")
       <li>
-        <a href="{{ route('cliente.curriculo', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+        <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
       </li>
       <li>
         <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}">

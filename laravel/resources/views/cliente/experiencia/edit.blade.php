@@ -11,17 +11,19 @@
         @slot('top') @endslot
 
         @slot('title')
-            Criar Nova Experiência
+            Editar
         @endslot
 
         @slot('content')
-            <form method="POST" action="{{ route('experiencia.store') }}">
+            <form method="POST" action="{{ route('experiencia.update', $experiencia->id) }}">
                 @csrf
-                @include('experiencia.form')
+                @method('PUT')
+
+                @include('cliente.experiencia.form')
 
                 <div class="row">
                     <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
-                        {{ __('Cadastrar') }}
+                        {{ __('Atualizar') }}
                     </button>
                 </div>
 

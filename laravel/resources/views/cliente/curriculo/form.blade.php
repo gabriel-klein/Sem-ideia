@@ -1,10 +1,10 @@
 @select([
-    'name' => 'escolaridade',
+	'name' => 'escolaridade',
     'icon' => 'school',
     'label' => 'Escolaridade',
     'textOptionDefault' => 'Selecione sua Escolaridade'
 ])
-    @slot('options')
+	@slot('options')
         @foreach ($escolaridades as $escolaridade)
             @option([
                 'name' => 'escolaridade',
@@ -17,11 +17,11 @@
 @endselect
 
 @textarea([
-    'name' => 'descricaoPessoal',
-    'icon' => 'description',
-    'data' => @$cliente->descricaoPessoal,
-    'label' => 'Descrição Pessoal',
-    'dica' => 'Resumo de suas qualificações, habilidades e competências.'
+		'name' => 'descricaoPessoal',
+		'icon' => 'description',
+		'data' => @$cliente->descricaoPessoal,
+		'label' => 'Descrição Pessoal',
+		'dica' => 'Resumo de suas qualificações, habilidades e competências.'
 ])
 
 <div class="row">
