@@ -1,22 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Editar Vaga</div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('vagas.update', $vaga->id) }}">
-                        @csrf
-                        @method('PUT')
-                        @include('vagas.form')
-                    </form>
-                    <a href="{{ route('vagas.index') }}">Voltar</a>
+
+    @component('layouts.form')
+              
+        @slot('id')
+            
+        @endslot
+
+        @slot('top') @endslot
+
+        @slot('title')
+            Editar Vaga
+        @endslot
+
+        @slot('content')
+            <form method="POST" action="{{  route('vagas.update', $vaga->id) }}">
+                @csrf
+                @method('PUT')
+                @include('vagas.form')
+
+                <div class="row">
+                    <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
+                        {{ __('Atualizar') }}
+                    </button>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
- 
+
+            </form>
+        @endslot
+    @endcomponent
 @endsection

@@ -77,3 +77,24 @@
 .destacado{
   color:#9ea33c;
 }
+
+.material-tooltip {
+  padding: 10px 8px;
+  font-size: 1rem;
+  z-index: 2000;
+  background-color: transparent;
+  border-radius: 2px;
+  color: #323232;
+  min-height: 36px;
+  line-height: 120%;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  max-width: calc(30%);
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  visibility: hidden;
+  background-color: #f1f2b6;
+}

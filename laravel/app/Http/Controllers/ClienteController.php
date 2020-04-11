@@ -121,7 +121,7 @@ class ClienteController extends Controller
         $cliente->descricaoPessoal = $request->descricaoPessoal;
         $cliente->save();
 
-        return redirect()->route('experiencias.index', $cliente->id)
+        return redirect()->route('experiencia.index', $cliente->id)
                     ->with('sucesso','Conhecimentos cadastrados com sucesso!!');
     }
 }

@@ -5,6 +5,9 @@
         @forelse ($vagas as $vaga)
             <div class="row">
                 @component('layouts.components.vaga')
+                    @slot('id')
+                        {{$vaga->id}}
+                    @endslot
                     @slot('title')
                         {{$vaga->funcao}}
                     @endslot
@@ -23,8 +26,8 @@
                         {{$vaga->quantidade}}
                     @endslot
 
-                    @slot('emailContato')
-                        {{$vaga->email_de_contato}}
+                    @slot('emailDeContato')
+                        {{$vaga->emailDeContato}}
                     @endslot
 
                     @slot('requisitos')
