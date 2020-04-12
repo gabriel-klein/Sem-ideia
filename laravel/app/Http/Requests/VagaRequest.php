@@ -30,7 +30,7 @@ class VagaRequest extends FormRequest
             'quantidade'        => 'required|numeric|min:1|max:30',
             'escolaridade'      => 'required',
             'status'            => ['required', Rule::in(['Ativa', 'Desativada'])],
-            'emailDeContato'    => ['nullable','string', 'email', 'max:255',]
+            'emailDeContato'    => ['nullable', 'string', 'email', 'max:255',]
         ];
     }
 
@@ -41,7 +41,6 @@ class VagaRequest extends FormRequest
      */
     public function messages()
     {
-        return [
-        ];
+        return [];
     }
 }

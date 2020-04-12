@@ -16,11 +16,11 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $user = Auth::user();
-            if ($user->userable_type === null){
+            if ($user->userable_type === null && $user->userable_id === null) {
                 return $next($request);
-            }   
+            }
         }
         return redirect()->route('home')->with('erro', 'Ação não autorizada');
     }

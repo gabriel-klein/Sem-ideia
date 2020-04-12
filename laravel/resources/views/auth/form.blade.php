@@ -1,7 +1,7 @@
 @input([
     'name' => 'name', 
     'icon' =>  'person_outline', 
-    'data' => @Auth::user()->name,
+    'data' => @$user->name,
     'label' => 'Nome'     
 ])
 
@@ -9,23 +9,23 @@
     'type' => 'email',
     'name' => 'email',
     'icon' => 'mail_outline',
-    'data' => @Auth::user()->email,
+    'data' => @$user->email,
     'label' => 'Email'
 ])
 
-
-
 <div id="passwordUserForm">
     @auth
-        <div class="row">
-            <div class="col s12 switch">
-                <label>
-                    Alterar Senha?
-                    <input type="checkbox" v-model="editPassword">
-                    <span class="lever"></span>
-                </label>
+        @if (!Str::contains(url()->current(), 'admin/criar'))
+            <div class="row">
+                <div class="col s12 switch">
+                    <label>
+                        Alterar Senha?
+                        <input type="checkbox" v-model="editPassword">
+                        <span class="lever"></span>
+                    </label>
+                </div>
             </div>
-        </div>
+        @endif
     @endauth
 
     @input([

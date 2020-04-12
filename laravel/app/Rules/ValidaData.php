@@ -28,16 +28,16 @@ class ValidaData implements Rule
         $data_inicio = request('data_inicio');
 
         //Converte as datas para timestamp (segundos).
-        $d1 = strtotime($data_inicio); 
+        $d1 = strtotime($data_inicio);
         $d2 = strtotime($value);
 
         //verifica a diferença em segundos entre as duas datas e divide pelo número de segundos que um dia possui.
-        $qtd_dias = ($d2 - $d1)/86400;
+        $qtd_dias = ($d2 - $d1) / 86400;
 
 
-        if($qtd_dias < 30)
+        if ($qtd_dias < 30) {
             return false;
-
+        }
         return true;
     }
 

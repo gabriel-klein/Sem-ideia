@@ -16,9 +16,9 @@ class IsEmpresa
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $user = Auth::user();
-            if ($user->userable_type == "Empresa"){
+            if ($user->userable_type === "Empresa") {
                 return $next($request);
             }
         }

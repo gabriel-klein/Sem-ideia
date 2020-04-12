@@ -6,6 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 use Auth;
+
 class ClienteRequest extends FormRequest
 {
     /**
@@ -26,12 +27,17 @@ class ClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['required', 'string', 'max:255', ],
-            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(auth()->user()->id)],
+            'name'          => ['required', 'string', 'max:255',],
+            'email'         => [
+                'required', 'string', 'email', 'max:255',
+                Rule::unique('users')->ignore(auth()->user()->id)
+            ],
             'password'      => ['nullable', 'string', 'min:8', 'confirmed'],
             'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
-            'cel1'          => ['required', 'string', 'min:15', 'max:16', 
-                                Rule::unique('clientes')->ignore(Auth::user()->userable_id)],
+            'cel1'          => [
+                'required', 'string', 'min:15', 'max:16',
+                Rule::unique('clientes')->ignore(Auth::user()->userable_id)
+            ],
             'cel2'          => ['nullable', 'string', 'min:15', 'max:16'],
             'bairro'        => ['required'],
             'aprendiz'      => ['required', 'string'],
@@ -46,7 +52,6 @@ class ClienteRequest extends FormRequest
      */
     public function messages()
     {
-        return [
-        ];
+        return [];
     }
 }

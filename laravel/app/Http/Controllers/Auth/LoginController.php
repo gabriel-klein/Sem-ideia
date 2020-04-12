@@ -53,8 +53,10 @@ class LoginController extends Controller
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
@@ -62,12 +64,12 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
             $user = $this->guard()->user();
-            if($user->userable_type == "Empresa") {
+            if ($user->userable_type == "Empresa") {
                 if (!$user->userable->autorizada) {
-                $this->guard()->logout();
-                $this->incrementLoginAttempts($request);
-                return redirect()->route('login')->with('erro', 'Acesso pendente de autorização');
-             }
+                    $this->guard()->logout();
+                    $this->incrementLoginAttempts($request);
+                    return redirect()->route('login')->with('erro', 'Acesso pendente de autorização');
+                }
             }
             return $this->sendLoginResponse($request);
         }
@@ -79,6 +81,4 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
-
-
 }
