@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class AdminRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class AdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->userable_id === null && Auth::user()->userable_type == null;
     }
 
     /**
@@ -25,9 +26,9 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['required', 'string', 'max:255', ],
+            'name'          => ['required', 'string', 'max:255',],
             'email'         => [
-                'required', 'string', 'email', 'max:255', 
+                'required', 'string', 'email', 'max:255',
                 Rule::unique('users')->ignore(auth()->user()->id)
             ],
             'password'      => ['nullable', 'string', 'min:8', 'confirmed']

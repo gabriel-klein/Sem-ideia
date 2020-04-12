@@ -26,7 +26,7 @@ class ConhecimentoRequest extends FormRequest
     {
         return [
             'escolaridade'      => ['required'],
-            'descricaoPessoal'  =>['required','min:15','max:255'],
+            'descricaoPessoal'  => ['required', 'min:15', 'max:255'],
         ];
     }
 }

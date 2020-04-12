@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
 {
-    
+
     /**
      * Atributos que serão atriuidos em massa
      *
@@ -15,7 +15,7 @@ class Empresa extends Model
     protected $fillable = [
         'cnpj', 'razao_social'
     ];
-    
+
     protected $attributes = [
         'autorizada' => false
     ];
@@ -25,7 +25,8 @@ class Empresa extends Model
      *
      * @return App\User
      */
-    public function user(){
+    public function user()
+    {
         return $this->morphOne('App\User', 'userable');
     }
     /**
@@ -33,9 +34,8 @@ class Empresa extends Model
      *
      * @return void
      */
-    public function vagas(){
+    public function vagas()
+    {
         return $this->hasMany('App\Vaga');
     }
-    
-    
 }

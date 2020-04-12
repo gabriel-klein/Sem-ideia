@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 use App\User;
 use App\Http\Requests\AdminRequest;
 
@@ -17,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //jkj
+        return view('admin.index');
     }
 
     /**
@@ -27,82 +26,92 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AdminRequest $request
+     * @return void
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        //
+        $user = new User();
+
+        $request['password'] = Hash::make($request->get('password'));
+
+        if ($user->create($request->all())) {
+            return redirect()->route('home')
+                ->with('sucesso', 'Usuário criado com sucesso!!');
+        } else {
+            return redirect()->route('admin.create', compact(['user']))
+                ->with('erro', 'Erro ao criar usuário!!')
+                ->withInput();
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return void
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     *  Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return void
      */
     public function edit(User $user)
     {
-        
+        return view('admin.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param AdminRequest $request
+     * @param User $user
+     * @return void
      */
     public function update(AdminRequest $request, User $user)
     {
-        if($request->input('password') == null) {
+        if ($request->input('password') == null) {
             $request['password'] = $user->password;
         } else {
             $request['password'] = Hash::make($request->get('password'));
         }
 
-        if($user->update($request->all())) {
+        if ($user->update($request->all())) {
             return redirect()->route('home')
-                ->with('sucesso','Dados atualizados com sucesso!!');
+                ->with('sucesso', 'Dados atualizados com sucesso!!');
         } else {
-            return redirect()->route('admin.edit',compact(['user']))
-                ->with('erro','Erro ao atualizar os dados!!')
+            return redirect()->route('admin.edit', compact(['user']))
+                ->with('erro', 'Erro ao atualizar os dados!!')
                 ->withInput();
         }
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return void
      */
     public function destroy(User $user)
     {
-        if($user->delete()) {
+        if ($user->delete()) {
             return redirect()->route('home')
-                ->with('sucesso','Usuário removido com Sucesso!!');
+                ->with('sucesso', 'Usuário removido com Sucesso!!');
         } else {
             return redirect()->route('home')
-                ->with('erro','Erro ao remover o usuário!!');
+                ->with('erro', 'Erro ao remover o usuário!!');
         }
     }
 }

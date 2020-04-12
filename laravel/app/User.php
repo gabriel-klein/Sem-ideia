@@ -24,10 +24,11 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function userable(){
+    public function userable()
+    {
         return $this->morphTo();
     }
-    
+
     /**
      * The attributes that should be hidden for arrays.
      *

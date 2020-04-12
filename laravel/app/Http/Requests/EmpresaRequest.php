@@ -26,11 +26,17 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['required', 'string', 'max:255', ],
-            'email'         => ['required', 'string', 'email', 'max:255',
-                                Rule::unique('users')->ignore(auth()->user()->id)],
+            'name'          => ['required', 'string', 'max:255',],
+            'email'         => [
+                'required', 'string', 'email', 'max:255',
+                Rule::unique('users')->ignore(auth()->user()->id)
+            ],
             'password'      => ['nullable', 'string', 'min:8', 'confirmed'],
-            'cnpj'          => ['required', 'string', 'min:18', 'max:18',new ValidaCnpj,                Rule::unique('empresas')->ignore(auth()->user()                ->userable_id)],
+            'cnpj'          => [
+                'required', 'string',
+                'min:18', 'max:18', new ValidaCnpj(),
+                Rule::unique('empresas')->ignore(auth()->user()->userable_id)
+            ],
             'razao_social'  => ['required', 'string'],
         ];
     }

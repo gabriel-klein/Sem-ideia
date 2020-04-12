@@ -2,41 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 use App\Empresa;
 use App\Http\Requests\EmpresaRequest;
 
 class EmpresaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('empresa')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
     {
         //
     }
@@ -55,56 +36,46 @@ class EmpresaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
+     * @param Empresa $empresa
+     * @return void
      */
     public function edit(Empresa $empresa)
     {
         $user = $empresa->user;
-        
+
         return view('empresa.edit', compact(['empresa', 'user']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Empresa  $empresa
-     * @return \Illuminate\Http\Response
+     * @param EmpresaRequest $request
+     * @param Empresa $empresa
+     * @return void
      */
     public function update(EmpresaRequest $request, Empresa $empresa)
     {
-            if(!$empresa->update($request->all())){
+        if (!$empresa->update($request->all())) {
             return back()
-                     ->with('erro','Erro ao atualizar os dados!!');
+                ->with('erro', 'Erro ao atualizar os dados!!');
+        } else {
+            $user = $empresa->user;
+
+            if ($request->input('password') == null) {
+                $request['password'] = $user->password;
+            } else {
+                $request['password'] = Hash::make($request->get('password'));
             }
-            else
-            {
-                $user = $empresa->user;
-                
-                if($request->input('password')==NULL)
-                {
-                    $request['password']=$user->password;
-                }
 
-                else
-                {
-                    $request['password'] = Hash::make($request->get('password'));
-                }
-
-                if($user->update($request->all()))
-                {
-                    return redirect()->route('home')
-                    ->with('sucesso','Dados atualizados com sucesso!!');
-                }
-
-                else
-                {
-                    return redirect()->route('empresa.edit',compact(['empresa', 'user']))
-                    ->with('erro','Erro ao atualizar os dados!!')
+            if ($user->update($request->all())) {
+                return redirect()->route('home')
+                    ->with('sucesso', 'Dados atualizados com sucesso!!');
+            } else {
+                return redirect()->route('empresa.edit', compact(['empresa', 'user']))
+                    ->with('erro', 'Erro ao atualizar os dados!!')
                     ->withInput();
-                }
             }
+        }
     }
 
     /**

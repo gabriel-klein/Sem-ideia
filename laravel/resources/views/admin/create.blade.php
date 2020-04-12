@@ -15,7 +15,7 @@
         @endslot
 
         @slot('content')
-            <form method="POST" method="POST" action="{{ route('register') }}">
+            <form method="POST" method="POST" action="{{ route('admin.store') }}">
                 @csrf
 
                 @include('auth.form')

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RedirectsUsers;
-
 use App\User;
 use App\Cliente;
 use App\Empresa;
@@ -27,7 +26,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RedirectsUsers;
 
     /**
@@ -67,24 +65,24 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    protected function validateEmpresa (array $data)
+    protected function validateEmpresa(array $data)
     {
         return Validator::make($data, [
             'cnpj' => [
-                'required', 'string', 'min:18', 
-                'max:18', new ValidaCnpj, 'unique:empresas'
+                'required', 'string', 'min:18',
+                'max:18', new ValidaCnpj(), 'unique:empresas'
             ],
             'razao_social' => ['required', 'string'],
         ]);
     }
-    
+
     /**
      * Valida os dados referentes a empresa
      *
      * @param array $data
      * @return void
      */
-    protected function validateCliente (array $data)
+    protected function validateCliente(array $data)
     {
         return Validator::make($data, [
             'idade'         => ['required', 'numeric', 'min:14', 'max:80'],
@@ -118,18 +116,16 @@ class RegisterController extends Controller
      * @param App\User $user
      * @return void
      */
-    protected function createUserable (array $data, $user)
+    protected function createUserable(array $data, $user)
     {
-        if(isset($data['typeUser'])){
+        if (isset($data['typeUser'])) {
             if ($data['typeUser'] == "Empresa") {
                 $userable = Empresa::create($data);
-            }
-            else if ($data['typeUser'] == "Cliente") {
+            } elseif ($data['typeUser'] == "Cliente") {
                 $userable = Cliente::create($data);
             }
             $userable->user()->save($user);
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -142,19 +138,19 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $bairros = [
-            "Badu","Baldeador","Barreto","Boa Viagem","Cachoeiras","Cafubá",
-            "Camboinhas","Cantagalo","Cantareira","Caramujo","Charitas","Cubango",
-            "Engenho do Mato","Engenhoca","Fátima","Fonseca","Gragoatá","Icaraí",
-            "Ilha da Conceição","Ingá","Itacoatiara","Itaipu","Ititioca","Jacaré",
-            "Jardim Imbuí","Jurujuba","Largo da Batalha","Maceió","Maravista",
-            "Maria Paula","Matapaca","Morro do Estado","Muriqui","Pé Pequeno",
-            "Piratininga","Ponta d'Areia","Rio do Ouro","Santa Bárbara",
-            "Santa Rosa","Santana","Santo Antônio","São Domingos","São Francisco",
-            "São Lourenço","Sapê","Serra Grande","Tenente Jardim",
-            "Várzea das Moças","Viçoso Jardim","Vila Progresso","Viradouro",
+            "Badu", "Baldeador", "Barreto", "Boa Viagem", "Cachoeiras", "Cafubá",
+            "Camboinhas", "Cantagalo", "Cantareira", "Caramujo", "Charitas", "Cubango",
+            "Engenho do Mato", "Engenhoca", "Fátima", "Fonseca", "Gragoatá", "Icaraí",
+            "Ilha da Conceição", "Ingá", "Itacoatiara", "Itaipu", "Ititioca", "Jacaré",
+            "Jardim Imbuí", "Jurujuba", "Largo da Batalha", "Maceió", "Maravista",
+            "Maria Paula", "Matapaca", "Morro do Estado", "Muriqui", "Pé Pequeno",
+            "Piratininga", "Ponta d'Areia", "Rio do Ouro", "Santa Bárbara",
+            "Santa Rosa", "Santana", "Santo Antônio", "São Domingos", "São Francisco",
+            "São Lourenço", "Sapê", "Serra Grande", "Tenente Jardim",
+            "Várzea das Moças", "Viçoso Jardim", "Vila Progresso", "Viradouro",
             "Vital Brazil"
         ];
-        
+
         return view('auth.register', compact(['bairros']));
     }
 
@@ -165,20 +161,20 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)
-    {   
+    {
         $this->validator($request->all())->validate();
-        if ($request->typeUser == "Empresa"){
+        if ($request->typeUser == "Empresa") {
             $this->validateEmpresa($request->all())->validate();
-        }
-        else if ($request->typeUser == "Cliente"){
+        } elseif ($request->typeUser == "Cliente") {
             $this->validateCliente($request->all())->validate();
         }
+
         event(new Registered($user = $this->create($request->all())));
 
         // $this->guard()->login($user);
 
         return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath());
     }
 
     /**
@@ -201,8 +197,8 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         $this->createUserable($request->all(), $user);
-        if ($request->typeUser == "Empresa" || $request->typeUser == "Cliente") {    
-            if (($user->userable == NULL) || ($user->userable == null)){
+        if ($request->typeUser == "Empresa" || $request->typeUser == "Cliente") {
+            if ($user->userable == null) {
                 $user->delete();
                 $request->session()->flash('erro', 'Ops! Ocorreu um erro ao criar sua conta!');
                 return false;
@@ -210,5 +206,4 @@ class RegisterController extends Controller
             $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
         }
     }
-
 }

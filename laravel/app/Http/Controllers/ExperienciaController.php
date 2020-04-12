@@ -16,7 +16,7 @@ class ExperienciaController extends Controller
     public function index(Cliente $cliente)
     {
         $experiencias =  $cliente->experiencias()
-                        ->latest()->simplePaginate(8);
+            ->latest()->simplePaginate(8);
 
         return view('cliente.experiencia.index', compact('experiencias', 'cliente'));
     }
@@ -40,14 +40,14 @@ class ExperienciaController extends Controller
     public function store(Cliente $cliente, ExperienciaRequest $request)
     {
         $experiencia = $cliente->experiencias()->create($request->all());
-        
-        if (!$experiencia){
+
+        if (!$experiencia) {
             return redirect()->route('experiencias.index', $cliente->id)
-                    ->with('erro', 'Erro ao cadastrar a experiência!');
-                }
-        else
+                ->with('erro', 'Erro ao cadastrar a experiência!');
+        } else {
             return redirect()->route('experiencias.index', $cliente->id)
-                    ->with('sucesso', 'Experiência cadastrada com sucesso!');
+                ->with('sucesso', 'Experiência cadastrada com sucesso!');
+        }
     }
 
     /**
@@ -82,8 +82,7 @@ class ExperienciaController extends Controller
     public function update(Cliente $cliente, ExperienciaRequest $request, Experiencia $experiencia)
     {
 
-        if(!$experiencia->update($request->all()))
-        {
+        if (!$experiencia->update($request->all())) {
             return redirect()->route('experiencias.index', $cliente->id)
                 ->with('erro', 'Erro ao atualizar a Experiência!');
         }

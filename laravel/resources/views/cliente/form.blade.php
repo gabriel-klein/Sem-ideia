@@ -8,8 +8,8 @@
 ])
 
 @input([
-    'name' => 'cel1', 
-    'icon' => 'phone', 
+    'name' => 'cel1',
+    'icon' => 'phone',
     'data' => @$cliente->cel1,
     'label' => 'Celular',
     'class' => 'telMask'
@@ -26,7 +26,7 @@
 
 @select([
     'name' => 'bairro',
-    'icon' => 'place_outline',
+    'icon' => 'place',
     'label' => 'Bairro',
     'textOptionDefault' => 'Selecione o seu bairro'
 ])

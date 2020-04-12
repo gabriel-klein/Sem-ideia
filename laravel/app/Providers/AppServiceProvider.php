@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Route;
 use Auth;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,22 +31,22 @@ class AppServiceProvider extends ServiceProvider
             'create' => 'criar',
             'edit' => 'editar',
         ]);
-        
+
         Relation::morphMap([
             'Empresa' => 'App\Empresa',
             'Cliente' => 'App\Cliente',
         ]);
 
-        
-        Blade::if('typeUser', function($typeUser){
+
+        Blade::if('typeUser', function ($typeUser) {
             return Auth::user()->userable_type == $typeUser;
         });
-           
+
         // Remover Gradualmente do Código
-        Blade::if('emp', function(){
+        Blade::if('emp', function () {
             return Auth::user()->userable_type == "Empresa";
         });
-        
+
         Blade::include('layouts.components.navbar', 'navbar');
         Blade::include('layouts.components.input', 'input');
         Blade::include('layouts.components.option', 'option');

@@ -31,18 +31,24 @@
       </ul>
       <ul class="right hide-on-med-and-down">
         @auth
-          <li>
-              <a href="{{ route('vagas.index') }}">Vagas</a>
-          </li>
-          @typeUser("Empresa")
+          @typeUser("Empresa" || "Cliente")  
+            <li>
+                <a href="{{ route('vagas.index') }}">Vagas</a>
+            </li>
+            @typeUser("Empresa")
               <li>
                 <a href="{{ route('cliente.index')}}">
                   Currículos
                 </a>
               </li>
-          @elsetypeUser("Cliente")
+            @elsetypeUser("Cliente")
               <li>
                 <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+              </li>
+            @endtypeUser
+          @else
+              <li>
+                <a href="{{ route('admin.index') }}">Admins</a>
               </li>
           @endtypeUser
         @endauth
@@ -62,29 +68,37 @@
       </li>
     @endif
   @else
-    <li>
-      <a href="{{ route('vagas.index') }}">Vagas</a>
-    </li>
-    @typeUser("Cliente")
+    @typeUser("Cliente" || "Empresa")
       <li>
-        <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+        <a href="{{ route('vagas.index') }}">Vagas</a>
       </li>
-      <li>
-        <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}">
-          Meus Dados
-        </a>
-      </li>
-    @elsetypeUser("Empresa")
-      <li>
-        <a href="{{ route('cliente.index')}}">
-          Currículos
-        </a>
-      </li>
-      <li>
-        <a href="{{ route('empresa.edit', Auth::user()->userable->id)}}">
-          Meus Dados
-        </a>
-      </li>
+      @typeUser("Cliente")
+        <li>
+          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+        </li>
+        <li>
+          <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}">
+            Meus Dados
+          </a>
+        </li>
+      @elsetypeUser("Empresa")
+        <li>
+          <a href="{{ route('cliente.index')}}">
+            Currículos
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('empresa.edit', Auth::user()->userable->id)}}">
+            Meus Dados
+          </a>
+        </li>
+      @endtypeUser
+    @else 
+        <li>
+          <a href="{{ route('admin.edit', Auth::user()->id)}}">
+            Meus Dados
+          </a>
+        </li>
     @endtypeUser
     <li class="divider"></li>
     <li>
@@ -112,6 +126,12 @@
     @elsetypeUser("Empresa")
       <li>
         <a href="{{ route('empresa.edit', Auth::user()->userable->id)}}">
+          Meus Dados
+        </a>
+      </li>
+    @else 
+      <li>
+        <a href="{{ route('admin.edit', Auth::user()->id)}}">
           Meus Dados
         </a>
       </li>

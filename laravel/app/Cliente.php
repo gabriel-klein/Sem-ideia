@@ -6,22 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    
+
     /**
      * Atributos que serão atriuidos em massa
      *
      * @var array
      */
     protected $fillable = [
-        'idade','cel1','cel2','bairro','descricaoPessoal','escolaridade','h_disponivel', 'aprendiz'
+        'idade', 'cel1', 'cel2', 'bairro', 'descricaoPessoal', 'escolaridade', 'h_disponivel', 'aprendiz'
     ];
-    
+
     /**
      * Método da Agregação
      *
      * @return App\User
      */
-    public function user() {
+    public function user()
+    {
         return $this->morphOne('App\User', 'userable');
     }
 
@@ -30,15 +31,17 @@ class Cliente extends Model
      *
      * @return array App\Conhecimento
      */
-    public function conhecimentos() {
+    public function conhecimentos()
+    {
         return $this->belongsToMany('App\Conhecimento')
-                    ->withPivot('nivel')
-                    ->withTimestamps();
+            ->withPivot('nivel')
+            ->withTimestamps();
     }
 
-    public function vagas() {
+    public function vagas()
+    {
         return $this->belongsToMany('App\Vaga')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     /**
@@ -46,7 +49,8 @@ class Cliente extends Model
      *
      * @return void
      */
-    public function experiencias(){
+    public function experiencias()
+    {
         return $this->hasMany('App\Experiencia');
     }
 }

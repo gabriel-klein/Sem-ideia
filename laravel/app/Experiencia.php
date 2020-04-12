@@ -12,7 +12,7 @@ class Experiencia extends Model
      * @var array
      */
     protected $fillable = [
-        'local','descricao','data_inicio', 'data_fim','comprovacao'
+        'local', 'descricao', 'data_inicio', 'data_fim', 'comprovacao'
     ];
 
     /**
@@ -20,7 +20,8 @@ class Experiencia extends Model
      *
      * @return App\Cliente
      */
-    public function cliente(){
+    public function cliente()
+    {
         return $this->belongsTo('App\Cliente');
     }
 }

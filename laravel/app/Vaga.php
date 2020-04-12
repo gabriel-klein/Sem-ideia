@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Vaga extends Model
-{    
+{
     /**
      * Atributos que serão atriuidos em massa
      *
      * @var array
      */
     protected $fillable = [
-        'descricao', 'quantidade', 'empresa_id', 'status', 'funcao','emailDeContato'
+        'descricao', 'quantidade', 'empresa_id', 'status', 'funcao', 'emailDeContato'
     ];
 
     /**
@@ -20,7 +20,8 @@ class Vaga extends Model
      *
      * @return App\Empresa
      */
-    public function empresa(){
+    public function empresa()
+    {
         return $this->belongsTo('App\Empresa');
     }
 
@@ -29,10 +30,11 @@ class Vaga extends Model
      *
      * @return array App\Conhecimento
      */
-    public function conhecimentos(){
+    public function conhecimentos()
+    {
         return $this->belongsToMany('App\Conhecimento')
-                    ->withPivot('nivel')
-                    ->withTimestamps();
+            ->withPivot('nivel')
+            ->withTimestamps();
     }
 
     /**
@@ -40,9 +42,9 @@ class Vaga extends Model
      *
      * @return void
      */
-    public function clientes(){
+    public function clientes()
+    {
         return $this->belongsToMany('App\Cliente')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
-
 }
