@@ -29,9 +29,6 @@ class VagaRequest extends FormRequest
             'descricao'         => 'required|min:15|max:255',
             'quantidade'        => 'required|numeric|min:1|max:30',
             'escolaridade'      => 'required',
-            'excel'             => 'required',
-            'word'              => 'required',
-            'ingles'            => 'required',
             'status'            => ['required', Rule::in(['Ativa', 'Desativada'])],
             'emailDeContato'    => ['nullable', 'string', 'email', 'max:255',]
         ];

@@ -125,5 +125,6 @@ class ClienteController extends Controller
 
         return redirect()->route('experiencias.index', $cliente->id)
             ->with('sucesso', 'Conhecimentos cadastrados com sucesso!!');
+
     }
 }

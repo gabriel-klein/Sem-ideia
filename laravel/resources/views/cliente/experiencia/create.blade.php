@@ -15,7 +15,7 @@
         @endslot
 
         @slot('content')
-            <form method="POST" action="{{ route('experiencias.store', $cliente->id) }}">
+            <form method="POST" action="{{ route('experiencia.store', $cliente->id) }}">
                 @csrf
                 @include('cliente.experiencia.form')
 
