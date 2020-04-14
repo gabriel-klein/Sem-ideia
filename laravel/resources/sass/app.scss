@@ -98,3 +98,34 @@
   visibility: hidden;
   background-color: #f1f2b6;
 }
+
+.cartao_vaga{
+  background-color: #e8f0fc;
+}
+
+.botao {
+  background-color: #e8f0fc;
+  color: #000 !important;
+  -webkit-transition: color 0.5s ease !important;
+  transition: color 0.5s ease !important;
+  text-transform: uppercase;
+  border: none;
+}
+
+.botao:hover {
+  cursor: pointer;
+  color: #999797 !important;
+}
+
+.botao:focus{
+  background-color: #e8f0fc;
+}
+
+.navbar{
+  background-color: #f7faf8;
+  color:#fff !important;
+}
+.nav_words
+{
+  color:#000 !important;
+}

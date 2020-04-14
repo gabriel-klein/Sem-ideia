@@ -9452,7 +9452,7 @@ input[type=range]::-ms-thumb {
   opacity: 0;
   position: absolute;
   text-align: center;
-  max-width: calc(100% - 4px);
+  max-width: calc(30%);
   overflow: hidden;
   left: 0;
   top: 0;
@@ -9461,3 +9461,33 @@ input[type=range]::-ms-thumb {
   background-color: #f1f2b6;
 }
 
+.cartao_vaga {
+  background-color: #949494;
+  color:#fff;
+}
+
+.botao {
+  background-color: #949494;
+  color: #fff !important;
+  -webkit-transition: color 0.5s ease !important;
+  transition: color 0.5s ease !important;
+  text-transform: uppercase;
+  border: none;
+}
+
+.botao:hover {
+  cursor: pointer;
+  color: #000 !important;
+}
+
+.botao:focus {
+  background-color: #949494;
+}
+
+.navbar{
+  background-color: #f7f7f7;
+}
+.nav_words
+{
+  color:#000 !important;
+}
