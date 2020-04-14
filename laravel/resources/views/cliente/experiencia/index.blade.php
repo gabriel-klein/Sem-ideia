@@ -26,6 +26,18 @@
                     @slot('comprovacao')
                         {{$experiencia->comprovacao}}
                     @endslot
+                    @slot('actions')
+                        <form action="{{ route('experiencia.destroy', [$cliente->id, $experiencia->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <a class="waves-effect waves-light btn green" href="{{ route('experiencia.edit', [$cliente->id, $experiencia->id]) }}">Editar</a>
+
+                            <button type="submit" class="waves-effect waves-light btn red">
+                              {{ __('Excluir') }}
+                            </button>
+                        </form>
+                    @endslot
                 @endcomponent
             @empty
                 <p>Não há experiencias cadastradas ainda</p>
