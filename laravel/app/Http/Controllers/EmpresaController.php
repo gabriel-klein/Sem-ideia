@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 use App\Empresa;
 use App\Http\Requests\EmpresaRequest;
 
@@ -10,7 +11,8 @@ class EmpresaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('empresa')->except(['index', 'show']);
+        $this->middleware('empresa')->except(['index', 'show', 'autorizar', 'negar']);
+        $this->middleware('admin')->only(['autorizar', 'negar']);
     }
     /**
      * Display a listing of the resource.
@@ -30,7 +32,7 @@ class EmpresaController extends Controller
      */
     public function show(Empresa $empresa)
     {
-        //
+        return view('empresa.show', compact('empresa'));
     }
 
     /**
@@ -87,5 +89,13 @@ class EmpresaController extends Controller
     public function destroy(Empresa $empresa)
     {
         //
+    }
+
+    public function autorizar(Request $request, Empresa $empresa)
+    {
+        $empresa->autorizada = true;
+        $empresa->save();
+
+        return redirect()->route('home');
     }
 }

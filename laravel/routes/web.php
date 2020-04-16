@@ -31,13 +31,21 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('empresa', 'EmpresaController')->except([
         'destroy', 'create', 'store'
     ]);
+
+    Route::post('empresa/{empresa}/autorizar', 'EmpresaController@autorizar')
+        ->name('empresa.autorizar');
+
+    Route::post('empresa/{empresa}/negar', 'EmpresaController@negar')
+        ->name('empresa.negar');
+
     Route::resource('vagas', 'VagaController');
 
     Route::post('vagas/candidatar', 'VagaController@candidatar')
         ->name('vagas.candidatar');
 
-    Route::resource('cliente/{cliente}/experiencia', 'ExperienciaController',['parameters' => [
-    'experiencia' => 'experiencia']]);
+    Route::resource('cliente/{cliente}/experiencia', 'ExperienciaController', ['parameters' => [
+        'experiencia' => 'experiencia'
+    ]]);
 
     Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
         ->name('vagas.cancelarCandidatura');
