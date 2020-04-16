@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Http\Requests\AdminRequest;
@@ -59,7 +58,7 @@ class AdminController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.show', compact('user'));
     }
 
     /**
