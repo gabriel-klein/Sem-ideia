@@ -1,4 +1,4 @@
-@extends('layouts.modal')
+@extends('layouts.components.modal')
 
 @section('titulo', 'Descrição da Vaga')
 

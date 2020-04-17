@@ -1,5 +1,5 @@
 <div class="col s12 m6">
-  <div class="card blue-grey sticky-action" id="{{$id}}">
+  <div class="card sticky-action cartao" id="{{$id}}">
     <div class="card-content white-text">
       <span class="card-title activator changeCardSize" id="{{$id}}">{{ $title }}<i class="material-icons right">more_vert</i></span>
     </div>

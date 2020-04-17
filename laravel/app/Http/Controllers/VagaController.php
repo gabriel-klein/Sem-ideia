@@ -82,14 +82,14 @@ class VagaController extends Controller
                 $vaga->conhecimentos()
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
-        }*/
+        }
         $escolaridade = $request->input('escolaridade');
         $vaga->conhecimentos()->attach(array(
             1 => array('nivel' => $request->input('escolaridade')),
             2 => array('nivel' => $request->input('excel')),
             3 => array('nivel' => $request->input('word')),
             4 => array('nivel' => $request->input('ingles')),
-        ));
+        ));*/
       
         return redirect()->route('vagas.index')
             ->with('sucesso', 'Vaga cadastrada com sucesso!');
@@ -149,13 +149,13 @@ class VagaController extends Controller
                 $vaga->conhecimentos()
                      ->attach($value, ['nivel' => $request[$key."_nivel"]]);
             }
-        }*/
+        }
         $vaga->conhecimentos()->sync(array(
             1 => array('nivel' => $request->input('escolaridade')),
             2 => array('nivel' => $request->input('excel')),
             3 => array('nivel' => $request->input('word')),
             4 => array('nivel' => $request->input('ingles')),
-        ));
+        ));*/
 
         return redirect()->route('vagas.index')
             ->with('sucesso', 'Vaga editada com sucesso!');

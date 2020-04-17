@@ -82,7 +82,7 @@ $(function(){
     var id = this.id;
     var elemento = document.getElementById(id);
 
-    if(elemento.className!='card blue-grey sticky-action large')
+    if(elemento.className!='card sticky-action cartao large')
     elemento.classList.add('large');
 
     else
@@ -90,5 +90,62 @@ $(function(){
     });
 });
 
+$(function () {
+    $('.teste').click(function(){
+    var id = this.id;
+    var positionLeft = getPosicaoElemento(id).left;
+    var positionTop = getPosicaoElemento(id).top;
+    var top = 125 - positionTop;
+    var left = 307 - positionLeft;
+    var element = document.getElementById(id);
+    $(element).animate({
+      left: left+'px',
+      top: top+'px',
+      opacity: '0.0',
+      height: '350px',
+      width: '720px'
+    },250);
+    });
+});
 
+ $(document).ready(function(){
+      $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 400, // Transition in duration
+      outDuration: 110, // Transition out duration
+      startingTop: '10%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      onCloseEnd: function() { // Callback for Modal close
+            var id = this.id;
+            var real_id = id.substring(5, 10);
+            var element = document.getElementById(real_id);
+            $(element).animate({
+              left: '0px',
+              top: '0px',
+              opacity: '1',
+              height: '120px',
+              width: '920px'
+            },250);
+        }
+    }
+  );
+});
+
+function getPosicaoElemento(elemID){
+    var offsetTrail = document.getElementById(elemID);
+    var offsetLeft = 0;
+    var offsetTop = 0;
+    while (offsetTrail) {
+        offsetLeft += offsetTrail.offsetLeft;
+        offsetTop += offsetTrail.offsetTop;
+        offsetTrail = offsetTrail.offsetParent;
+    }
+    if (navigator.userAgent.indexOf("Mac") != -1 && 
+        typeof document.body.leftMargin != "undefined") {
+        offsetLeft += document.body.leftMargin;
+        offsetTop += document.body.topMargin;
+    }
+    return {left:offsetLeft, top:offsetTop};
+}
 require('./remote');
