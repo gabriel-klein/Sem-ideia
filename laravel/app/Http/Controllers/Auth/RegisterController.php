@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use App\User;
 use App\Cliente;
 use App\Empresa;
+use App\Mail\EmpresaNew;
 use App\Rules\ValidaCnpj;
+use App\Mail\EmpresaVerify;
 use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
@@ -203,6 +206,17 @@ class RegisterController extends Controller
                 $request->session()->flash('erro', 'Ops! Ocorreu um erro ao criar sua conta!');
                 return false;
             }
+
+            if ($request->typeUser === "Empresa") {
+                $admins = User::where([
+                    ['userable_id', null],
+                    ['userable_type', null]
+                ])->get();
+
+                Mail::to($user)->send(new EmpresaNew());
+                Mail::to($admins)->send(new EmpresaVerify());
+            }
+
             $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
         }
     }

@@ -11,8 +11,8 @@ class EmpresaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('empresa')->except(['index', 'show', 'autorizar', 'negar']);
-        $this->middleware('admin')->only(['autorizar', 'negar']);
+        $this->middleware('empresa')->except(['index', 'show', 'autorizar', 'destroy']);
+        $this->middleware('admin')->only(['autorizar', 'destroy']);
     }
     /**
      * Display a listing of the resource.
@@ -88,7 +88,12 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+        $user = $empresa->user;
+        $empresa->delete();
+        $user->delete();
+
+        return redirect()->route('home')
+            ->with('sucesso', 'Empresa negada!!');
     }
 
     public function autorizar(Request $request, Empresa $empresa)

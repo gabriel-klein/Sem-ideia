@@ -105,6 +105,16 @@ class AdminController extends Controller
      */
     public function destroy(User $user)
     {
+        $admins = User::where([
+            ['userable_id', null],
+            ['userable_type', null]
+        ])->get();
+
+        if (count($admins) === 1) {
+            return redirect()->route('home')
+                ->with('erro', 'O sistema não pode ficar sem Administradores');
+        }
+
         if ($user->delete()) {
             return redirect()->route('home')
                 ->with('sucesso', 'Usuário removido com Sucesso!!');

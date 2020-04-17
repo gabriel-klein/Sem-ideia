@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('cliente.curriculo.edit');
 
     Route::resource('empresa', 'EmpresaController')->except([
-        'destroy', 'create', 'store'
+        'create', 'store'
     ]);
 
     Route::post('empresa/{empresa}/autorizar', 'EmpresaController@autorizar')
@@ -55,3 +55,7 @@ Route::middleware(['auth'])->group(function () {
     ])->middleware('admin');
 });
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/email', function () {
+    return new App\Mail\EmpresaVerify();
+});

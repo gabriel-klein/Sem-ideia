@@ -6,6 +6,8 @@
         
         @slot('col') col s12 m6 offset-m3 @endslot
 
+        @slot('title') Alterar Senha @endslot
+
         @slot('content')
 
             <form method="POST" action="{{ route('password.update') }}">
@@ -30,7 +32,7 @@
                 
                 @input([
                     'type' => 'password',
-                    'name' => 'password-confirm',
+                    'name' => 'password_confirmation',
                     'icon' => 'lock_outline',
                     'label' => 'Confirme sua Senha'
                 ])
@@ -44,4 +46,3 @@
         @endslot
     @endcomponent
 @endsection
-            
