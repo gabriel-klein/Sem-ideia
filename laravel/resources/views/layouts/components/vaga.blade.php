@@ -1,8 +1,11 @@
 <div class="col s12 m12">
-  <div class="card sticky-action cartao_vaga">
+  <div class="card sticky-action cartao" id="{{$id}}">
     <div class="card-content">
-      <span class="card-title">{{ $title }}<i class="material-icons right">more_vert</i></span>
-      <h6>Quantidade: {{ $quantidade }}</h6>
+      <span class="card-title"><a class="modal-trigger teste" href="#modal{{$id}}" id="{{$id}}">{{ $title }}<i class="material-icons right">more_vert</i></a></span>
+      <h6>Quantidade de vagas: {{ $quantidade }}</h6>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text"><i class="material-icons right">close</i></span>
     </div>
     <div class="card-action">
       <div class="right">
@@ -15,4 +18,13 @@
     </div>
   </div>
 </div>
-      
+
+<div id="modal{{$id}}" class="modal">
+    <div class="modal-content">
+      <h4>{{$title}}</h4>
+      <p>{{$descricao}}</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close modal-action left" id="{{$id}}">Agree</a>
+    </div>
+  </div>

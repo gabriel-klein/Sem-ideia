@@ -78,6 +78,10 @@
   color:#9ea33c;
 }
 
+.destacado:hover {
+  cursor: pointer;
+}
+
 .material-tooltip {
   padding: 10px 8px;
   font-size: 1rem;
@@ -99,13 +103,14 @@
   background-color: #f1f2b6;
 }
 
-.cartao_vaga{
-  background-color: #e8f0fc;
+.cartao{
+  background-color: #70869c;
+  color:#fff;
 }
 
 .botao {
-  background-color: #e8f0fc;
-  color: #000 !important;
+  background-color: #70869c;
+  color: #fff !important;
   -webkit-transition: color 0.5s ease !important;
   transition: color 0.5s ease !important;
   text-transform: uppercase;
@@ -114,18 +119,18 @@
 
 .botao:hover {
   cursor: pointer;
-  color: #999797 !important;
+  color: #a8adb3 !important;
 }
 
-.botao:focus{
-  background-color: #e8f0fc;
+.botao:focus {
+  background-color: #70869c;
 }
 
 .navbar{
-  background-color: #f7faf8;
-  color:#fff !important;
+  background-color: #f7f7f7;
 }
 
-nav a {
+nav a
+{
   color:#000 !important;
 }

@@ -31,9 +31,9 @@
                             @csrf
                             @method('DELETE')
 
-                            <a class="waves-effect waves-light btn green" href="{{ route('experiencia.edit', [$cliente->id, $experiencia->id]) }}">Editar</a>
+                            <a class="botao" href="{{ route('experiencia.edit', [$cliente->id, $experiencia->id]) }}">Editar</a>
 
-                            <button type="submit" class="waves-effect waves-light btn red">
+                            <button type="submit" class="botao">
                               {{ __('Excluir') }}
                             </button>
                         </form>
