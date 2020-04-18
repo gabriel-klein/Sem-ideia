@@ -51,8 +51,8 @@
                     @include('cliente.form')
                 </div>
                 <div class="row" v-if="typeUser == 'Empresa' || typeUser == 'Cliente'">
-                    <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
-                        {{ __('Register') }}
+                    <button type="submit" class="col s12 btn waves-effect ">
+                        {{ __('Registrar') }}
                     </button>
                 </div>
             </form>

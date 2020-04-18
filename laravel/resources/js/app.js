@@ -91,45 +91,52 @@ $(function(){
 });
 
 $(function () {
-    $('.teste').click(function(){
+  $('.teste').click(function () {
     var id = this.id;
+    var janelaTop = $(window).scrollTop();
     var positionLeft = getPosicaoElemento(id).left;
     var positionTop = getPosicaoElemento(id).top;
-    var top = 125 - positionTop;
+    var top = (janelaTop+125) - positionTop;
     var left = 307 - positionLeft;
     var element = document.getElementById(id);
+    var height = $(element).height();
+    var width = $(element).width();
     $(element).animate({
-      left: left+'px',
-      top: top+'px',
+      left: left + 'px',
+      top: top + 'px',
       opacity: '0.0',
       height: '350px',
       width: '720px'
-    },250);
-    });
-});
+    }, 250);
 
- $(document).ready(function(){
-      $('.modal').modal({
-      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      inDuration: 400, // Transition in duration
-      outDuration: 110, // Transition out duration
-      startingTop: '10%', // Starting top style attribute
-      endingTop: '10%', // Ending top style attribute
-      onCloseEnd: function() { // Callback for Modal close
-            var id = this.id;
-            var real_id = id.substring(5, 10);
-            var element = document.getElementById(real_id);
-            $(element).animate({
-              left: '0px',
-              top: '0px',
-              opacity: '1',
-              height: '120px',
-              width: '920px'
-            },250);
-        }
+
+  $('.modal').modal({
+    dismissible: true,
+    // Modal can be dismissed by clicking outside of the modal
+    opacity: .5,
+    // Opacity of modal background
+    inDuration: 400,
+    // Transition in duration
+    outDuration: 110,
+    // Transition out duration
+    startingTop: '10%',
+    // Starting top style attribute
+    endingTop: '10%',
+    // Ending top style attribute
+    onCloseEnd: function onCloseEnd() {
+      // Callback for Modal close
+      $(element).animate({
+        left: '0px',
+        top: '0px',
+        opacity: '1',
+        height: height +'px',
+        width: width +'px'
+      }, 250);
     }
-  );
+  });
+
+
+  });
 });
 
 function getPosicaoElemento(elemID){

@@ -1,8 +1,8 @@
 <div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper grey lighten-4">
+    <div class="nav-wrapper">
       <a class="brand-logo" href="{{ url('/') }}">
-        <img src="{{ asset('storage/Logo_Comunitario.png') }}" width="120px" height="65px">
+        <img src="{{ asset('storage/Logo_Banco3.png') }}" width="90px" height="80px">
       </a>
       <a data-target="mobile-demo" class="sidenav-trigger">
           <i class="material-icons">menu</i>

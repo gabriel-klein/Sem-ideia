@@ -1,13 +1,13 @@
 <div class="col s12 m12">
-  <div class="card sticky-action cartao" id="{{$id}}">
-    <div class="card-content">
+  <div class="card sticky-action" id="{{$id}}">
+    <div class="card-content grey lighten-4">
       <span class="card-title"><a class="modal-trigger teste" href="#modal{{$id}}" id="{{$id}}">{{ $title }}<i class="material-icons right">more_vert</i></a></span>
       <h6>Quantidade de vagas: {{ $quantidade }}</h6>
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text"><i class="material-icons right">close</i></span>
     </div>
-    <div class="card-action">
+    <div class="card-action cartao_footer">
       <div class="right">
         19/08/2019
       </div>
