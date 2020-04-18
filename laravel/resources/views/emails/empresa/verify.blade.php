@@ -8,5 +8,6 @@
 		@component('mail::button', ['url' => route('home'), 'color' => 'primary'])
 				Verificar
 		@endcomponent
+		@include('emails.assinatura')
 	</div>
 @endcomponent

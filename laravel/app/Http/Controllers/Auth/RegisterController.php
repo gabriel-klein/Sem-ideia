@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\RedirectsUsers;
 use App\User;
 use App\Cliente;
 use App\Empresa;
+use App\Jobs\SendEmail;
 use App\Mail\EmpresaNew;
 use App\Rules\ValidaCnpj;
 use App\Mail\EmpresaVerify;
@@ -208,13 +209,8 @@ class RegisterController extends Controller
             }
 
             if ($request->typeUser === "Empresa") {
-                $admins = User::where([
-                    ['userable_id', null],
-                    ['userable_type', null]
-                ])->get();
-
-                Mail::to($user)->send(new EmpresaNew());
-                Mail::to($admins)->send(new EmpresaVerify());
+                SendEMail::dispatch(new EmpresaNew($user));
+                SendEmail::dispatch(new EmpresaVerify($user));
             }
 
             $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
