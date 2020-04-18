@@ -9465,13 +9465,21 @@ input[type=range]::-ms-thumb {
   background-color: #f1f2b6;
 }
 
-.cartao {
-  background-color: #70869c;
+.cartao_footer {
+  background-color: #a0dbca !important;
   color: #fff;
 }
 
+.card {
+  border-radius: 30px;
+}
+
+.card a {
+  color: #000;
+}
+
 .botao {
-  background-color: #70869c;
+  background-color: #a0dbca;
   color: #fff !important;
   -webkit-transition: color 0.5s ease !important;
   transition: color 0.5s ease !important;
@@ -9485,14 +9493,26 @@ input[type=range]::-ms-thumb {
 }
 
 .botao:focus {
-  background-color: #70869c;
+  background-color: #a0dbca;
 }
 
-.navbar {
-  background-color: #f7f7f7;
+.nav-wrapper {
+  background-color: #6bbfa9 !important;
 }
 
 nav a {
-  color: #000 !important;
+  color: #fff !important;
+}
+
+body {
+  background-color: #f2f5f4;
+}
+
+#navbarDropdown {
+  background-color: #6bbfa9;
+}
+
+.dropdown-content li:hover {
+  background-color: #6bbfa9;
 }
 

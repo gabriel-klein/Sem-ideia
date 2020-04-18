@@ -19,9 +19,10 @@
                 @include('cliente.curriculo.form')
                 
                 <div class="row">
-                    <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
-                        {{ __('Register') }}
+                    <button type="submit" class="col s12 btn waves-effect ">
+                        {{ __('Registrar') }}
                     </button>
+                </div>
 
                 </div>
             </form>
