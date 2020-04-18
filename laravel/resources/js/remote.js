@@ -1,6 +1,6 @@
 $(document).on('ajaxSuccess', function(e, xhr){
   if(!$('#modal').length){
-      $('body').append($('<div class="modal" id="modal"></div>'));
+      $('body').append($('<div id="modal"></div>'));
   }
  $('#modal').html(xhr.responseText);
 });

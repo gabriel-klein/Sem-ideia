@@ -8,7 +8,8 @@
 	<p>
 		Nós estaremos verificando os dados cadastrados e, em breve, você receberá um email com o resultado.
 	</p>
-	<p>Até breve!</p>
-	@include('emails.assinatura')
+	@component('emails.assinatura')
+		Até breve!
+	@endcomponent
 </div>
 @endcomponent

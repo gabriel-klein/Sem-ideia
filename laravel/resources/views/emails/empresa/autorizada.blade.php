@@ -8,7 +8,8 @@
 	<p>
 		Agora é possível entrar no Sistema.
 	</p>
-	<p>Bem Vindo!</p>
-	@include('emails.assinatura')
+	@component('emails.assinatura')
+		Bem Vindo!
+	@endcomponent
 </div>
 @endcomponent

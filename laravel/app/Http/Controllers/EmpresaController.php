@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use App\Empresa;
 use App\Jobs\SendEmail;
+use App\Mail\EmpresaNegada;
 use App\Mail\EmpresaAutorizada;
 use App\Http\Requests\EmpresaRequest;
-use App\Mail\EmpresaNegada;
 
 class EmpresaController extends Controller
 {
@@ -92,7 +92,8 @@ class EmpresaController extends Controller
     public function destroy(Empresa $empresa)
     {
         $user = $empresa->user;
-        SendEmail::dispatch(new EmpresaNegada($user->email));
+        SendEmail::dispatchNow(new EmpresaNegada($user));
+
         $empresa->delete();
         $user->delete();
 

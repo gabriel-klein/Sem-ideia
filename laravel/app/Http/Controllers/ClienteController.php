@@ -99,7 +99,7 @@ class ClienteController extends Controller
     {
         $user = $cliente->user;
 
-        $conhecimentos = Conhecimento::all();
+        $conhecimentos = $this->conhecimentos;
 
         $escolaridades = [
             "Superior Completo", "Superior Incompleto", "Médio Completo",
@@ -125,6 +125,5 @@ class ClienteController extends Controller
 
         return redirect()->route('experiencia.index', $cliente->id)
             ->with('sucesso', 'Conhecimentos cadastrados com sucesso!!');
-
     }
 }

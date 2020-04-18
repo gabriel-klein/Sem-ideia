@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Auth;
 use App\Vaga;
@@ -72,25 +73,17 @@ class VagaController extends Controller
             return redirect()->route('vagas.index')
                 ->with('erro', 'Erro ao cadastrar a vaga!');
         }
-        /*$vaga->conhecimentos()
-             ->attach($request->escolaridade, ['nivel' => $request->escolaridade_nivel]);
-        $conhecimentos = Arr::where($request->all(), function ($value, $key){
-            return Str::contains($key, 'con');
-        });
-        foreach ($conhecimentos as $key => $value) {
-            if(!Str::contains($key, 'nivel')){
-                $vaga->conhecimentos()
-                     ->attach($value, ['nivel' => $request[$key."_nivel"]]);
+
+        $conhecimentos = [];
+
+        foreach ($request->all() as $parametro => $valor) {
+            if (Str::contains($parametro, "Conhecimento") && $valor != "") {
+                $conhecimentos[Str::after($parametro, "Conhecimento_")] = ["nivel" => $valor];
             }
         }
-        $escolaridade = $request->input('escolaridade');
-        $vaga->conhecimentos()->attach(array(
-            1 => array('nivel' => $request->input('escolaridade')),
-            2 => array('nivel' => $request->input('excel')),
-            3 => array('nivel' => $request->input('word')),
-            4 => array('nivel' => $request->input('ingles')),
-        ));*/
-      
+
+        $vaga->conhecimentos()->sync($conhecimentos);
+
         return redirect()->route('vagas.index')
             ->with('sucesso', 'Vaga cadastrada com sucesso!');
     }
@@ -114,14 +107,20 @@ class VagaController extends Controller
      */
     public function edit(Request $request, Vaga $vaga)
     {
-        $funcoes = ["Operador(a) de Caixa","Coordenador(a)/Gerente de Loja",
-                    "Vigia/Prevenção de perdas","Estoquista","Babá/Cuidador","Estimulador",
-                    "Cozinheiro","Garçom/Garçonete","Atendente de Telemarketing","Frentista"
-                  ];
-        $escolaridades = ["Superior Completo","Superior Incompleto","Médio Completo",
-                          "Médio Incompleto","Fundamental Completo","Fundamental Incompleto"
-                         ]; 
-        return view('vagas.edit', compact(['vaga','funcoes','escolaridades']));
+        $conhecimentos = $this->conhecimentos;
+
+        $funcoes = [
+            "Operador(a) de Caixa", "Coordenador(a)/Gerente de Loja",
+            "Vigia/Prevenção de perdas", "Estoquista", "Babá/Cuidador", "Estimulador",
+            "Cozinheiro", "Garçom/Garçonete", "Atendente de Telemarketing", "Frentista"
+        ];
+
+        $escolaridades = [
+            "Superior Completo", "Superior Incompleto", "Médio Completo",
+            "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
+        ];
+
+        return view('vagas.edit', compact(['vaga', 'funcoes', 'escolaridades', 'conhecimentos']));
     }
 
     /**
@@ -137,25 +136,16 @@ class VagaController extends Controller
             return redirect()->route('vagas.index')
                 ->with('erro', 'Erro ao atualizar a vaga!');
         }
-        /*$vaga->conhecimentos()->detach();
-        $vaga->conhecimentos()
-             ->attach($request->escolaridade, ['nivel' => $request->escolaridade_nivel]);
 
-        $conhecimentos = Arr::where($request->all(), function ($value, $key){
-            return Str::contains($key, 'con');
-        });
-        foreach ($conhecimentos as $key => $value) {
-            if(!Str::contains($key, 'nivel')){
-                $vaga->conhecimentos()
-                     ->attach($value, ['nivel' => $request[$key."_nivel"]]);
+        $conhecimentos = [];
+
+        foreach ($request->all() as $parametro => $valor) {
+            if (Str::contains($parametro, "Conhecimento") && $valor != "") {
+                $conhecimentos[Str::after($parametro, "Conhecimento_")] = ["nivel" => $valor];
             }
         }
-        $vaga->conhecimentos()->sync(array(
-            1 => array('nivel' => $request->input('escolaridade')),
-            2 => array('nivel' => $request->input('excel')),
-            3 => array('nivel' => $request->input('word')),
-            4 => array('nivel' => $request->input('ingles')),
-        ));*/
+
+        $vaga->conhecimentos()->sync($conhecimentos);
 
         return redirect()->route('vagas.index')
             ->with('sucesso', 'Vaga editada com sucesso!');
@@ -180,12 +170,11 @@ class VagaController extends Controller
             ->with('sucesso', 'Seus dados aparecerão na vaga! Boa Sorte!');
     }
 
-    public function destroy (Vaga $vaga)
+    public function destroy(Vaga $vaga)
     {
-        if(!$vaga->delete())
-        {
+        if (!$vaga->delete()) {
             return redirect()->route('vagas.index')
-            ->with('erro', 'Erro ao excluir a Vaga');
+                ->with('erro', 'Erro ao excluir a Vaga');
         }
         return redirect()->route('vagas.index')
             ->with('sucesso', 'Vaga excluida com sucesso!');

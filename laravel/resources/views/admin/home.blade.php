@@ -20,7 +20,7 @@
         <div class="collection-header"><h4>Administradores</h4></div>
         @foreach ($admins as $admin)
           <a href="{{ route('admin.show', $admin->id) }}" class="collection-item black-text" data-remote="true">
-            {{ $admin->name === Auth::user()->name ? 'Você' : $admin->name }}
+            {{ $admin->email === Auth::user()->email ? 'Você' : $admin->name }}
             <i class="material-icons secondary-content">chevron_right</i>
           </a>
 
