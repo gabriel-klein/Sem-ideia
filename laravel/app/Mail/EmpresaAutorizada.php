@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\User;
 
-class EmpresaNew extends Mailable
+class EmpresaAutorizada extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,8 +30,8 @@ class EmpresaNew extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.empresa.new')
+        return $this->markdown('emails.empresa.autorizada')
             ->to($this->user)
-            ->subject('Cadastro ' . config('app.name'));
+            ->subject('Cadastro Autorizado');
     }
 }

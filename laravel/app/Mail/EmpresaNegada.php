@@ -7,20 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\User;
 
-class EmpresaNew extends Mailable
+class EmpresaNegada extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user;
+    private $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($email)
     {
-        $this->user = $user;
+        $this->email = $email;
     }
 
     /**
@@ -30,8 +30,8 @@ class EmpresaNew extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.empresa.new')
-            ->to($this->user)
-            ->subject('Cadastro ' . config('app.name'));
+        $this->markdown('emails.empresa.negada')
+            ->to($this->email)
+            ->subject('Cadastro Negado');
     }
 }
