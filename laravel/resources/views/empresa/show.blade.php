@@ -1,29 +1,30 @@
-<div class="modal-content">
-	<h4>{{ $empresa->user->name }}</h4>
-	<p>
-		Razão Social: {{ $empresa->razao_social }} <br>
-		CNPJ: {{ $empresa->cnpj }}
-	</p>
-</div>
-<div class="modal-footer z-depth-1">
-	<form action="{{ route('empresa.autorizar', $empresa->id) }}" method="POST" class="right">
+@extends('layouts.modal')
+
+@section('title', $empresa->user->name)
+
+@section('content')
+	<h6>Razão Social</h6>
+	<p>{{ $empresa->razao_social }}</p>
+	<h6>CNPJ</h6>
+	<p>{{ $empresa->cnpj }}</p>
+	<h6>Email</h6>
+	<p>{{ $empresa->user->email }}</p>
+@endsection
+
+@section('actions')
+	<form action="{{ route('empresa.autorizar', $empresa->id) }}" method="POST" class="left" style="margin-right: 0.5em">
 		@csrf
-		<button type="submit" class="modal-close waves-effect waves-green btn-flat">
+		<button type="submit" class="btn">
 			Aprovar
 		</button>
 	</form>
+
 	<form action="{{ route('empresa.destroy', $empresa->id) }}" method="POST">
 		@csrf
 		@method('DELETE')
-		<button type="submit" class="modal-close waves-effect waves-green btn-flat right">
+		<button type="submit" class="btn">
 			Negar
 		</button>
 	</form>
-</div>
 
-<script type="text/javascript">
-	$(document).ready(() => {
-		$('#modal').modal();
-		$('#modal').modal('open');
-	});
-</script>
+@endsection
