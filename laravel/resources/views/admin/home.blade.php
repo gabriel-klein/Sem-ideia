@@ -1,6 +1,6 @@
 <div class="">
   <div class="row">
-    <div class="col s10 offset-s1 m5 offset-m1">
+    <div class="col s10 offset-s1 m8 offset-m2 l5 offset-l1">
       <div class="collection with-header">
         <div class="collection-header"><h4>Aprovações Pendentes</h4></div>
         @forelse ($empresas as $empresa)
@@ -29,7 +29,7 @@
         @endforelse
       </div>
     </div>
-    <div class="col s10 offset-s1 m5">
+    <div class="col s10 offset-s1 m8 offset-m2 l5">
       <div class="collection with-header">
         <div class="collection-header"><h4>Administradores</h4></div>
         @foreach ($admins as $admin)
