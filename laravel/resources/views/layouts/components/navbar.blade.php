@@ -1,7 +1,7 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a class="brand-logo" href="{{ url('/') }}">
+      <a class="brand-logo" href="{{ url('/home') }}">
         <img src="{{ asset('storage/Logo_Banco3.png') }}" width="90px" height="80px">
       </a>
       <a data-target="mobile-demo" class="sidenav-trigger">
