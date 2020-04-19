@@ -11,16 +11,16 @@ class EmpresaNegada extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $email;
+    private $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct(User $user)
     {
-        $this->email = $email;
+        $this->user = $user;
     }
 
     /**
@@ -31,7 +31,7 @@ class EmpresaNegada extends Mailable
     public function build()
     {
         $this->markdown('emails.empresa.negada')
-            ->to($this->email)
+            ->to($this->user)
             ->subject('Cadastro Negado');
     }
 }

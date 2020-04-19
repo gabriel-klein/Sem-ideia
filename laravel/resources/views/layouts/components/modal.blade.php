@@ -1,18 +1,21 @@
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">@yield('titulo')</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        @yield('conteudo')
-      </div>
-      <div class="modal-footer">
-        @yield('footer')
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-  
+<div class="row" id="modalRow">
+	<div class="col s12 m8 offset-m2 l6 offset-l3">
+		<div class="card">
+			<div class="card-content">
+				<span class="card-title center-align">@yield('title')</span>
+				@yield('content')
+			</div>
+			<div class="card-action">
+				@yield('actions')
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(window).click(function(event) {
+		if (event.target.id == 'modalRow' || event.target.id == 'modal') {
+			$('#modal').remove();
+		}
+	});
+</script>
