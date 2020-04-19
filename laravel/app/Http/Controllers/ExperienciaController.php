@@ -57,9 +57,9 @@ class ExperienciaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cliente $cliente, Experiencia $experiencia)
     {
-        //
+        return view('cliente.experiencia.show', compact('experiencia'));
     }
 
     /**

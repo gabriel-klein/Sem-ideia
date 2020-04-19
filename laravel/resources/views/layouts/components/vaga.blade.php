@@ -1,7 +1,7 @@
-<div class="col s12 m12">
+<div class="col s12 m6">
   <div class="card sticky-action" id="{{$id}}">
     <div class="card-content grey lighten-4">
-      <span class="card-title"><a class="modal-trigger teste" href="#modal{{$id}}" id="{{$id}}">{{ $title }}<i class="material-icons right">more_vert</i></a></span>
+      <span class="card-title"><a class="modal-trigger animate" href="#modal{{$id}}" id="{{$id}}">{{ $title }}<i class="material-icons right">more_vert</i></a></span>
       <h6>Quantidade de vagas: {{ $quantidade }}</h6>
     </div>
     <div class="card-reveal">

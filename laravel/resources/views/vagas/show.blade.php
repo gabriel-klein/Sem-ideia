@@ -31,10 +31,17 @@
 @endsection
 
 @section('actions')
-	@typeUser('Empresa') 
-		<a class="btn waves-green"  href="{{ route('vagas.edit', $vaga->id) }}">
-			Editar
-		</a>
+	@typeUser('Empresa')
+	<form action="{{ route('vagas.destroy', $vaga->id) }}" method="POST">
+    @csrf
+    @method('DELETE')
+
+    <a class="btn waves-green white-text"  href="{{ route('vagas.edit', $vaga->id) }}">
+			Editar</a>
+	<button type="submit" class="btn waves-effect red">
+        {{ __('Excluir') }}
+    </button>
+    </form> 
 	@elsetypeUser('Cliente') 
 		@if (!$vaga->clientes()->find(Auth::user()->userable->id)) 
 			<form action="{{route('vagas.candidatar')}}" method="post">

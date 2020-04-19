@@ -9491,10 +9491,6 @@ input[type=range]::-ms-thumb {
   color: #fff;
 }
 
-.card {
-  border-radius: 30px;
-}
-
 .card a {
   color: #000;
 }
@@ -9535,5 +9531,14 @@ body {
 
 .dropdown-content li:hover {
   background-color: #6bbfa9;
+}
+
+.modal .modal-footer {
+  border-radius: 0 0 2px 2px;
+  background-color: #fafafa;
+  padding: 15px 10px;
+  height: 56px;
+  width: 100%;
+  text-align: left;
 }
 

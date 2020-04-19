@@ -3,7 +3,7 @@
 	@if($vaga->status === 'Desativada')
 		<i class="material-icons circle red darken-4">work_off</i>
 	@else
-		<i class="material-icons circle blue">work</i>
+		<i class="material-icons circle green lighten-2">work</i>
 	@endif
 
 	<span class="title">{{ $vaga->funcao }}</span>

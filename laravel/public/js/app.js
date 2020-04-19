@@ -32175,23 +32175,23 @@ $(function () {
   });
 });
 $(function () {
-  $('.teste').click(function () {
+  $('.animate').click(function () {
     var id = this.id;
+    var janelaAltura = $(window).height() / 4;
+    var janelaCompri = $(window).width() / 4;
     var janelaTop = $(window).scrollTop();
     var positionLeft = getPosicaoElemento(id).left;
     var positionTop = getPosicaoElemento(id).top;
-    var top = janelaTop + 125 - positionTop;
-    var left = 307 - positionLeft;
+    var top = janelaTop + janelaAltura - positionTop;
+    var left = janelaCompri - positionLeft;
     var element = document.getElementById(id);
     var height = $(element).height();
     var width = $(element).width();
     $(element).animate({
       left: left + 'px',
       top: top + 'px',
-      opacity: '0.0',
-      height: '350px',
-      width: '720px'
-    }, 250);
+      opacity: '0.0'
+    }, 120);
     $('.modal').modal({
       dismissible: true,
       // Modal can be dismissed by clicking outside of the modal
@@ -32213,7 +32213,7 @@ $(function () {
           opacity: '1',
           height: height + 'px',
           width: width + 'px'
-        }, 250);
+        }, 120);
       }
     });
   });
