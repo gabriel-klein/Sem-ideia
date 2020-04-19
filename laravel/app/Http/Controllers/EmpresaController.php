@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Empresa;
+use App\Http\Requests\EmpresaRequest;
+use App\Jobs\SendEmail;
+use App\Mail\EmpresaAutorizada;
+use App\Mail\EmpresaNegada;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
-use App\Empresa;
-use App\Jobs\SendEmail;
-use App\Mail\EmpresaNegada;
-use App\Mail\EmpresaAutorizada;
-use App\Http\Requests\EmpresaRequest;
 
 class EmpresaController extends Controller
 {
@@ -107,6 +107,7 @@ class EmpresaController extends Controller
         $empresa->save();
         SendEmail::dispatch(new EmpresaAutorizada($empresa->user));
 
-        return redirect()->route('home');
+        return redirect()->route('home')
+            ->with('sucesso', 'Empresa autorizada!!');
     }
 }
