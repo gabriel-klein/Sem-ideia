@@ -52,20 +52,6 @@ class HomeController extends Controller
                 ->take(10)
                 ->get();
 
-            foreach ($vagas as $vaga) {
-                $diff = $now->diff($vaga->created_at);
-
-                if ($diff->d) {
-                    $vaga->tempo = "Há $diff->d " . ($diff->d === 1 ? 'dia' : 'dias');
-                } elseif ($diff->h) {
-                    $vaga->tempo = "Há $diff->h " . ($diff->h === 1 ? 'hora' : 'horas');
-                } elseif ($diff->i) {
-                    $vaga->tempo = "Há $diff->i " . ($diff->i === 1 ? 'minuto' : 'minutos');
-                } else {
-                    $vaga->tempo = "Há $diff->s " . ($diff->s === 1 ? 'segundo' : 'segundos');
-                }
-            }
-
             $data = array('vagas');
         }
 

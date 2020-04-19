@@ -1,1 +1,1 @@
-@extends('layouts.modal')
+@extends('layouts.components.modal')

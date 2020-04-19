@@ -1,20 +1,19 @@
-<div class="modal-content">
-	<h4>{{ $user->name }}</h4>
+@extends('layouts.modal')
+
+@section('title', 'Detalhes')
+
+@section('content')
+	<h6>Nome</h6>
+	<p>{{ $user->name }}</p>
 	<p>Email: {{ $user->email }} </p>
-</div>
-<div class="modal-footer z-depth-1">
-	<form action="{{ route('admin.destroy', $user->id) }}" method="POST" class="right">
+@endsection
+
+@section('actions')
+	<form action="{{ route('admin.destroy', $user->id) }}" method="POST">
 		@csrf
 		@method('DELETE')
-		<button type="submit" class="modal-close waves-effect waves-green btn-flat">
+		<button type="submit" class="waves-effect waves-green btn">
 			Deletar
 		</button>
 	</form>
-</div>
-
-<script type="text/javascript">
-	$(document).ready(() => {
-		$('#modal').modal();
-		$('#modal').modal('open');
-	});
-</script>
+@endsection

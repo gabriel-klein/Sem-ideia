@@ -1,4 +1,4 @@
-@extends('layouts.components.modal')
+@extends('layouts.modal')
 
 @section('title', $vaga->funcao)
 
@@ -20,7 +20,7 @@
 	@endif
 
 	@typeUser('Empresa') 
-		<h5>Candidatos</h5>
+		<h6>Candidatos</h6>
 		@forelse ($vaga->clientes as $cliente)
 			<p><a href="{{ route('cliente.show', $cliente->id) }}"  data-remote="true">{{$cliente->user->name}}</a></p>
 		@empty
