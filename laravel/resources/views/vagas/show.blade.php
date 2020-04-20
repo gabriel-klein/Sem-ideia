@@ -20,14 +20,21 @@
 	@endif
 
 	@typeUser('Empresa') 
-		<h6>Candidatos</h6>
-		@forelse ($vaga->clientes as $cliente)
-			<p><a href="{{ route('cliente.show', $cliente->id) }}"  data-remote="true">{{$cliente->user->name}}</a></p>
-		@empty
-			<p>Não há pessoas interessadas a vaga</p>
-		@endforelse
+	<ul class="collapsible" style="margin-top: 2em">
+		<li>
+			<div class="collapsible-header"><i class="material-icons">account_box</i>Candidatos</div>
+			<div class="collapsible-body">
+				<div class="collection">
+					@forelse ($vaga->clientes as $cliente)
+						@include('layouts.components.cliente', ['cliente' => $cliente])
+					@empty
+						<div class="collection-item">Não há pessoas interessadas a vaga</div>
+					@endforelse
+				</div>
+			</div>
+		</li>
+	</ul>
 	@endtypeUser
-
 @endsection
 
 @section('actions')
@@ -60,3 +67,14 @@
 		@endif 
 	@endtypeUser
 @endsection
+<script>
+	$(document).ready(function(){
+		$('.collapsible').collapsible({
+			onOpenEnd:  () => {
+				$('.collapsible-body').css("padding", "0px");
+			},
+			inDuration: 0,
+			outDuration: 150
+		});
+	});
+</script>

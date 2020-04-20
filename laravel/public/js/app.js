@@ -32143,6 +32143,7 @@ $(document).ready(function () {
   $('.tabs').tabs().click(function () {
     data.typeUser = $('.tab > a.active').text();
   });
+  $('.collapsible').collapsible();
   $('select').formSelect();
   $('.datepicker').datepicker({
     i18n: {
@@ -32323,8 +32324,8 @@ $(document).on('ajaxSuccess', function (e, xhr) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Sem-ideia\laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Sem-ideia\laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/joao/Projeto/Sem-ideia/laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/joao/Projeto/Sem-ideia/laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

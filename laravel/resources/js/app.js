@@ -38,7 +38,7 @@ $("#app").bind("DOMSubtreeModified", function() {
 
 $('form').submit(() => {
     $('#loader').removeClass('hide');
-})
+});
 
 $(document).ready(() => {
     $('#loader').addClass('hide');
@@ -50,7 +50,9 @@ $(document).ready(() => {
     $('.tabs').tabs().click(() => {
         data.typeUser = $('.tab > a.active').text();
     });
-    
+
+    $('.collapsible').collapsible();
+
     $('select').formSelect();
 
     $('.datepicker').datepicker({
