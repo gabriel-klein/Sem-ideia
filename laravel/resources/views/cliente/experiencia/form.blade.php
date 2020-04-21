@@ -18,7 +18,7 @@
     'icon' => 'today',
     'data' => @$experiencia->data_inicio,
     'label' => 'Data Inicio',
-    'class' => 'datepicker'
+    'class' => 'datepicker dataMask'
 ])
 
 @input([
@@ -26,7 +26,7 @@
     'icon' => 'today',
     'data' => @$experiencia->data_fim,
     'label' => 'Data Fim',
-    'class' => 'datepicker'
+    'class' => 'datepicker dataMask'
 ])
 
 @radio([

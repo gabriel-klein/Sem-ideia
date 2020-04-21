@@ -28,10 +28,10 @@ class ExperienciaRequest extends FormRequest
         return [
             'local'       => ['required', 'string', 'max:255'],
             'descricao'   => ['required', 'min:15', 'max:255'],
-            'data_inicio' => ['required', 'date_format:Y-m-d'],
+            'data_inicio' => ['required','date_format:"d/m/Y"'],
             'data_fim'    => [
                 'required',
-                'date_format:Y-m-d',
+                'date_format:"d/m/Y"',
                 'after:data_inicio',
                 new ValidaData()
             ],

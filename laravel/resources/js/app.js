@@ -34,6 +34,7 @@ const app = new Vue({
 $("#app").bind("DOMSubtreeModified", function() {
     $(".cnpjMask").mask("00.000.000/0000-00");
     $(".telMask").mask("(00) 0000-00000");
+    $(".dataMask").mask("00/00/0000");
 });
 
 $('form').submit(() => {
@@ -45,7 +46,9 @@ $(document).ready(() => {
     
     $('.sidenav').sidenav();
     
-    $(".dropdown-trigger").dropdown();
+     $('.dropdown-trigger').dropdown({
+        coverTrigger: false
+    });
     
     $('.tabs').tabs().click(() => {
         data.typeUser = $('.tab > a.active').text();
@@ -71,7 +74,7 @@ $(document).ready(() => {
         labelMonthSelect: 'Selecione um mês',
         labelYearSelect: 'Selecione um ano',
         },
-        format: 'yyyy-mm-dd',
+        format: 'dd/mm/yyyy',
         container: 'body',
         minDate: new Date('1950-01-01'),
         maxDate: new Date()

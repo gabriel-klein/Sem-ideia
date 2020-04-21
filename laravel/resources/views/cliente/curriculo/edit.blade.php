@@ -9,7 +9,7 @@
         @endslot
    
         @slot('title')
-            Currículo
+            Educação
         @endslot
         
         @slot('content')

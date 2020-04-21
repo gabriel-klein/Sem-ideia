@@ -42,8 +42,11 @@
                 </a>
               </li>
             @elsetypeUser("Cliente")
-              <li>
-                <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+              <li class="dropdown-trigger" data-target="navbarDropdown2">
+                <a>
+                  {{ 'Currículo' }}
+                  <i class="material-icons right">arrow_drop_down</i> 
+                </a>
               </li>
             @endtypeUser
           @endtypeUser
@@ -70,7 +73,10 @@
       </li>
       @typeUser("Cliente")
         <li>
-          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Currículo') }}</a>
+          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Conhecimentos') }}</a>
+        </li>
+        <li>
+          <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
         </li>
         <li>
           <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}">
@@ -111,6 +117,19 @@
   @endguest
 </ul>
 
+<ul class="dropdown-content" id="navbarDropdown2">
+  @auth
+    @typeUser("Cliente")
+    <li>
+      <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
+    </li>
+     <li class="divider"></li>
+    <li>
+      <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
+    </li>
+    @endtypeUser
+  @endauth
+</ul>
 <ul class="dropdown-content" id="navbarDropdown">
   @auth
     @typeUser("Cliente")

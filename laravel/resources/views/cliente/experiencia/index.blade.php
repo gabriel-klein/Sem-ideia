@@ -43,6 +43,9 @@
                 <p>Não há experiencias cadastradas ainda</p>
             @endforelse
         </div>
+        <div class="row justify-content center">
+                {{ $experiencias->links() }}
+        </div>
         <div class="fixed-action-btn">
             <a class="btn-floating btn-large blue pulse" href="{{route('experiencia.create', $cliente->id)}}">
                 <i class="large material-icons">add</i>
