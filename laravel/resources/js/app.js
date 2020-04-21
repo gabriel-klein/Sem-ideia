@@ -17,7 +17,7 @@ var data = {
 }
 
 const app = new Vue({
-    el: '#app',
+    el: '#cardForm',
     data,
     created: () => {
         data.typeUser = $('.tab > a.active').text();

@@ -15,7 +15,7 @@ class ClienteController extends Controller
     public function __construct()
     {
         $this->middleware('cliente')->except(['index', 'show']);
-        $this->conhecimentos = Conhecimento::all();
+        $this->conhecimentos = Conhecimento::all()->sortBy('nome');
     }
 
     /**
@@ -25,8 +25,20 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate(8);
+        $clientes = Cliente::paginate(10);
+
         return view('cliente.index', compact('clientes'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Cliente $cliente
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Cliente $cliente)
+    {
+        return view('cliente.show', compact('cliente'));
     }
 
     /**
@@ -38,9 +50,8 @@ class ClienteController extends Controller
     public function edit(Cliente $cliente)
     {
         $user = $cliente->user;
-
         $bairros = [
-            "badu", "Baldeador", "Barreto", "Boa Viagem", "Cachoeiras", "Cafubá",
+            "Badu", "Baldeador", "Barreto", "Boa Viagem", "Cachoeiras", "Cafubá",
             "Camboinhas", "Cantagalo", "Cantareira", "Caramujo", "Charitas", "Cubango",
             "Engenho do Mato", "Engenhoca", "Fátima", "Fonseca", "Gragoatá", "Icaraí",
             "Ilha da Conceição", "Ingá", "Itacoatiara", "Itaipu", "Ititioca", "Jacaré",
@@ -88,7 +99,6 @@ class ClienteController extends Controller
         }
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,15 +108,18 @@ class ClienteController extends Controller
     public function curriculoEdit(Cliente $cliente)
     {
         $user = $cliente->user;
-
         $conhecimentos = $this->conhecimentos;
-
         $escolaridades = [
             "Superior Completo", "Superior Incompleto", "Médio Completo",
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
+        $clienteConhecimentos = [];
 
-        return view('cliente.curriculo.edit', compact(['conhecimentos', 'cliente', 'escolaridades', 'user']));
+        foreach ($cliente->conhecimentos as $conhecimento) {
+            $clienteConhecimentos[$conhecimento->id] = $conhecimento->pivot->nivel;
+        }
+
+        return view('cliente.curriculo.edit', compact(['conhecimentos', 'cliente', 'escolaridades', 'user', 'clienteConhecimentos']));
     }
 
     public function curriculoUpdate(Request $request, Cliente $cliente)
@@ -119,8 +132,9 @@ class ClienteController extends Controller
             }
         }
 
-        $cliente->conhecimentos()->sync($conhecimentos);
         $cliente->descricaoPessoal = $request->descricaoPessoal;
+        $cliente->escolaridade = $request->escolaridade;
+        $cliente->conhecimentos()->sync($conhecimentos);
         $cliente->save();
 
         return redirect()->route('experiencia.index', $cliente->id)

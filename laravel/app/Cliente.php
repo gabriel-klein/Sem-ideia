@@ -16,6 +16,11 @@ class Cliente extends Model
         'idade', 'cel1', 'cel2', 'bairro', 'descricaoPessoal', 'escolaridade', 'h_disponivel', 'aprendiz'
     ];
 
+    public function getTelefoneAttribute()
+    {
+        return ($this->cel1 && $this->cel2) ? $this->cel1 . " / " . $this->cel2 : $this->cel1;
+    }
+
     /**
      * Método da Agregação
      *

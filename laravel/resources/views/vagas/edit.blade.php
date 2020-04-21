@@ -3,12 +3,6 @@
 @section('content')
 
     @component('layouts.form')
-              
-        @slot('id')
-            
-        @endslot
-
-        @slot('top') @endslot
 
         @slot('title')
             Editar Vaga

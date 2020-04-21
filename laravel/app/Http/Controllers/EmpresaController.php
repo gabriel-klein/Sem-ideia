@@ -92,8 +92,8 @@ class EmpresaController extends Controller
     public function destroy(Empresa $empresa)
     {
         $user = $empresa->user;
-        SendEmail::dispatchNow(new EmpresaNegada($user));
 
+        SendEmail::dispatchNow(new EmpresaNegada($user));
         $empresa->delete();
         $user->delete();
 
