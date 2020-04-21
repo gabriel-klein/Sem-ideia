@@ -15,7 +15,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-center">
+		<div class="row justify-content center">
 				{{ $vagas->links() }}
 		</div>
 		@typeUser('Empresa')

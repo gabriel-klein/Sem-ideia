@@ -16,7 +16,7 @@ class ExperienciaController extends Controller
     public function index(Cliente $cliente)
     {
         $experiencias =  $cliente->experiencias()
-            ->latest()->simplePaginate(8);
+            ->latest()->simplePaginate(4);
 
         return view('cliente.experiencia.index', compact('experiencias', 'cliente'));
     }

@@ -32132,6 +32132,7 @@ var app = new Vue({
 $("#app").bind("DOMSubtreeModified", function () {
   $(".cnpjMask").mask("00.000.000/0000-00");
   $(".telMask").mask("(00) 0000-00000");
+  $(".dataMask").mask("00/00/0000");
 });
 $('form').submit(function () {
   $('#loader').removeClass('hide');
@@ -32139,7 +32140,9 @@ $('form').submit(function () {
 $(document).ready(function () {
   $('#loader').addClass('hide');
   $('.sidenav').sidenav();
-  $(".dropdown-trigger").dropdown();
+  $('.dropdown-trigger').dropdown({
+    coverTrigger: false
+  });
   $('.tabs').tabs().click(function () {
     data.typeUser = $('.tab > a.active').text();
   });
@@ -32161,7 +32164,7 @@ $(document).ready(function () {
       labelMonthSelect: 'Selecione um mês',
       labelYearSelect: 'Selecione um ano'
     },
-    format: 'yyyy-mm-dd',
+    format: 'dd/mm/yyyy',
     container: 'body',
     minDate: new Date('1950-01-01'),
     maxDate: new Date()
@@ -32324,8 +32327,8 @@ $(document).on('ajaxSuccess', function (e, xhr) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/joao/Projeto/Sem-ideia/laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/joao/Projeto/Sem-ideia/laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Sem-ideia\laravel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Sem-ideia\laravel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
