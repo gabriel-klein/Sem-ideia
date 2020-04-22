@@ -9553,32 +9553,55 @@ body {
 }
 
 .pagination li {
-  display: inline-block;
-  border-radius: 2px;
   text-align: center;
   vertical-align: top;
   height: 30px;
-  font-size: 50px;
+  font-size: 20px;
   color: #595854;
+  padding: 0 10px;
   position: relative;
 }
 
 .pagination li a {
+  line-height: 20px;
   color: #595854;
-  display: inline-block;
-  font-size: 50px;
-  padding: 0 10px;
-  line-height: 30px;
+  font-size: 20px;
+  padding: 2px;
 }
 
-.pagination li.disabled a{
+.pagination li.disabled a {
   cursor: pointer;
 }
 
-.pagination li.ativo a:hover{
+.pagination li.ativo a:hover {
   color: #6bbfa9 !important;
 }
 
-nav .brand-logo{
-  bottom: -25px;
+.pagination li.active {
+  background-color: #6bbfa9;
+  color: #fff;
+}
+
+nav .brand-logo {
+  bottom: -27px;
+}
+
+.tabs .tab a {
+  color: #6bbfa9;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+  background-color: rgba(146, 240, 177, 0.2);
+  outline: none;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+  background-color: transparent;
+  color: #6bbfa9;
+}
+
+.tabs .indicator{
+  background-color: #6dad72;
 }

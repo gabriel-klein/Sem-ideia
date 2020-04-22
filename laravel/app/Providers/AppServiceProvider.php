@@ -53,5 +53,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('layouts.components.select', 'select');
         Blade::include('layouts.components.textarea', 'textarea');
         Blade::include('layouts.components.radio', 'radio');
+        Blade::include('layouts.components.table', 'table');
     }
 }

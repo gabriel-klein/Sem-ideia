@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Cliente;
 use App\Conhecimento;
 use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\ConhecimentoRequest;
 
 class ClienteController extends Controller
 {
@@ -113,6 +114,7 @@ class ClienteController extends Controller
             "Superior Completo", "Superior Incompleto", "Médio Completo",
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
+        
         $clienteConhecimentos = [];
 
         foreach ($cliente->conhecimentos as $conhecimento) {
@@ -122,7 +124,7 @@ class ClienteController extends Controller
         return view('cliente.curriculo.edit', compact(['conhecimentos', 'cliente', 'escolaridades', 'user', 'clienteConhecimentos']));
     }
 
-    public function curriculoUpdate(Request $request, Cliente $cliente)
+    public function curriculoUpdate(ConhecimentoRequest $request, Cliente $cliente)
     {
         $conhecimentos = [];
 

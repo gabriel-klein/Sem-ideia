@@ -73,7 +73,7 @@
       </li>
       @typeUser("Cliente")
         <li>
-          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Conhecimentos') }}</a>
+          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
         </li>
         <li>
           <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
