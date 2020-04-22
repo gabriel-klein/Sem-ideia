@@ -28,10 +28,10 @@ class VagaController extends Controller
     {
         if (Auth::user()->userable_type == "Empresa") {
             $vagas =  Auth::user()->userable->vagas()
-                ->latest()->simplePaginate(5);
+                ->latest()->Paginate(5);
         } else {
             $vagas = Vaga::where('status', 'Ativa')
-                ->latest()->simplePaginate(5);
+                ->latest()->Paginate(5);
         }
         return view('vagas.index', compact('vagas'));
     }

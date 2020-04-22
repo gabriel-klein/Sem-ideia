@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="row justify-content center">
-				{{ $vagas->links() }}
+				{{ $vagas->onEachSide(2)->links() }}
 		</div>
 		@typeUser('Empresa')
 			<div class="fixed-action-btn">
