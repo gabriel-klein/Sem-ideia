@@ -8,8 +8,6 @@
             clienteEdit
         @endslot
 
-        @slot('top') @endslot
-
         @slot('title')
             Editar
         @endslot

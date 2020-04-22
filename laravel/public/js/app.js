@@ -32116,7 +32116,7 @@ var data = {
   editPassword: true
 };
 var app = new Vue({
-  el: '#app',
+  el: '#cardForm',
   data: data,
   created: function created() {
     data.typeUser = $('.tab > a.active').text();
