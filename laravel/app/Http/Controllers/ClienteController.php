@@ -16,7 +16,7 @@ class ClienteController extends Controller
     public function __construct()
     {
         $this->middleware('cliente')->except(['index', 'show']);
-        $this->conhecimentos = Conhecimento::all()->sortBy('nome');
+        $this->conhecimentos = Conhecimento::all();
     }
 
     /**
@@ -120,7 +120,7 @@ class ClienteController extends Controller
         foreach ($cliente->conhecimentos as $conhecimento) {
             $clienteConhecimentos[$conhecimento->id] = $conhecimento->pivot->nivel;
         }
-
+        
         return view('cliente.curriculo.edit', compact(['conhecimentos', 'cliente', 'escolaridades', 'user', 'clienteConhecimentos']));
     }
 
@@ -138,6 +138,7 @@ class ClienteController extends Controller
         $cliente->escolaridade = $request->escolaridade;
         $cliente->conhecimentos()->sync($conhecimentos);
         $cliente->save();
+
 
         return redirect()->route('experiencia.index', $cliente->id)
             ->with('sucesso', 'Conhecimentos cadastrados com sucesso!!');

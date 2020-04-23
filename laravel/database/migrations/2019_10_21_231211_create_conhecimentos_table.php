@@ -19,19 +19,6 @@ class CreateConhecimentosTable extends Migration
             $table->string('nome');
             $table->timestamps();
         });
-
-        Conhecimento::create([
-                'nome' => 'escolaridade',
-        ]);
-        Conhecimento::create([
-                'nome' => 'excel',
-        ]);
-        Conhecimento::create([
-                'nome' => 'word',
-        ]);
-        Conhecimento::create([
-                'nome' => 'ingles',
-        ]);
    }        
     /**
      * Reverse the migrations.

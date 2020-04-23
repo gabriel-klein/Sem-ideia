@@ -6,205 +6,88 @@
 		    <li class="tab col s3"><a href="#test-swipe-3">Parte 3</a></li>
 		    <li class="tab col s3"><a href="#test-swipe-4">Parte 4</a></li>
 	    </ul>
-	    <div id="test-swipe-1" class="col s12">
-
-	  		<table class="centered responsive-table">
-				<thead>
-					<tr>
-						<th>Conhecimento</th>
-						<th>Básico</th>
-						<th>Intermediário</th>
-						<th>Avançado</th>
-					</tr>
-				</thead>
-				<tbody>
-				@foreach ($conhecimentos as $conhecimento)
-					@if ($conhecimento->id > 1)
-						@break
-					@endif
-				<tr>
-					<td>{{$conhecimento->nome}}</td>
-					{{-- <td>	
-						<label>
-							<input type="radio" name="{{"Conhecimento_".$conhecimento->id}}" value="">
-							<span></span>
-						</label>
-					</td> --}}
-					<td>	
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Básico">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Intermediário">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Avançado">
-							<span></span>
-						</label>
-					</td>
-				</tr>
-				@endforeach
-				</tbody>
-			</table>
-		</div>
-
-		<div id="test-swipe-2" class="col s12">
-
-	  		<table class="centered responsive-table">
-				<thead>
-					<tr>
-						<th>Conhecimento</th>
-						<th>Básico</th>
-						<th>Intermediário</th>
-						<th>Avançado</th>
-					</tr>
-				</thead>
-				<tbody>
-				@foreach ($conhecimentos as $conhecimento)
-					@if ($conhecimento->id < 2)
-						@continue
-					@endif
-					@if ($conhecimento->id > 2)
-						@break
-					@endif
-				<tr>
-					<td>{{$conhecimento->nome}}</td>
-					{{-- <td>	
-						<label>
-							<input type="radio" name="{{"Conhecimento_".$conhecimento->id}}" value="">
-							<span></span>
-						</label>
-					</td> --}}
-					<td>	
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Básico">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Intermediário">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Avançado">
-							<span></span>
-						</label>
-					</td>
-				</tr>
-				</tbody>
-				@endforeach
-			</table>
-		</div>
-
-		<div id="test-swipe-3" class="col s12">
-
-	  		<table class="centered responsive-table">
-				<thead>
-					<tr>
-						<th>Conhecimento</th>
-						<th>Básico</th>
-						<th>Intermediário</th>
-						<th>Avançado</th>
-					</tr>
-				</thead>
-				<tbody>
-				@foreach ($conhecimentos as $conhecimento)
-					@if ($conhecimento->id < 3)
-						@continue
-					@endif
-					@if ($conhecimento->id > 3)
-						@break
-					@endif
-				<tr>
-					<td>{{$conhecimento->nome}}</td>
-					{{-- <td>	
-						<label>
-							<input type="radio" name="{{"Conhecimento_".$conhecimento->id}}" value="">
-							<span></span>
-						</label>
-					</td> --}}
-					<td>	
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Básico">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Intermediário">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Avançado">
-							<span></span>
-						</label>
-					</td>
-				</tr>
-				</tbody>
-				@endforeach
-			</table>
-		</div>
-
-		<div id="test-swipe-4" class="col s12">
-
-	  		<table class="centered responsive-table">
-				<thead>
-					<tr>
-						<th>Conhecimento</th>
-						<th>Básico</th>
-						<th>Intermediário</th>
-						<th>Avançado</th>
-					</tr>
-				</thead>
-				<tbody>
-				@foreach ($conhecimentos as $conhecimento)
-					@if ($conhecimento->id < 4)
-						@continue
-					@endif
-					@if ($conhecimento->id > 4)
-						@break
-					@endif
-				<tr>
-					<td>{{$conhecimento->nome}}</td>
-					{{-- <td>	
-						<label>
-							<input type="radio" name="{{"Conhecimento_".$conhecimento->id}}" value="">
-							<span></span>
-						</label>
-					</td> --}}
-					<td>	
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Básico">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Intermediário">
-							<span></span>
-						</label>
-					</td>
-					<td>
-						<label>
-							<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Avançado">
-							<span></span>
-						</label>
-					</td>
-				</tr>
-				</tbody>
-				@endforeach
-			</table>
-		</div>
 	</div>
+
+    @foreach ($conhecimentos as $conhecimento)
+    	@php
+    		$conhecimentoData = isset($data[$conhecimento->id])?$data[$conhecimento->id]:null;
+    	@endphp
+
+	    @if ($loop->first)
+		    <div id="test-swipe-1" class="col s12">
+		@endif
+
+		@if ($loop->index == 4)
+			<div id="test-swipe-2" class="col s12">
+		@endif
+
+		@if ($loop->index == 8)
+		<div id="test-swipe-3" class="col s12">
+		@endif
+
+		@if ($loop->index == 12)
+		<div id="test-swipe-4" class="col s12">
+			
+		@endif
+
+		@if($loop->first || $loop->index == 4 || $loop->index == 8 || $loop->index == 12)
+
+		
+		<table class="centered highlight responsive-table">
+				<thead>
+					<tr>
+						<th>Conhecimento</th>
+						<th>Básico</th>
+						<th>Intermediário</th>
+						<th>Avançado</th>
+					</tr>
+				</thead>
+
+				<tbody>
+		@endif
+
+			<tr>
+				<td>{{$conhecimento->nome}}</td>
+				<td>	
+					<label>
+						<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Básico"
+						{{ old($conhecimentoData) == "Básico" ? 'checked' : ($conhecimentoData == "Básico"? 'checked': '') }}>
+						<span></span>
+					</label>
+				</td>
+				<td>
+					<label>
+						<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Intermediário"
+						{{ old($conhecimentoData) == "Intermediário" ? 'checked' : ($conhecimentoData == "Intermediário"? 'checked': '') }}>
+						<span></span>
+					</label>
+				</td>
+				<td>
+					<label>
+						<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Avançado"
+						{{ old($conhecimentoData) == "Avançado" ? 'checked' : ($conhecimentoData == "Avançado"? 'checked': '') }}>
+						<span></span>
+					</label>
+				</td>
+			</tr>
+		@if($loop->index == 3 || $loop->index == 7 ||$loop->index == 11 ||$loop->last)
+			</tbody>
+			</table>
+			</div>
+		@endif
+	@endforeach
+
+	@if (count($conhecimentos) < 4 )
+		<div id="test-swipe-2" class="col s12"></div>
+		<div id="test-swipe-3" class="col s12"></div>
+		<div id="test-swipe-4" class="col s12"></div>
+
+	@elseif (count($conhecimentos) < 8 )
+		<div id="test-swipe-3" class="col s12"></div>
+		<div id="test-swipe-4" class="col s12"></div>
+
+	@elseif (count($conhecimentos) <13 )
+		<div id="test-swipe-4" class="col s12"></div>
+
+	@endif		
 </div>
