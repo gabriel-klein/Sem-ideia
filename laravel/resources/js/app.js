@@ -80,6 +80,7 @@ $(document).ready(() => {
         maxDate: new Date()
     });
     $('.tooltipped').tooltip();
+    $('#tabs-swipe-demo').tabs({ 'swipeable': true });
 });
 
 $(function(){

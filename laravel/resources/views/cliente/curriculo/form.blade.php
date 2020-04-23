@@ -25,5 +25,7 @@
 ])
 
 
-@table
+@table([
+	'data' => $clienteConhecimentos
+])
 

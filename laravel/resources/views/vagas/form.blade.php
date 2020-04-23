@@ -50,7 +50,9 @@
     @endslot
 @endselect
 
-
+@table([
+    'data' => $vagaConhecimentos    
+])
 
 @select([
     'name' => 'status',

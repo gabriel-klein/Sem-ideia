@@ -41,7 +41,7 @@ class VagaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Vaga $vaga)
     {
         $funcoes = [
             "Operador(a) de Caixa", "Coordenador(a)/Gerente de Loja",
@@ -56,7 +56,13 @@ class VagaController extends Controller
 
         $conhecimentos = $this->conhecimentos;
 
-        return view('vagas.create', compact('conhecimentos', 'funcoes', 'escolaridades'));
+        $vagaConhecimentos = [];
+
+        foreach ($vaga->conhecimentos as $conhecimento) {
+            $vagaConhecimentos[$conhecimento->id] = $conhecimento->pivot->nivel;
+        }
+
+        return view('vagas.create', compact('conhecimentos', 'funcoes', 'escolaridades','vagaConhecimentos'));
     }
 
     /**
@@ -120,7 +126,13 @@ class VagaController extends Controller
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
 
-        return view('vagas.edit', compact(['vaga', 'funcoes', 'escolaridades', 'conhecimentos']));
+        $vagaConhecimentos = [];
+
+        foreach ($vaga->conhecimentos as $conhecimento) {
+            $vagaConhecimentos[$conhecimento->id] = $conhecimento->pivot->nivel;
+        }
+
+        return view('vagas.edit', compact(['vaga', 'funcoes', 'escolaridades', 'conhecimentos','vagaConhecimentos']));
     }
 
     /**
