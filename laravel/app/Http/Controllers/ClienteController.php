@@ -15,7 +15,7 @@ class ClienteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('cliente')->except(['index', 'show']);
+        $this->middleware('cliente')->except(['index', 'show','busca']);
         $this->conhecimentos = Conhecimento::all();
     }
 
@@ -26,9 +26,28 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate(10);
+        $clientes = Cliente::latest()->paginate(5);
 
-        return view('cliente.index', compact('clientes'));
+        $bairros = [
+            "Badu", "Baldeador", "Barreto", "Boa Viagem", "Cachoeiras", "Cafubá",
+            "Camboinhas", "Cantagalo", "Cantareira", "Caramujo", "Charitas", "Cubango",
+            "Engenho do Mato", "Engenhoca", "Fátima", "Fonseca", "Gragoatá", "Icaraí",
+            "Ilha da Conceição", "Ingá", "Itacoatiara", "Itaipu", "Ititioca", "Jacaré",
+            "Jardim Imbuí", "Jurujuba", "Largo da Batalha", "Maceió", "Maravista",
+            "Maria Paula", "Matapaca", "Morro do Estado", "Muriqui", "Pé Pequeno",
+            "Piratininga", "Ponta d'Areia", "Rio do Ouro", "Santa Bárbara",
+            "Santa Rosa", "Santana", "Santo Antônio", "São Domingos", "São Francisco",
+            "São Lourenço", "Sapê", "Serra Grande", "Tenente Jardim",
+            "Várzea das Moças", "Viçoso Jardim", "Vila Progresso", "Viradouro",
+            "Vital Brazil"
+        ];
+
+        $escolaridades = [
+            "Superior Completo", "Superior Incompleto", "Médio Completo",
+            "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
+        ];
+
+        return view('cliente.index', compact('clientes','bairros','escolaridades'));
     }
 
     /**
@@ -40,6 +59,32 @@ class ClienteController extends Controller
     public function show(Cliente $cliente)
     {
         return view('cliente.show', compact('cliente'));
+    }
+
+    public function busca(Request $request)
+    {
+        $bairros = [
+            "Badu", "Baldeador", "Barreto", "Boa Viagem", "Cachoeiras", "Cafubá",
+            "Camboinhas", "Cantagalo", "Cantareira", "Caramujo", "Charitas", "Cubango",
+            "Engenho do Mato", "Engenhoca", "Fátima", "Fonseca", "Gragoatá", "Icaraí",
+            "Ilha da Conceição", "Ingá", "Itacoatiara", "Itaipu", "Ititioca", "Jacaré",
+            "Jardim Imbuí", "Jurujuba", "Largo da Batalha", "Maceió", "Maravista",
+            "Maria Paula", "Matapaca", "Morro do Estado", "Muriqui", "Pé Pequeno",
+            "Piratininga", "Ponta d'Areia", "Rio do Ouro", "Santa Bárbara",
+            "Santa Rosa", "Santana", "Santo Antônio", "São Domingos", "São Francisco",
+            "São Lourenço", "Sapê", "Serra Grande", "Tenente Jardim",
+            "Várzea das Moças", "Viçoso Jardim", "Vila Progresso", "Viradouro",
+            "Vital Brazil"
+        ];
+
+        $escolaridades = [
+            "Superior Completo", "Superior Incompleto", "Médio Completo",
+            "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
+        ];
+
+        $clientes = Cliente::busca($request, $bairros, $escolaridades);
+
+        return view('cliente.index', compact('clientes','bairros','escolaridades','request'));
     }
 
     /**
@@ -141,6 +186,6 @@ class ClienteController extends Controller
 
 
         return redirect()->route('experiencia.index', $cliente->id)
-            ->with('sucesso', 'Conhecimentos cadastrados com sucesso!!');
+            ->with('sucesso', 'Dados cadastrados com sucesso!!');
     }
 }

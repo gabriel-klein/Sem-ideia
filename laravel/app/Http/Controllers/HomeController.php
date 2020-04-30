@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\Vaga;
 use App\Empresa;
+use App\Cliente;
 
 class HomeController extends Controller
 {
@@ -50,9 +51,20 @@ class HomeController extends Controller
                 ->whereBetween('created_at', [now()->subDays(10)->toDateTimeString(), now()->toDateTimeString()])
                 ->latest()
                 ->take(10)
-                ->get();
+                ->Paginate(5);
 
             $data = array('vagas');
+        }
+
+        if (Auth::user()->userable_type === "Empresa"){
+            $now = now();
+
+            $clientes = Cliente::whereBetween('created_at', [now()->subDays(10)->toDateTimeString(), now()->toDateTimeString()])
+                ->latest()
+                ->take(10)
+                ->Paginate(5);
+
+            $data = array('clientes');
         }
 
         return view('home', compact($data));

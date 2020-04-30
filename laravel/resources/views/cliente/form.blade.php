@@ -19,9 +19,9 @@
     'name' => 'cel2',
     'icon' => 'phone',
     'data' => @$cliente->cel2,
-    'label' => 'Celular 2',
+    'label' => 'Celular 2 (opcional)',
     'class' => 'telMask',
-    'required' => false
+    'required' => false,
 ])
 
 @select([

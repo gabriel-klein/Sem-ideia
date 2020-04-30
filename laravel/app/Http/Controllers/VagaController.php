@@ -33,7 +33,37 @@ class VagaController extends Controller
             $vagas = Vaga::where('status', 'Ativa')
                 ->latest()->Paginate(5);
         }
-        return view('vagas.index', compact('vagas'));
+
+        $funcoes = [
+            "Operador(a) de Caixa", "Coordenador(a)/Gerente de Loja",
+            "Vigia/Prevenção de perdas", "Estoquista", "Babá/Cuidador", "Estimulador",
+            "Cozinheiro", "Garçom/Garçonete", "Atendente de Telemarketing", "Frentista"
+        ];
+
+        $escolaridades = [
+            "Superior Completo", "Superior Incompleto", "Médio Completo",
+            "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
+        ];
+
+        return view('vagas.index', compact('vagas','funcoes','escolaridades'));
+    }
+
+    public function busca(Request $request)
+    {
+        $funcoes = [
+            "Operador(a) de Caixa", "Coordenador(a)/Gerente de Loja",
+            "Vigia/Prevenção de perdas", "Estoquista", "Babá/Cuidador", "Estimulador",
+            "Cozinheiro", "Garçom/Garçonete", "Atendente de Telemarketing", "Frentista"
+        ];
+
+        $escolaridades = [
+            "Superior Completo", "Superior Incompleto", "Médio Completo",
+            "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
+        ];
+
+        $vagas = Vaga::busca($request, $funcoes, $escolaridades);
+
+        return view('vagas.index', compact('vagas','funcoes','escolaridades','request'));
     }
 
     /**

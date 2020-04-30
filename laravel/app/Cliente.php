@@ -21,6 +21,47 @@ class Cliente extends Model
         return ($this->cel1 && $this->cel2) ? $this->cel1 . " / " . $this->cel2 : $this->cel1;
     }
 
+    public static function busca($filtro, $bairros, $escolaridades)
+    {
+        if($filtro->escolaridade == NULL)
+        $filtro->escolaridade = $escolaridades;
+
+        if($filtro->bairro == NULL)
+        $filtro->bairro = $bairros;
+
+        if($filtro->h_disponivel == NULL)
+        $filtro->h_disponivel = ['Manhã', 'Tarde', 'Integral'];
+
+    //dd(is_numeric($filtro->idade));
+
+        if(!(is_numeric($filtro->idade)))
+        {
+            $idade = $filtro->idade;
+            $filtro->idade = 0;
+        }
+
+        $retorno = Cliente::whereIn('bairro',$filtro->bairro)
+        ->whereIn('escolaridade',$filtro->escolaridade)
+        ->where('idade', '>', $filtro->idade)
+        ->whereIn('h_disponivel',$filtro->h_disponivel)
+        ->latest()->Paginate(5);
+            
+
+        if($filtro->escolaridade == $escolaridades)
+        $filtro->escolaridade = NULL;
+
+        if($filtro->bairro == $bairros)
+        $filtro->bairro = NULL;
+
+        if($filtro->h_disponivel == ['Manhã', 'Tarde', 'Integral'])
+        $filtro->h_disponivel = NULL;
+
+        if($filtro->idade == 0)
+        $filtro->idade = $idade;
+
+        return $retorno;
+    }
+
     /**
      * Método da Agregação
      *

@@ -1,9 +1,11 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a class="brand-logo" href="{{ url('/home') }}">
-        <img src="{{ asset('storage/Logo_Banco3.png') }}" width="90px" height="80px">
+      <div class="brand-logo">
+      <a class="logo" href="{{ url('/home') }}">
+        <img src="{{ asset('storage/Logo_Banco3.png') }}"class="centralize-image" >
       </a>
+    </div>
       <a data-target="mobile-demo" class="sidenav-trigger">
           <i class="material-icons">menu</i>
       </a>
@@ -31,10 +33,16 @@
       </ul>
       <ul class="right hide-on-med-and-down">
         @auth
-          @typeUser("Empresa" || "Cliente")  
-            <li>
-                <a href="{{ route('vagas.index') }}">Vagas</a>
-            </li>
+          @typeUser("Empresa" || "Cliente")
+            @Vagas  
+              <li>
+                  <a href="{{ route('vagas.index') }}">Vagas<span class="new badge">1</span></a>
+              </li>
+            @else
+              <li>
+                  <a href="{{ route('vagas.index') }}">Vagas</a>
+              </li>
+            @endVagas  
             @typeUser("Empresa")
               <li>
                 <a href="{{ route('cliente.index')}}">
@@ -42,12 +50,21 @@
                 </a>
               </li>
             @elsetypeUser("Cliente")
-              <li class="dropdown-trigger" data-target="navbarDropdown2">
-                <a>
-                  {{ 'Currículo' }}
-                  <i class="material-icons right">arrow_drop_down</i> 
-                </a>
-              </li>
+              @Educacao
+                <li class="dropdown-trigger" data-target="navbarDropdown2">
+                  <a><span class="new badge">1</span>
+                    {{ 'Currículo' }}
+                    <i class="material-icons right">arrow_drop_down</i> 
+                  </a>
+                </li>
+              @else
+                <li class="dropdown-trigger" data-target="navbarDropdown2">
+                  <a>
+                    {{ 'Currículo' }}
+                    <i class="material-icons right">arrow_drop_down</i> 
+                  </a>
+                </li>
+              @endEducacao    
             @endtypeUser
           @endtypeUser
         @endauth
@@ -68,16 +85,28 @@
     @endif
   @else
     @typeUser("Cliente" || "Empresa")
-      <li>
-        <a href="{{ route('vagas.index') }}">Vagas</a>
-      </li>
+       @Vagas  
+          <li>
+              <a href="{{ route('vagas.index') }}">Vagas<span class="new badge">1</span></a>
+          </li>
+        @else
+          <li>
+              <a href="{{ route('vagas.index') }}">Vagas</a>
+          </li>
+        @endVagas
       @typeUser("Cliente")
-        <li>
-          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
-        </li>
-        <li>
-          <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
-        </li>
+        @Educacao
+          <li>
+            <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}<span class="new badge dark">1</span></a>
+          </li>
+        @else
+          <li>
+            <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
+          </li>
+        @endEducacao
+           <li>
+             <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
+           </li>
         <li>
           <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}">
             Meus Dados
@@ -116,17 +145,22 @@
     </li>
   @endguest
 </ul>
-
 <ul class="dropdown-content" id="navbarDropdown2">
   @auth
     @typeUser("Cliente")
-    <li>
-      <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
-    </li>
+      @Educacao
+        <li>
+          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}<span class="new badge dark">1</span></a>
+        </li>
+      @else
+        <li>
+          <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
+        </li>
+      @endEducacao
      <li class="divider"></li>
-    <li>
-      <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
-    </li>
+        <li>
+          <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
+        </li>
     @endtypeUser
   @endauth
 </ul>
@@ -158,6 +192,7 @@
                       document.getElementById('logout-form').submit();">
       {{ __('Logout') }}
       <i class="material-icons right">exit_to_app</i>
+      <div class="logout hide" id="logout"></div>
       </a>
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf

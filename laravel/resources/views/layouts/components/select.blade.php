@@ -8,7 +8,7 @@
       @if(!isset($required) || $required) required @endif
       class="{{ $class ?? '' }} @error($name) invalid @enderror">
       
-      <option selected disabled >{{ $textOptionDefault }}</option>
+      <option value="" disabled selected >{{ $textOptionDefault }}</option>
       {{ $options }}
 
     </select>	
