@@ -26,6 +26,7 @@
 
 
 @table([
+	'opcional' => 'Lista de conhecimentos (opcional)',
 	'data' => $clienteConhecimentos
 ])
 

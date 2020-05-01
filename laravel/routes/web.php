@@ -22,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
         'destroy', 'create', 'store',
     ]);
 
+    Route::post('cliente', 'ClienteController@busca')
+        ->name('cliente.busca');
+
     Route::put('cliente/{cliente}/curriculo', 'ClienteController@curriculoUpdate')
         ->name('cliente.curriculo.update');
 
@@ -39,6 +42,12 @@ Route::middleware(['auth'])->group(function () {
         ->name('empresa.negar');
 
     Route::resource('vagas', 'VagaController');
+
+    Route::post('vagas/store', 'VagaController@store')
+        ->name('vagas.store');
+
+    Route::post('vagas', 'VagaController@busca')
+        ->name('vagas.busca');
 
     Route::post('vagas/candidatar', 'VagaController@candidatar')
         ->name('vagas.candidatar');

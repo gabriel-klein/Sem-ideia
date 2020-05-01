@@ -132,9 +132,7 @@ $(function () {
         $(element).animate({
           left: '0px',
           top: '0px',
-          opacity: '1',
-          height: height + 'px',
-          width: width + 'px'
+          opacity: '1'
         }, 120);
       }
     });
@@ -157,4 +155,36 @@ function getPosicaoElemento(elemID){
     }
     return {left:offsetLeft, top:offsetTop};
 }
+
+$(function () {
+  $('.showFilter').click(function () {
+    var id = "lista";
+    var elemento = document.getElementById('filtro');
+    var Left = getPosicaoElemento(id).left;
+    var Top = getPosicaoElemento(id).top;
+    var altura = $(elemento).height();
+
+    if(altura < 288)
+        var diff = 130;
+    else
+        var diff = 210;   
+
+    $("#filtro").animate({
+      left: Left - 220 + 'px',
+      top: Top - diff + 'px'
+    }, 1);
+    if($('.filtro').css('display')=='block')
+        $('.filtro').css('display','none');
+    else
+        $('.filtro').css('display','block');
+    
+  });
+});
+
+$(".nav_words").each(function(){
+    var largura = $(this).width();
+    var elemento = document.getElementById('logout');
+    if(largura < 103)
+    elemento.classList.remove('hide');
+});
 require('./remote');

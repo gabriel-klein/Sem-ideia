@@ -1,7 +1,11 @@
 <div class="row">
   <div class="input-field col s12">
     @if (isset($icon))
-      <i class="material-icons prefix">{{ $icon }}</i>  
+        @if (isset($dica))
+            <i class="material-icons prefix tooltipped destacado" data-position="left" data-delay="50" data-tooltip="{{$dica}}">{{ $icon }}</i>  
+            @else
+            <i class="material-icons prefix">{{ $icon }}</i> 
+        @endif 
     @endif
 
     <input id="{{ $name }}" name="{{ $name }}" autocomplete="{{ $name }}" 

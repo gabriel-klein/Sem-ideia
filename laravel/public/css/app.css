@@ -9466,23 +9466,8 @@ input[type=range]::-ms-thumb {
 }
 
 .material-tooltip {
-  padding: 10px 8px;
-  font-size: 1rem;
-  z-index: 2000;
-  background-color: transparent;
-  border-radius: 2px;
   color: #323232;
-  min-height: 36px;
-  line-height: 120%;
-  opacity: 0;
-  position: absolute;
-  text-align: center;
   max-width: calc(30%);
-  overflow: hidden;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-  visibility: hidden;
   background-color: #f1f2b6;
 }
 
@@ -9582,10 +9567,6 @@ body {
   color: #fff;
 }
 
-nav .brand-logo {
-  bottom: -27px;
-}
-
 .tabs .tab a {
   color: #6bbfa9;
 }
@@ -9602,6 +9583,54 @@ nav .brand-logo {
   color: #6bbfa9;
 }
 
-.tabs .indicator{
+.tabs .indicator {
   background-color: #6dad72;
 }
+
+span.badge.new {
+  background-color: #67dbbc;
+}
+
+span.badge.new:after {
+  content: " Novidade";
+}
+
+span.badge.new.dark {
+  background-color: #26a69a;
+}
+
+.dropdown-content li a:hover span.badge.new.dark {
+  background-color: #67dbbc;
+}
+
+.filtro {
+  position: fixed;
+  z-index: 2;
+  background-color: #f2f5f4;
+  width: 210px;
+}
+
+nav img {
+  height: 50px;
+  width: 80px;
+}
+
+.centralize-image {
+  position: relative;
+  top: 10px;
+  margin-bottom: -20px;
+}
+
+.logo {
+  position: relative;
+  bottom: 15px;
+}
+
+.logout {
+  height: 9px;
+}
+
+.filtro {
+  display: none;
+}
+

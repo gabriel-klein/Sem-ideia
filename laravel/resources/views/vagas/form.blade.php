@@ -51,6 +51,7 @@
 @endselect
 
 @table([
+    'opcional' => 'Conhecimentos desejáveis para a vaga (opcional)',
     'data' => $vagaConhecimentos    
 ])
 
@@ -80,6 +81,6 @@
     'name' => 'emailDeContato',
     'icon' => 'mail_outline',
     'data' => @$vaga->emailDeContato,
-    'label' => 'E-Mail De Contato A Vaga',
+    'label' => 'E-Mail de contato a vaga (opcional)',
     'type'  => 'email'
 ])

@@ -13,4 +13,7 @@
 			</div>
 		</div>
 	</div>
+	<div class="row justify-content center">
+			{{ $vagas->onEachSide(2)->links() }}
+	</div>
 </div>

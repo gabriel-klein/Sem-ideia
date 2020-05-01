@@ -36,6 +36,31 @@ class Vaga extends Model
 
         return $tempo;
     }
+
+    public static function busca($filtro, $funcoes, $escolaridades)
+    {
+        if($filtro->funcao == NULL)
+        $filtro->funcao = $funcoes;
+
+        if($filtro->escolaridade == NULL)
+        $filtro->escolaridade = $escolaridades;
+
+        $retorno = Vaga::whereIn('funcao',$filtro->funcao)
+        ->whereIn('escolaridade',$filtro->escolaridade)
+        ->Where([
+            ['quantidade', '>', $filtro->quantidade],
+            ['status', 'Ativa' ],
+        ])
+        ->latest()->Paginate(5);
+
+        if($filtro->funcao == $funcoes)
+            $filtro->funcao = NULL;
+
+        if($filtro->escolaridade == $escolaridades)
+            $filtro->escolaridade = NULL;
+
+        return $retorno;
+    }
     /**
      * Método da Relação 1-N
      *

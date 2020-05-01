@@ -1,5 +1,8 @@
 <div class="row">
 	<div class="col s12">
+		<div class="col s11">
+		<h6 style="opacity: 0.5">{{$opcional}}</h6>
+	</div>
 	  	<ul id="tabs-swipe-demo" class="tabs">
 		    <li class="tab col s3"><a href="#test-swipe-1">Parte 1</a></li>
 		    <li class="tab col s3"><a href="#test-swipe-2">Parte 2</a></li>
@@ -33,12 +36,12 @@
 		@if($loop->first || $loop->index == 4 || $loop->index == 8 || $loop->index == 12)
 
 		
-		<table class="centered highlight responsive-table">
+		<table class="centered highlight">
 				<thead>
 					<tr>
 						<th>Conhecimento</th>
 						<th>Básico</th>
-						<th>Intermediário</th>
+						<th>Médio</th>
 						<th>Avançado</th>
 					</tr>
 				</thead>
@@ -57,8 +60,8 @@
 				</td>
 				<td>
 					<label>
-						<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Intermediário"
-						{{ old($conhecimentoData) == "Intermediário" ? 'checked' : ($conhecimentoData == "Intermediário"? 'checked': '') }}>
+						<input type="radio" class="with-gap" name="{{"Conhecimento_".$conhecimento->id}}" value="Médio"
+						{{ old($conhecimentoData) == "Médio" ? 'checked' : ($conhecimentoData == "Médio"? 'checked': '') }}>
 						<span></span>
 					</label>
 				</td>
@@ -77,16 +80,22 @@
 		@endif
 	@endforeach
 
-	@if (count($conhecimentos) < 4 )
+	@if (count($conhecimentos) < 1 )
+		<div id="test-swipe-1" class="col s12"></div>
 		<div id="test-swipe-2" class="col s12"></div>
 		<div id="test-swipe-3" class="col s12"></div>
 		<div id="test-swipe-4" class="col s12"></div>
 
-	@elseif (count($conhecimentos) < 8 )
+	@elseif (count($conhecimentos) < 5 )
+		<div id="test-swipe-2" class="col s12"></div>
 		<div id="test-swipe-3" class="col s12"></div>
 		<div id="test-swipe-4" class="col s12"></div>
 
-	@elseif (count($conhecimentos) <13 )
+	@elseif (count($conhecimentos) < 9 )
+		<div id="test-swipe-3" class="col s12"></div>
+		<div id="test-swipe-4" class="col s12"></div>
+
+	@elseif (count($conhecimentos) < 13 )
 		<div id="test-swipe-4" class="col s12"></div>
 
 	@endif		
