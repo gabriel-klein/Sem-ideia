@@ -56,6 +56,12 @@ Route::middleware(['auth'])->group(function () {
         'experiencia' => 'experiencia'
     ]]);
 
+    Route::get('cliente/{cliente}/experiencia/{experiencia}/{vaga}', 'ExperienciaController@volta')
+        ->name('experiencia.volta');
+
+    Route::get('cliente/{cliente}/{vaga}', 'ClienteController@volta')
+        ->name('cliente.volta');
+
     Route::post('vagas/cancelarCandidatura', 'VagaController@cancelarCandidatura')
         ->name('vagas.cancelarCandidatura');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\Vaga;
 use App\Experiencia;
 use App\Http\Requests\ExperienciaRequest;
 
@@ -59,7 +60,14 @@ class ExperienciaController extends Controller
      */
     public function show(Cliente $cliente, Experiencia $experiencia)
     {
-        return view('cliente.experiencia.show', compact('experiencia'));
+        $teste = true;
+        return view('cliente.experiencia.show', compact('experiencia','cliente','teste'));
+    }
+
+      public function volta(Cliente $cliente, Experiencia $experiencia, Vaga $vaga)
+    {
+        $teste = true;
+        return view('cliente.experiencia.show', compact('experiencia','cliente','vaga','teste'));
     }
 
     /**

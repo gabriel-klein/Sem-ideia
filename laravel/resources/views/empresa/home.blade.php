@@ -4,7 +4,7 @@
 			<div class="collection with-header">
 				<div class="collection-header"><h4>Novos Currículos</h4></div>
 				@forelse ($clientes as $cliente)
-					@include('layouts.components.cliente', ['cliente' => $cliente])
+					@include('layouts.components.cliente', ['rota' => 'cliente.show'])
 				@empty
 					<div class="collection-item">
 						Não há novos currículos

@@ -8,7 +8,7 @@
 			<div class="col s12 m10 offset-m1 l6">
 				<div class="collection">
 					@forelse ($clientes as $cliente)
-						@include('layouts.components.cliente', ['cliente' => $cliente])
+						@include('layouts.components.cliente', ['rota' => 'cliente.show'])
 					@empty
 						<div class="collection-item">Não há pessoas cadastradas</div>
 					@endforelse

@@ -4,7 +4,8 @@
 
 @section('content')
 	<h6>Descrição</h6>
-	<p>{{ $vaga->descricao }}</p>
+	<p id="desc">{{ $vaga->descricao }}</p>
+	<br>
 	<p>Quantidade de Vagas: {{ $vaga->quantidade }}</p>
 
 	@if (count($vaga->conhecimentos))
@@ -22,11 +23,11 @@
 	@typeUser('Empresa') 
 	<ul class="collapsible" style="margin-top: 2em">
 		<li>
-			<div class="collapsible-header"><i class="material-icons">account_box</i>Candidatos</div>
+			<div class="collapsible-header cand_header"><i class="material-icons">account_box</i>Candidatos</div>
 			<div class="collapsible-body">
 				<div class="collection">
 					@forelse ($vaga->clientes as $cliente)
-						@include('layouts.components.cliente', ['cliente' => $cliente])
+						@include('layouts.components.cliente', ['rota' => 'cliente.volta'])
 					@empty
 						<div class="collection-item">Não há pessoas interessadas a vaga</div>
 					@endforelse
@@ -43,9 +44,9 @@
     @csrf
     @method('DELETE')
 
-    <a class="btn waves-green white-text"  href="{{ route('vagas.edit', $vaga->id) }}">
+    <a class="botao"  href="{{ route('vagas.edit', $vaga->id) }}">
 			Editar</a>
-	<button type="submit" class="btn waves-effect red">
+	<button type="submit" class="botao">
         {{ __('Excluir') }}
     </button>
     </form> 
@@ -55,14 +56,14 @@
 				@csrf
 				<input type="hidden" name="vaga" value="{{ $vaga->id }}">
 				<input type="hidden" name="cliente" value="{{ Auth::user()->userable->id }}">
-				<button type="submit" class="btn btn-primary">Candidatar</button>
+				<button type="submit" class="botao">Candidatar</button>
 			</form>
 		@else 
 			<form action="{{route('vagas.cancelarCandidatura')}}" method="post">
 				@csrf
 				<input type="hidden" name="vaga" value="{{ $vaga->id }}">
 				<input type="hidden" name="cliente" value="{{ Auth::user()->userable->id }}">
-				<button type="submit" class="btn btn-danger">Cancelar candidatura</button>
+				<button type="submit" class="botao">Cancelar candidatura</button>
 			</form>
 		@endif 
 	@endtypeUser

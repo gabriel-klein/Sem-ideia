@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Vaga;
 use App\Cliente;
 use App\Conhecimento;
 use App\Http\Requests\ClienteRequest;
@@ -15,7 +16,7 @@ class ClienteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('cliente')->except(['index', 'show','busca']);
+        $this->middleware('cliente')->except(['index', 'show','busca','volta']);
         $this->conhecimentos = Conhecimento::all();
     }
 
@@ -59,6 +60,12 @@ class ClienteController extends Controller
     public function show(Cliente $cliente)
     {
         return view('cliente.show', compact('cliente'));
+    }
+
+     public function volta(Cliente $cliente, Vaga $vaga)
+    {
+        $teste1 = true;
+        return view('cliente.show', compact('cliente','vaga','teste1'));
     }
 
     public function busca(Request $request)

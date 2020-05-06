@@ -164,7 +164,7 @@ $(function () {
     var Top = getPosicaoElemento(id).top;
     var altura = $(elemento).height();
 
-    if(altura < 288)
+    if(altura < 270)
         var diff = 130;
     else
         var diff = 210;   
