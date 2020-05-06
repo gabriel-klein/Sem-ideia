@@ -17,10 +17,12 @@
 	<div class="">  
 		@filtroVaga
 	</div>
+
+
 	<div class="row justify-content center">
 			{{ $vagas->onEachSide(2)->links() }}
 	</div>
-	
+
 	@typeUser('Empresa')
 	<div class="fixed-action-btn horizontal click-to-toggle">
 		<a class="btn-floating btn-large blue"  id="lista">
