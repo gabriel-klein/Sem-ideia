@@ -59,6 +59,32 @@ class Cliente extends Model
         if($filtro->idade == 0)
         $filtro->idade = $idade;
 
+        if($filtro->conhecimento != NULL)
+        {
+            foreach ($retorno as $key=>$retorno) {
+            $id[$key] = [$retorno->id];
+            }
+            if($filtro->nivel == NULL)
+            {
+                 $retorno = Cliente::whereIn('id',$id)
+                ->whereHas('conhecimentos', function($q) use($filtro)
+                {
+                    $q->where('nome', 'like', $filtro->conhecimento);
+                })
+                ->latest()->Paginate(5);
+            }
+            else
+            {
+                 $retorno = Cliente::whereIn('id',$id)
+                ->whereHas('conhecimentos', function($q) use($filtro)
+                {
+                    $q->where('nivel', 'like', $filtro->nivel)
+                      ->where('nome', 'like', $filtro->conhecimento);
+                })
+                ->latest()->Paginate(5);
+            }
+        }
+
         return $retorno;
     }
 

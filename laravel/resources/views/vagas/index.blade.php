@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="row">
+	<div class="">  
+		@filtroVaga
+	</div>
+	<div class="row colecao">
 		<div class="col s12 m10 offset-m1 l6 offset-l3">
 			<div class="collection">
 				@forelse ($vagas as $vaga)
@@ -14,12 +17,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="">  
-		@filtroVaga
-	</div>
 
-
-	<div class="row justify-content center">
+	<div class="row justify-content center colecao">
 			{{ $vagas->onEachSide(2)->links() }}
 	</div>
 
@@ -41,6 +40,7 @@
 		</a>
 	</div>
 	@endtypeUser
+
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 @endsection

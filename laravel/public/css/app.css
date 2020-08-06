@@ -9499,7 +9499,7 @@ input[type=range]::-ms-thumb {
 }
 
 .nav-wrapper {
-  background-color: #6bbfa9 !important;
+  background-color: #43947f !important;
 }
 
 nav a {
@@ -9511,20 +9511,20 @@ body {
 }
 
 #navbarDropdown {
-  background-color: #6bbfa9;
+  background-color: #43947f;
 }
 
 #navbarDropdown2 {
-  background-color: #6bbfa9;
+  background-color: #43947f;
 }
 
 .dropdown-content li a {
   background-color: #fff;
-  color: #6bbfa9 !important;
+  color: #43947f !important;
 }
 
 .dropdown-content li a:hover {
-  background-color: #6bbfa9;
+  background-color: #43947f;
   color: #fff !important;
 }
 
@@ -9559,16 +9559,16 @@ body {
 }
 
 .pagination li.ativo a:hover {
-  color: #6bbfa9 !important;
+  color: #43947f !important;
 }
 
 .pagination li.active {
-  background-color: #6bbfa9;
+  background-color: #43947f;
   color: #fff;
 }
 
 .tabs .tab a {
-  color: #6bbfa9;
+  color: #43947f;
 }
 
 .tabs .tab a:focus,
@@ -9580,7 +9580,7 @@ body {
 .tabs .tab a:hover,
 .tabs .tab a.active {
   background-color: transparent;
-  color: #6bbfa9;
+  color: #43947f;
 }
 
 .tabs .indicator {
@@ -9604,34 +9604,37 @@ span.badge.new.dark {
 }
 
 .filtro {
-  position: fixed;
+  position: absolute;
   z-index: 2;
   background-color: #f2f5f4;
-  width: 210px;
+  width: 100%;
+  height: 80%;
+  display: none;
 }
 
 nav img {
-  height: 50px;
-  width: 80px;
+  height: 45px;
+  width: 170px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
 }
 
-.centralize-image {
+.home {
+  height: 65px;
+  width: 170px;
   position: relative;
-  top: 10px;
-  margin-bottom: -20px;
+  z-index: 2;
+  bottom: 190px;
 }
 
 .logo {
   position: relative;
-  bottom: 15px;
+  top: 10px;
 }
 
 .logout {
   height: 9px;
-}
-
-.filtro {
-  display: none;
 }
 
 .cand_header {
@@ -9649,5 +9652,22 @@ nav img {
 
 .exp:hover {
   color: #162a7a;
+}
+
+.pass:hover {
+  color: #418c73;
+}
+
+.sidenav {
+  background-color: #43947f;
+}
+
+.sidenav a {
+  color: #fff !important;
+}
+
+.sidenav li a:hover {
+  background-color: #d4fcf2 !important;
+  color: #43947f !important;
 }
 

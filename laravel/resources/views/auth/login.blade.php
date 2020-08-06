@@ -38,8 +38,8 @@
                 <div class="row">
                     <div class="col s12">
                         @if (Route::has('password.request'))
-                            <a class="left" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
+                            <a class="left pass" href="{{ route('password.request') }}">
+                                {{ __('Esqueceu sua senha?') }}
                             </a>
                         @endif
                     </div>

@@ -32248,17 +32248,26 @@ function getPosicaoElemento(elemID) {
 
 $(function () {
   $('.showFilter').click(function () {
-    var id = "lista";
-    var elemento = document.getElementById('filtro');
-    var Left = getPosicaoElemento(id).left;
-    var Top = getPosicaoElemento(id).top;
-    var altura = $(elemento).height();
-    if (altura < 270) var diff = 130;else var diff = 210;
-    $("#filtro").animate({
-      left: Left - 220 + 'px',
-      top: Top - diff + 'px'
-    }, 1);
-    if ($('.filtro').css('display') == 'block') $('.filtro').css('display', 'none');else $('.filtro').css('display', 'block');
+    var navbar = document.getElementById('navbar');
+    var navAltura = navbar.clientHeight;
+    var filtro = document.getElementById('filtro');
+    var filtroAltura = $(filtro).height();
+    var janelaAltura = $(window).height();
+    var diff = janelaAltura - (filtroAltura + navAltura + 20);
+
+    if ($('.filtro').css('display') == 'none') {
+      $('.colecao').css('display', 'none');
+      $(".filtro").show().animate({
+        bottom: diff,
+        opacity: 1
+      }, 200);
+    } else {
+      $('.colecao').css('display', 'block');
+      $(".filtro").animate({
+        bottom: '0px',
+        opacity: 0
+      }, 200).hide(100);
+    }
   });
 });
 $(".nav_words").each(function () {

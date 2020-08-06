@@ -48,7 +48,11 @@ class ClienteController extends Controller
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
 
-        return view('cliente.index', compact('clientes','bairros','escolaridades'));
+        $conhecimentos = [
+            "Programação", "excel", "word", "ingles"
+        ];
+
+        return view('cliente.index', compact('clientes','bairros','escolaridades','conhecimentos'));
     }
 
     /**
@@ -89,9 +93,13 @@ class ClienteController extends Controller
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
 
+        $conhecimentos = [
+            "Programação", "excel", "word", "ingles"
+        ];
+
         $clientes = Cliente::busca($request, $bairros, $escolaridades);
 
-        return view('cliente.index', compact('clientes','bairros','escolaridades','request'));
+        return view('cliente.index', compact('clientes','bairros','escolaridades','request','conhecimentos'));
     }
 
     /**

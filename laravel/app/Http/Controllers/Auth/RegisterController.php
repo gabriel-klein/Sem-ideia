@@ -175,10 +175,16 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        // $this->guard()->login($user);
+        if($request->typeUser == "Cliente")
+        {
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+        }
 
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ?: redirect('/login');
     }
 
     /**
@@ -211,9 +217,12 @@ class RegisterController extends Controller
             if ($request->typeUser === "Empresa") {
                 SendEMail::dispatch(new EmpresaNew($user));
                 SendEmail::dispatch(new EmpresaVerify($user));
+                $request->session()->flash('sucesso', 'Usuário criado com sucesso! Aguarde o email liberando o seu acesso.');
             }
 
-            $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
+            if ($request->typeUser === "Cliente") {
+                $request->session()->flash('sucesso', 'Usuário criado com sucesso!');
+            }
         }
     }
 }

@@ -47,10 +47,6 @@ class Vaga extends Model
 
         $retorno = Vaga::whereIn('funcao',$filtro->funcao)
         ->whereIn('escolaridade',$filtro->escolaridade)
-        ->Where([
-            ['quantidade', '>', $filtro->quantidade],
-            ['status', 'Ativa' ],
-        ])
         ->latest()->Paginate(5);
 
         if($filtro->funcao == $funcoes)
@@ -58,6 +54,32 @@ class Vaga extends Model
 
         if($filtro->escolaridade == $escolaridades)
             $filtro->escolaridade = NULL;
+
+        if($filtro->conhecimento != NULL)
+        {
+            foreach ($retorno as $key=>$retorno) {
+            $id[$key] = [$retorno->id];
+            }
+            if($filtro->nivel == NULL)
+            {
+                 $retorno = Vaga::whereIn('id',$id)
+                ->whereHas('conhecimentos', function($q) use($filtro)
+                {
+                    $q->where('nome', 'like', $filtro->conhecimento);
+                })
+                ->latest()->Paginate(5);
+            }
+            else
+            {
+                 $retorno = Vaga::whereIn('id',$id)
+                ->whereHas('conhecimentos', function($q) use($filtro)
+                {
+                    $q->where('nivel', 'like', $filtro->nivel)
+                      ->where('nome', 'like', $filtro->conhecimento);
+                })
+                ->latest()->Paginate(5);
+            }
+        }
 
         return $retorno;
     }
