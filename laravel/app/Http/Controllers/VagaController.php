@@ -45,7 +45,11 @@ class VagaController extends Controller
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
 
-        return view('vagas.index', compact('vagas','funcoes','escolaridades'));
+        $conhecimentos = [
+            "Programação", "excel", "word", "ingles"
+        ];
+
+        return view('vagas.index', compact('vagas','funcoes','escolaridades','conhecimentos'));
     }
 
     public function busca(Request $request)
@@ -61,9 +65,13 @@ class VagaController extends Controller
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
 
+         $conhecimentos = [
+            "Programação", "excel", "word", "ingles"
+        ];
+
         $vagas = Vaga::busca($request, $funcoes, $escolaridades);
 
-        return view('vagas.index', compact('vagas','funcoes','escolaridades','request'));
+        return view('vagas.index', compact('vagas','funcoes','escolaridades','request','conhecimentos'));
     }
 
     /**
@@ -199,7 +207,7 @@ class VagaController extends Controller
         Vaga::find($request->vaga)
             ->clientes()->detach(Cliente::find($request->cliente));
 
-        return redirect()->route('vagas.index')
+        return back()
             ->with('sucesso', 'Cancelamento de candidatura feito com sucesso!');
     }
 
@@ -208,7 +216,7 @@ class VagaController extends Controller
         Vaga::find($request->vaga)
             ->clientes()->attach(Cliente::find($request->cliente));
 
-        return redirect()->route('vagas.index')
+        return back()
             ->with('sucesso', 'Seus dados aparecerão na vaga! Boa Sorte!');
     }
 

@@ -1,13 +1,13 @@
-<div class="navbar-fixed">
+<div class="navbar-fixed" id="navbar">
   <nav>
     <div class="nav-wrapper">
       <div class="brand-logo">
-      <a class="logo" href="{{ url('/home') }}">
-        <img src="{{ asset('storage/Logo_Banco3.png') }}"class="centralize-image" >
-      </a>
-    </div>
+        <a href="{{ url('/home') }}">
+          <img src="{{ asset('storage/logo branca.png') }}" class="logo">
+        </a> 
+      </div>
       <a data-target="mobile-demo" class="sidenav-trigger">
-          <i class="material-icons">menu</i>
+          <i class="material-icons" style="cursor: pointer;">menu</i>
       </a>
 
       <!-- Right Side Of Navbar -->
@@ -19,7 +19,7 @@
           </li>
           @if (Route::has('register'))
             <li>
-              <a href="{{ route('register') }}">{{ __('Register') }}</a>
+              <a href="{{ route('register') }}">{{ __('Registro') }}</a>
             </li>
           @endif
         @else 
@@ -76,13 +76,20 @@
 <ul class="sidenav" id="mobile-demo">
   @guest
     <li>
-      <a href="{{ route('login') }}">{{ __('Login') }}</a>
+      <a href="{{ route('login') }}">
+        <i class="material-icons">get_app</i>
+        {{ __('Login') }}
+      </a>
     </li>
     @if (Route::has('register'))
       <li>
-        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+        <a href="{{ route('register') }}">
+          <i class="material-icons">folder_shared</i>
+          {{ __('Registro') }}
+        </a>
       </li>
     @endif
+    <li class="divider"></li>
   @else
     @typeUser("Cliente" || "Empresa")
        @Vagas  
@@ -91,35 +98,51 @@
           </li>
         @else
           <li>
-              <a href="{{ route('vagas.index') }}">Vagas</a>
+              <a href="{{ route('vagas.index') }}">
+                <i class="material-icons">work</i>
+                Vagas
+              </a>
           </li>
         @endVagas
       @typeUser("Cliente")
         @Educacao
           <li>
-            <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}<span class="new badge dark">1</span></a>
+            <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">
+              <i class="material-icons">school</i>
+              {{ __('Educação') }}
+              <span class="new badge dark">1</span>
+            </a>
           </li>
         @else
           <li>
-            <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">{{ __('Educação') }}</a>
+            <a href="{{ route('cliente.curriculo.edit', Auth::user()->userable_id) }}">
+              <i class="material-icons">school</i>
+              {{ __('Educação') }}
+            </a>
           </li>
         @endEducacao
-           <li>
-             <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">{{ __('Experiências') }}</a>
-           </li>
+          <li>
+            <a href="{{ route('experiencia.index', Auth::user()->userable_id) }}">
+              <i class="material-icons">business_center</i>
+              {{ __('Experiências') }}
+            </a>
+          </li>
         <li>
           <a href="{{ route('cliente.edit', Auth::user()->userable->id)}}">
+            <i class="material-icons">assignment_ind</i>
             Meus Dados
           </a>
         </li>
       @elsetypeUser("Empresa")
         <li>
           <a href="{{ route('cliente.index')}}">
+            <i class="material-icons">assignment</i>
             Currículos
           </a>
         </li>
         <li>
           <a href="{{ route('empresa.edit', Auth::user()->userable->id)}}">
+            <i class="material-icons">assignment_ind</i>
             Meus Dados
           </a>
         </li>
@@ -127,6 +150,7 @@
     @else 
         <li>
           <a href="{{ route('admin.edit', Auth::user()->id)}}">
+            <i class="material-icons">assignment_ind</i>
             Meus Dados
           </a>
         </li>

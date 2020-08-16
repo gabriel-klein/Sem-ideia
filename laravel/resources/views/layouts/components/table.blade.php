@@ -39,7 +39,7 @@
 		<table class="centered highlight">
 				<thead>
 					<tr>
-						<th>Conhecimento</th>
+						<th>Nome</th>
 						<th>Básico</th>
 						<th>Médio</th>
 						<th>Avançado</th>

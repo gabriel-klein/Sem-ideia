@@ -20,7 +20,7 @@
                 ])
 
                 <div class="row">
-                    <button type="submit" class="col s12 btn waves-effect waves-light blue darken-1">
+                    <button type="submit" class="col s12 btn waves-effect">
                         Enviar
                     </button>
                 </div>
