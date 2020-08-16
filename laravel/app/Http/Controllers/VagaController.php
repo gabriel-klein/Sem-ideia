@@ -9,6 +9,8 @@ use App\Vaga;
 use App\Cliente;
 use App\Conhecimento;
 use App\Http\Requests\VagaRequest;
+use App\Jobs\SendEmail;
+use App\Mail\VagaRevisar;
 
 class VagaController extends Controller
 {
@@ -49,7 +51,7 @@ class VagaController extends Controller
             "Programação", "excel", "word", "ingles"
         ];
 
-        return view('vagas.index', compact('vagas','funcoes','escolaridades','conhecimentos'));
+        return view('vagas.index', compact('vagas', 'funcoes', 'escolaridades', 'conhecimentos'));
     }
 
     public function busca(Request $request)
@@ -65,13 +67,13 @@ class VagaController extends Controller
             "Médio Incompleto", "Fundamental Completo", "Fundamental Incompleto"
         ];
 
-         $conhecimentos = [
+        $conhecimentos = [
             "Programação", "excel", "word", "ingles"
         ];
 
         $vagas = Vaga::busca($request, $funcoes, $escolaridades);
 
-        return view('vagas.index', compact('vagas','funcoes','escolaridades','request','conhecimentos'));
+        return view('vagas.index', compact('vagas', 'funcoes', 'escolaridades', 'request', 'conhecimentos'));
     }
 
     /**
@@ -100,7 +102,7 @@ class VagaController extends Controller
             $vagaConhecimentos[$conhecimento->id] = $conhecimento->pivot->nivel;
         }
 
-        return view('vagas.create', compact('conhecimentos', 'funcoes', 'escolaridades','vagaConhecimentos'));
+        return view('vagas.create', compact('conhecimentos', 'funcoes', 'escolaridades', 'vagaConhecimentos'));
     }
 
     /**
@@ -127,6 +129,9 @@ class VagaController extends Controller
         }
 
         $vaga->conhecimentos()->sync($conhecimentos);
+
+        SendEmail::dispatch(new VagaRevisar(Auth::user(), $vaga))
+            ->delay(now()->addMonths(2));
 
         return redirect()->route('vagas.index')
             ->with('sucesso', 'Vaga cadastrada com sucesso!');
@@ -170,7 +175,7 @@ class VagaController extends Controller
             $vagaConhecimentos[$conhecimento->id] = $conhecimento->pivot->nivel;
         }
 
-        return view('vagas.edit', compact(['vaga', 'funcoes', 'escolaridades', 'conhecimentos','vagaConhecimentos']));
+        return view('vagas.edit', compact(['vaga', 'funcoes', 'escolaridades', 'conhecimentos', 'vagaConhecimentos']));
     }
 
     /**
